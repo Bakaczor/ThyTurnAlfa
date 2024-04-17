@@ -1,26 +1,25 @@
 #pragma once
 
+#include <cstring>
+#include <string>
+#include <vector>
+
 #include "Character.hpp"
 
-
-enum EffectId {
-	boost,
-	blleding,
-	burning,
-	wet
-};
-
 class Effect {
-private:
-	int m_elapsedRounds = 0;
-	int m_duration = 0;
-	Character* m_affected = nullptr;
-public:
-	const EffectId id;
+protected:
+	bool elapsed() { return elapsedRounds++ < duration; };
 
-	Effect(EffectId id, Character* affected) : id{ id }, m_affected { affected } { }
+public:
+	const int duration = 0;
+	int elapsedRounds = 0;
+	const std::string name;
+
+	Effect(const std::string name, int duration) : name{ name }, duration{ duration } { }
 	
-	virtual bool nextRound() = 0;
+	virtual bool nextRound(Character& affected) = 0;
+	virtual bool addTo(std::vector<Effect>& applied_effects) = 0;
+	virtual bool remove(Character& affected) = 0;
 };
 
 

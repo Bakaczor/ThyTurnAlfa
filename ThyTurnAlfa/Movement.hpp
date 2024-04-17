@@ -2,8 +2,7 @@
 
 #include "Character.hpp"
 
-
-enum TargetEnum {
+enum class TargetEnum {
 	enemy,
 	ally,
 	any

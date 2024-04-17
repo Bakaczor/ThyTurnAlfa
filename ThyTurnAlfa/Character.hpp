@@ -1,6 +1,8 @@
 #pragma once
 
-#include <list>
+#include <vector>
+#include <cstring>
+#include <string>
 
 #include "Effect.hpp"
 #include "Movement.hpp"
@@ -14,11 +16,15 @@ public:
 	int def;
 	int spd;
 	int mp;
+	int wDef;
+	int wAtk;
 	bool isAlive;
-	std::list<Effect*> activeEffects;
-	std::list<Movement*> movements;
+	const std::string name;
 
-	Character(std::list<Movement*>& movements) : movements{movements} { }
+	std::vector<Effect> activeEffects;
+	std::vector<Movement> movements;
+
+	Character(std::string name, std::vector<Movement>& movements) : name{ name }, movements{ movements } { }
 
 	// in the documentation wrong argument is passed
 	// to the method below
