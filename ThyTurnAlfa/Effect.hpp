@@ -18,8 +18,8 @@ public:
 	Effect(const std::string name, int duration) : name{ name }, duration{ duration } { }
 	
 	virtual bool nextRound(Character& affected) = 0;
-	virtual bool addTo(std::vector<Effect>& applied_effects) = 0;
 	virtual bool remove(Character& affected) = 0;
+	virtual bool addTo(std::vector<Effect>& applied_effects) = 0;
 };
 
 

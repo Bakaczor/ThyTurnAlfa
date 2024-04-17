@@ -1,18 +1,13 @@
 #pragma once
 
-#include <cstring>
-#include <string>
+#include "TemporaryDamagePerRound.hpp"
 
-#include "Effect.hpp"
+#define EFFECT_NAME_BLEEDING "Bleeding"
 
-class Bleeding: public Effect {
+class Bleeding: public TemporaryDamagePerRound {
 public:
-	const int dmgPerRound;
-
 	Bleeding(int dmgPerRound, int duration) 
-		: Effect("Bleeding", duration), dmgPerRound{ dmgPerRound } { };
+		: TemporaryDamagePerRound(EFFECT_NAME_BLEEDING, dmgPerRound, duration) { };
 
-	virtual bool nextRound(Character& affected) override;
 	virtual bool addTo(std::vector<Effect>& applied_effects) override;
-	virtual bool remove(Character& affected) override;
 };

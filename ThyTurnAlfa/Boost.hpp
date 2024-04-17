@@ -1,17 +1,13 @@
 #pragma once
 
-#include "Effect.hpp"
+#include "TemporaryDamageModifier.hpp"
 
+#define EFFECT_NAME_BOOST "Boost"
 
-class Boost : public Effect {
+class Boost : public TemporaryDamageModifier {
 public:
-	const int atkBoost;
-	const int defBoost;
+	Boost(unsigned atkBoost, unsigned defBoost, int duration)
+		: TemporaryDamageModifier(EFFECT_NAME_BOOST, atkBoost, defBoost, duration) { };
 
-	Boost(int atkBoost, int defBoost, int duration)
-		: Effect("Boost", duration), atkBoost{atkBoost}, defBoost{defBoost} { }
-
-	virtual bool nextRound(Character& affected) override;
 	virtual bool addTo(std::vector<Effect>& applied_effects) override;
-	virtual bool remove(Character& affected) override;
 };
