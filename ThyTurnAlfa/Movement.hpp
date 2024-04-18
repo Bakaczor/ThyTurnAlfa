@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Character.hpp"
+class Character;
 
 enum class TargetEnum {
 	enemy,

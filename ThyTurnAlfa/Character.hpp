@@ -7,7 +7,6 @@
 #include "Effect.hpp"
 #include "Movement.hpp"
 
-
 class Character {
 public:
 	int id;
@@ -21,10 +20,11 @@ public:
 	bool isAlive;
 	const std::string name;
 
-	std::vector<Effect> activeEffects;
-	std::vector<Movement> movements;
+	std::vector<Effect> activeEffects = std::vector<Effect>();
+	std::vector<Movement> movements = std::vector<Movement>();
 
-	Character(std::string name, std::vector<Movement>& movements) : name{ name }, movements{ movements } { }
+	// Character(std::string name, std::vector<Movement>& movements) : name{ name }, movements{ movements } { }
+	Character(std::string name) : name{ name } { }
 
 	// in the documentation wrong argument is passed
 	// to the method below

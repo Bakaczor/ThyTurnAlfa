@@ -133,8 +133,10 @@
     <ClCompile Include="Burning.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Cold.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Frozen.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Movement.cpp" />
     <ClCompile Include="TemporaryDamageModifier.cpp" />
     <ClCompile Include="TemporaryDamagePerRound.cpp" />
     <ClCompile Include="Wet.cpp" />

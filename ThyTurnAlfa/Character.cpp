@@ -1,4 +1,6 @@
 #include "Character.hpp"
+#include "Effect.hpp"
+#include "Movement.hpp"
 
 bool Character::addEffect(Effect& c) {
 	return false;
