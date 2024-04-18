@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Effect.hpp"
+#include "Character.hpp"
 
 class ActionlessEffect : public Effect {
 public:

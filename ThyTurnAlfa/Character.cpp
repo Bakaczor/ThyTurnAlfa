@@ -14,4 +14,5 @@ bool Character::applyEffects() {
 			activeEffects.erase(it);
 		}
 	}
+	return true;
 }

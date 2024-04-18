@@ -11,13 +11,14 @@ protected:
 	bool elapsed() { return elapsedRounds++ < duration; };
 
 public:
-	const int duration = 0;
+	int duration = 0;
 	int elapsedRounds = 0;
-	const std::string name;
+	std::string name;
 
 	Effect(const std::string name, int duration) : name{ name }, duration{ duration } { }
-	
-	Effect& operator=(Effect& e) { return e; }
+	Effect(Effect&& e) = default;
+
+	Effect& operator=(Effect&& e) noexcept = default;
 
 	virtual bool nextRound(Character& affected) = 0;
 	virtual bool remove(Character& affected) = 0;
