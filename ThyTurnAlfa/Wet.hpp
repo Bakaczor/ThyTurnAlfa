@@ -9,4 +9,5 @@ public:
 	Wet(int duration) : ActionlessEffect(EFFECT_NAME_WET, duration) { };
 
 	virtual bool addTo(std::vector<Effect>& applied_effects) override;
+	static bool isTypeOf(Effect& e);
 };

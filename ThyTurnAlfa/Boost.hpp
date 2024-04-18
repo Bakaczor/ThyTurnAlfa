@@ -10,4 +10,5 @@ public:
 		: TemporaryDamageModifier(EFFECT_NAME_BOOST, atkBoost, defBoost, duration) { };
 
 	virtual bool addTo(std::vector<Effect>& applied_effects) override;
+	static bool isTypeOf(Effect& e);
 };
