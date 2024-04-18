@@ -9,6 +9,5 @@ public:
 	Bleeding(int dmgPerRound, int duration) 
 		: TemporaryDamagePerRound(EFFECT_NAME_BLEEDING, dmgPerRound, duration) { };
 
-	virtual bool addTo(std::vector<Effect>& applied_effects) override;
 	static bool isTypeOf(Effect& e);
 };
