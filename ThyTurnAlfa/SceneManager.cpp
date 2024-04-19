@@ -91,9 +91,9 @@ int SceneManager::run() {
             }
             case ProgramState::Game: {
                 if (m_roundsCount == 0) {
-                    //m_queue = Queue(m_players);
+                    m_queue = Queue(m_players);
                 }
-                // m_currentCharacter = m_queue.pop() ?
+                //m_currentCharacter = m_queue.peek() ?
                 renderGame();
                 // m_roundsCount++;
                 break;

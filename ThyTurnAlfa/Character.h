@@ -8,10 +8,13 @@
 class Character {
 public:
 	void Deserialize(Json::Value& root);
-	std::string getName() {
+	const std::string getName() const {
 		return m_name;
 	}
-private:
+	const int getSpd() const {
+		return m_SPD;
+	}
+
 	std::string m_name;
 	int m_SPD = -1;
 	bool m_isAlive = true;

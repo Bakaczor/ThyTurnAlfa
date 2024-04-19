@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Reader.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneManager_Callbacks.cpp" />
