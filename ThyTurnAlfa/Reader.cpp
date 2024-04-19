@@ -9,6 +9,7 @@ bool Reader::readFile(const std::string& filename)
             return true;
         }
     }
+    file.close();
     return false;
 }
 
@@ -23,7 +24,7 @@ std::vector<Character> Reader::extractCharacters()
     return m_characters;
 }
 
-std::vector<std::vector<Character>> Reader::extractParties()
+std::vector<std::vector<std::string>> Reader::extractParties()
 {
     auto partyArray = m_jsonData["parties"];
     for (auto party : partyArray) {
@@ -31,12 +32,7 @@ std::vector<std::vector<Character>> Reader::extractParties()
         auto characterArray = party["characters"];
         for (auto character : characterArray) {
             std::string characterName = character["name"].asString();
-            auto deserializedCharacter =
-                std::find_if(m_characters.begin(), m_characters.end(),
-                    [characterName](auto& c) { return c.getName() == characterName; });
-            if (deserializedCharacter != m_characters.end()) {
-                m_parties.back().push_back(*deserializedCharacter);
-            }
+            m_parties.back().push_back(characterName);
         }
     }
     return m_parties;

@@ -50,7 +50,12 @@ int SceneManager::init() {
 
 int SceneManager::arrange() {
     // === CONFIG ===
-    // TODO : read config data
+    Reader reader;
+    if (!reader.readFile("appsettings.json")) {
+        return 1;
+    }
+    m_availibleCharacters = reader.extractCharacters();
+    m_partyPresets = reader.extractParties();
 
     return 0;
 }
