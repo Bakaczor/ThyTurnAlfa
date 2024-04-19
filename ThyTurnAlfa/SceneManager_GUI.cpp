@@ -1,5 +1,8 @@
 #include "SceneManager.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 void SceneManager::renderMenu() {
     float scale = m_height / static_cast<float>(m_fullscreenHeight);
     ImGui::SetNextWindowPos(ImVec2(0, 0));
@@ -98,6 +101,7 @@ void SceneManager::renderOptions() {
     ImGui::PopFont();
     ImGui::End();
 }
+
 void SceneManager::renderSetup() {
     float scale = m_height / static_cast<float>(m_fullscreenHeight);
     ImGui::SetNextWindowPos(ImVec2(0, 0));
@@ -210,5 +214,120 @@ void SceneManager::renderSetup() {
 }
 
 void SceneManager::renderGame() {
-    // TODO
+    float scale = m_height / static_cast<float>(m_fullscreenHeight);
+    ImGui::SetNextWindowPos(ImVec2(0, 0));
+    ImGui::SetNextWindowSize(ImVec2(m_width, m_height));
+    ImGui::Begin("game", nullptr,
+                 ImGuiWindowFlags_NoMove |
+                 ImGuiWindowFlags_NoDecoration |
+                 ImGuiWindowFlags_NoTitleBar);
+    // ===
+    float currScale = 0.2f * scale;
+    ImGui::PushFont(m_blackChancery);
+    ImGui::SetWindowFontScale(currScale);
+
+    // TODO : This is just a preview
+    // This is how to load images
+    // I think the image should be loaded while creating character and the textureID should be stored in character class
+
+    unsigned int textureID;
+    glGenTextures(1, &textureID);
+    int width, height, nrComponents;
+    unsigned char* data = stbi_load("images/megumin.png", &width, &height, &nrComponents, 0);
+    if (data) {
+        GLenum format;
+        if (nrComponents == 1) {
+            format = GL_RED;
+        } else if (nrComponents == 3) {
+            format = GL_RGB;
+        } else if (nrComponents == 4) {
+            format = GL_RGBA;
+        }
+
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    stbi_image_free(data);
+
+    ImVec2 imageSize(90, 90);
+
+    ImGui::Text("NEXT   ");
+    ImGui::SameLine();
+    ImGui::Image((ImTextureID*)textureID, imageSize);
+    ImGui::SameLine();
+    ImGui::Image((ImTextureID*)textureID, imageSize);
+    ImGui::SameLine();
+    ImGui::Image((ImTextureID*)textureID, imageSize);
+    ImGui::SameLine();
+    ImGui::Image((ImTextureID*)textureID, imageSize);
+
+    // Second row: 4 columns
+    ImGui::Columns(4, "MyColumns");
+
+    imageSize = ImVec2(360, 360);
+
+    // Column 1
+    ImGui::Text("Player 1");
+    ImGui::Image((ImTextureID*)textureID, imageSize, ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
+    ImGui::Button("Move 1##1");
+    ImGui::Button("Move 2##1");
+    ImGui::Button("Move 3##1");
+    ImGui::NextColumn();
+
+    imageSize = ImVec2(180, 180);
+
+    // Column 2
+    ImGui::Text("Characters of player 1");
+    ImGui::ImageButton((ImTextureID*)textureID, imageSize, ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
+    ImGui::ImageButton((ImTextureID*)textureID, imageSize, ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
+    ImGui::ImageButton((ImTextureID*)textureID, imageSize, ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
+    ImGui::ImageButton((ImTextureID*)textureID, imageSize, ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
+    ImGui::NextColumn();
+
+    // Column 3
+    ImGui::Text("Characters of player 2");
+    ImGui::ImageButton((ImTextureID*)textureID, imageSize);
+    ImGui::ImageButton((ImTextureID*)textureID, imageSize);
+    ImGui::ImageButton((ImTextureID*)textureID, imageSize);
+    ImGui::ImageButton((ImTextureID*)textureID, imageSize);
+    ImGui::NextColumn();
+
+    // Column 4
+    ImGui::Text("Player 2");
+    imageSize = ImVec2(360, 360);
+    ImGui::Image((ImTextureID*)textureID, imageSize);
+    ImGui::Button("Move 1##2");
+    ImGui::Button("Move 2##2");
+    ImGui::Button("Move 3##2");
+
+    ImGui::Columns(1);
+
+    // Third row: 2 columns
+    ImGui::Columns(2, "MyColumns2");
+
+    // Column 1
+    ImGui::Text("Characters of player 1");
+    ImGui::Text("Character 1");
+    ImGui::Text("Character 2");
+    ImGui::Text("Character 3");
+    ImGui::Text("Character 4");
+    ImGui::NextColumn();
+
+    // Column 2
+    ImGui::Text("Characters of player 2");
+    ImGui::Text("Character 1");
+    ImGui::Text("Character 2");
+    ImGui::Text("Character 3");
+    ImGui::Text("Character 4");
+
+    ImGui::Columns(1);
+
+    // End the ImGui window
+    ImGui::PopFont();
+    ImGui::End();
 }
