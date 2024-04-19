@@ -10,6 +10,7 @@
 #include <ranges>
 #include <iostream>
 #include <sstream>
+#include <ranges>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -21,15 +22,12 @@
 #include "imgui_impl_opengl3.h"
 
 #include "Queue.h"
-#include "State.h"
 #include "ProgramState.h"
 #include "WindowMode.h"
 #include "EvaluationFunction.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
-void renderGame();
-bool stringTableGetter(void* data, int index, const char** output);
 
 class SceneManager {
 	friend void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -58,7 +56,7 @@ class SceneManager {
 	// === GAME ===
 	unsigned m_roundsCount = 0;
 	ProgramState m_currentState = ProgramState::Menu;
-	State m_state;
+	std::vector<Player> m_players;
 	Queue m_queue;
 	//Character& m_currentCharacter;
 
@@ -71,10 +69,15 @@ class SceneManager {
 	int m_currFuncIndex = 0;
 	int m_treeDepth = 1;
 
+	// === SETUP ===
+	std::vector<Character> m_availibleCharacters;
+	std::vector<std::vector<Character>> m_partyPresets;
+
 	int arrange();
 	void renderMenu();
 	void renderSetup();
 	void renderOptions();
+	void renderGame();
 	int terminate();
 };
 #endif

@@ -3,8 +3,12 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-class Queue {
+#include "Player.h"
 
+class Queue {
+	public:
+	Queue() {}
+	Queue(const std::vector<Player>& players);
 };
 
 #endif

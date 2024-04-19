@@ -43,6 +43,15 @@
     <Filter Include="Resource Files\Fonts">
       <UniqueIdentifier>{c581364c-e8bf-493f-a9be-48171f758c7f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Images">
+      <UniqueIdentifier>{7c0d668b-8536-4a3b-90cf-07bc995f2815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Images\PNG">
+      <UniqueIdentifier>{c4b4d45e-c5fa-41f9-b39a-b746785a6784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Images\GIF">
+      <UniqueIdentifier>{27d8c744-4013-4dcc-ac7a-ea9b2018ac89}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,7 +60,10 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>Source Files\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManagerGUI.cpp">
+    <ClCompile Include="SceneManager_GUI.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager_Callbacks.cpp">
       <Filter>Source Files\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
@@ -69,9 +81,6 @@
       <Filter>Header Files\Players</Filter>
     </ClInclude>
     <ClInclude Include="Queue.h">
-      <Filter>Header Files\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
       <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
@@ -109,5 +118,13 @@
     <Font Include="fonts\TheCenturion.ttf">
       <Filter>Resource Files\Fonts</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\png\megumin.png">
+      <Filter>Resource Files\Images\PNG</Filter>
+    </Image>
+    <Image Include="images\gif\megumin.gif">
+      <Filter>Resource Files\Images\GIF</Filter>
+    </Image>
   </ItemGroup>
 </Project>
