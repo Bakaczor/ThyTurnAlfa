@@ -8,6 +8,6 @@ class Cold : public ActionlessEffect {
 public:
 	Cold(int duration) : ActionlessEffect(EFFECT_NAME_COLD, duration) { };
 
-	virtual bool addTo(std::vector<Effect>& applied_effects) override;
+	virtual bool addTo(std::vector<std::unique_ptr<Effect>>& applied_effects) override;
 	static bool isTypeOf(Effect& e);
 };

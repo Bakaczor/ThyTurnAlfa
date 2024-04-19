@@ -3,23 +3,22 @@
 #include "Burning.hpp"
 #include "Frozen.hpp"
 
-bool Cold::addTo(std::vector<Effect>& applied_effects)
+bool Cold::addTo(std::vector<std::unique_ptr<Effect>>& applied_effects)
 {
 	bool apply = true;
 	for (auto it = applied_effects.begin(); it != applied_effects.end(); it++)
 	{
-		if (it->isTypeOf(*this))
+		if (dynamic_cast<Cold*>((*it).get()))
 		{
 			applied_effects.erase(it);
 		}
-		else if (Wet::isTypeOf(*it))
+		else if (dynamic_cast<Wet*>((*it).get()))
 		{
 			applied_effects.erase(it);
-			Frozen frozen_effect = Frozen(this->duration);
-			applied_effects.emplace_back(frozen_effect);
+			applied_effects.emplace_back(new Frozen(this->duration));
 			apply = false;
 		} 
-		else if (Burning::isTypeOf(*it))
+		else if (dynamic_cast<Burning*>((*it).get()))
 		{
 			apply = false;
 		}
@@ -27,7 +26,7 @@ bool Cold::addTo(std::vector<Effect>& applied_effects)
 
 	if (apply)
 	{
-		applied_effects.emplace_back(*this);
+		applied_effects.emplace_back(new Cold(*this));
 	}
 
 	return true;

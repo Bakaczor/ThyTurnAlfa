@@ -9,7 +9,7 @@ bool Character::addEffect(Effect& c) {
 bool Character::applyEffects() {
 	for (auto it = activeEffects.begin(); it != activeEffects.end(); it++)
 	{
-		if (!(*it).nextRound(*this))
+		if (!(*it)->nextRound(*this))
 		{
 			activeEffects.erase(it);
 		}
