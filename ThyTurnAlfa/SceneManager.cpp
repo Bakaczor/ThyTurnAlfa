@@ -50,7 +50,7 @@ int SceneManager::init() {
 
 int SceneManager::arrange() {
     // === CONFIG ===
-    // TODO : read config data, creating state and queue etc.
+    // TODO : read config data
 
     return 0;
 }

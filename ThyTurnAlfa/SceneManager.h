@@ -69,7 +69,7 @@ class SceneManager {
 
 	// === SETUP ===
 	std::vector<Character> m_availibleCharacters;
-	std::vector<std::vector<Character>> m_partyPresets;
+	std::vector<std::vector<std::string>> m_partyPresets;
 
 	int arrange();
 	void renderMenu();

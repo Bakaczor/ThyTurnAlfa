@@ -46,12 +46,6 @@
     <Filter Include="Resource Files\Images">
       <UniqueIdentifier>{7c0d668b-8536-4a3b-90cf-07bc995f2815}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Images\PNG">
-      <UniqueIdentifier>{c4b4d45e-c5fa-41f9-b39a-b746785a6784}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Images\GIF">
-      <UniqueIdentifier>{27d8c744-4013-4dcc-ac7a-ea9b2018ac89}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -121,10 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\png\megumin.png">
-      <Filter>Resource Files\Images\PNG</Filter>
-    </Image>
-    <Image Include="images\gif\megumin.gif">
-      <Filter>Resource Files\Images\GIF</Filter>
+      <Filter>Resource Files\Images</Filter>
     </Image>
   </ItemGroup>
 </Project>

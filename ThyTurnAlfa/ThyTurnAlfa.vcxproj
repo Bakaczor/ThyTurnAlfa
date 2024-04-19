@@ -155,7 +155,6 @@
     <Font Include="fonts\TheCenturion.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="images\gif\megumin.gif" />
     <Image Include="images\png\megumin.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
