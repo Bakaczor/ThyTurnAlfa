@@ -8,7 +8,7 @@ public:
 	int atkModifier;
 	int defModifier;
 	
-	TemporaryDamageModifier(std::string name, int atkModifier, int defModifier, int duration) 
+	TemporaryDamageModifier(std::string name, int duration, int atkModifier, int defModifier)
 		: Effect(name, duration), atkModifier{ atkModifier }, defModifier{ defModifier } { };
 
 	virtual bool nextRound(Character& affected) override;

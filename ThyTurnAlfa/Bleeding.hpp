@@ -6,7 +6,7 @@
 
 class Bleeding: public TemporaryDamagePerRound {
 public:
-	Bleeding(int dmgPerRound, int duration) 
+	Bleeding(int duration, int dmgPerRound)
 		: TemporaryDamagePerRound(EFFECT_NAME_BLEEDING, dmgPerRound, duration) { };
 
 	static bool isTypeOf(Effect& e);

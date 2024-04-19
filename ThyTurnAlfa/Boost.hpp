@@ -6,8 +6,8 @@
 
 class Boost : public TemporaryDamageModifier {
 public:
-	Boost(unsigned atkBoost, unsigned defBoost, int duration)
+	Boost(int duration, unsigned atkBoost, unsigned defBoost)
 		: TemporaryDamageModifier(EFFECT_NAME_BOOST, atkBoost, defBoost, duration) { };
-
+	
 	static bool isTypeOf(Effect& e);
 };
