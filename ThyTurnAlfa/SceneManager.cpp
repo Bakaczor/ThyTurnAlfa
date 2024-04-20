@@ -50,7 +50,12 @@ int SceneManager::init() {
 
 int SceneManager::arrange() {
     // === CONFIG ===
-    // TODO : read config data
+    Reader reader;
+    if (!reader.readFile("appsettings.json")) {
+        return 1;
+    }
+    m_availibleCharacters = reader.extractCharacters();
+    m_partyPresets = reader.extractParties();
 
     return 0;
 }
@@ -86,9 +91,9 @@ int SceneManager::run() {
             }
             case ProgramState::Game: {
                 if (m_roundsCount == 0) {
-                    //m_queue = Queue(m_players);
+                    m_queue = Queue(m_players);
                 }
-                // m_currentCharacter = m_queue.pop() ?
+                //m_currentCharacter = m_queue.peek() ?
                 renderGame();
                 // m_roundsCount++;
                 break;
