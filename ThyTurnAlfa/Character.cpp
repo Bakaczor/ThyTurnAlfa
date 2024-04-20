@@ -15,9 +15,8 @@ bool Character::applyEffects() {
 	return true;
 }
 
-void Character::Deserialize(Json::Value& root)
-{
-
-	m_name = root["name"].asString();
-	m_SPD = root["SPD"].asInt();
-}
+//void Character::Deserialize(Json::Value& root)
+//{
+//	m_name = root["name"].asString();
+//	m_SPD = root["SPD"].asInt();
+//}
