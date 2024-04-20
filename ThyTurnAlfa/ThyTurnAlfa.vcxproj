@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,6 +140,9 @@
     <ClCompile Include="EffectsTest.cpp" />
     <ClCompile Include="Frozen.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SceneManager_Callbacks.cpp" />
+    <ClCompile Include="SceneManager_GUI.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="OrdinaryAttack.cpp" />
     <ClCompile Include="PiercingAttack.cpp" />
@@ -165,13 +170,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="EvaluationFunction.h" />
+    <ClInclude Include="ProgramState.h" />
     <ClInclude Include="Reader.h" />
     <ClInclude Include="Human.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="State.h" />
+    <ClInclude Include="WindowMode.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="fonts\BlackChancery.ttf" />
+    <Font Include="fonts\PetitFleur.ttf" />
+    <Font Include="fonts\TheCenturion.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\png\megumin.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

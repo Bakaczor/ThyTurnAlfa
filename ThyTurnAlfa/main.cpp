@@ -1,5 +1,14 @@
+#include "SceneManager.h"
 
-int main(int argc, char** argv)
-{
-	return 0;
+int main() {
+    try {
+        SceneManager scene;
+        if (0 == scene.init()) {
+            return scene.run();
+        }
+    } catch (std::exception& e) {
+        std::cerr << e.what();
+    }
+    return 1;
 }
+
