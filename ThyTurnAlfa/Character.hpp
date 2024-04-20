@@ -9,6 +9,10 @@
 #include "Effect.hpp"
 #include "Movement.hpp"
 
+#define MAX_DEF_VALUE 100
+#define MIN_DEF_VALUE 0
+#define MIN_ATK_VALUE 0
+
 class Character {
 public:
 	int id = 0;
