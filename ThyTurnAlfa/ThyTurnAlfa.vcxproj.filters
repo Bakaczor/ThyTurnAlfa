@@ -40,6 +40,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Movements">
+      <UniqueIdentifier>{dabdc47e-6981-42e3-86e6-9b980dc119c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Movements\ConventionalAttacks">
+      <UniqueIdentifier>{23902dc3-b7a7-493d-b4ee-7575cf6408f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Movements\MagicAttacks">
+      <UniqueIdentifier>{8c513df9-8d0f-4dc5-8c56-c1dcce7b1a90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Movements\DefensiveMovements">
+      <UniqueIdentifier>{feb0fe73-4921-49f3-accf-150260b37442}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Movements">
+      <UniqueIdentifier>{818f01e0-5810-4b9e-98f3-ae54618bb773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Movements\ConventionalAttacks">
+      <UniqueIdentifier>{50bb9048-5edb-4a91-bc53-fffdb157686f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -83,6 +101,15 @@
     </ClCompile>
     <ClCompile Include="EffectsTest.cpp">
       <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="OrdinaryAttack.cpp">
+      <Filter>Source Files\Movements\ConventionalAttacks</Filter>
+    </ClCompile>
+    <ClCompile Include="PiercingAttack.cpp">
+      <Filter>Source Files\Movements\ConventionalAttacks</Filter>
+    </ClCompile>
+    <ClCompile Include="BleedingAttack.cpp">
+      <Filter>Source Files\Movements\ConventionalAttacks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +166,15 @@
     </ClInclude>
     <ClInclude Include="EffectsTest.hpp">
       <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="OrdinaryAttack.hpp">
+      <Filter>Header Files\Movements\ConventionalAttacks</Filter>
+    </ClInclude>
+    <ClInclude Include="PiercingAttack.hpp">
+      <Filter>Header Files\Movements\ConventionalAttacks</Filter>
+    </ClInclude>
+    <ClInclude Include="BleedingAttack.hpp">
+      <Filter>Header Files\Movements\ConventionalAttacks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

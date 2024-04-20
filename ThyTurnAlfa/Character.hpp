@@ -9,10 +9,6 @@
 #include "Effect.hpp"
 #include "Movement.hpp"
 
-#define MAX_DEF_VALUE 100
-#define MIN_DEF_VALUE 0
-#define MIN_ATK_VALUE 0
-
 class Character {
 public:
 	int id = 0;
@@ -29,7 +25,7 @@ public:
 	std::vector<std::unique_ptr<Effect>> activeEffects = std::vector<std::unique_ptr<Effect>>();
 	std::vector<std::unique_ptr<Movement>> movements = std::vector<std::unique_ptr<Movement>>();
 
-	// usage of std::move explained here: https://stackoverflow.com/questions/3283778/why-can-i-not-push-back-a-unique-ptr-into-a-vector
+	// usage of std::move is explained here: https://stackoverflow.com/questions/3283778/why-can-i-not-push-back-a-unique-ptr-into-a-vector
 	Character(std::string& name, std::vector<std::unique_ptr<Movement>> movements) : name{ name }, movements{ std::move(movements) } { }
 
 	// in the documentation wrong argument is passed

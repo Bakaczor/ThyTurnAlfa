@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="ActionlessEffect.cpp" />
     <ClCompile Include="Bleeding.cpp" />
+    <ClCompile Include="BleedingAttack.cpp" />
     <ClCompile Include="Boost.cpp" />
     <ClCompile Include="Burning.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -138,6 +139,8 @@
     <ClCompile Include="Frozen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Movement.cpp" />
+    <ClCompile Include="OrdinaryAttack.cpp" />
+    <ClCompile Include="PiercingAttack.cpp" />
     <ClCompile Include="TemporaryDamageModifier.cpp" />
     <ClCompile Include="TemporaryDamagePerRound.cpp" />
     <ClCompile Include="Wet.cpp" />
@@ -145,14 +148,17 @@
   <ItemGroup>
     <ClInclude Include="ActionlessEffect.hpp" />
     <ClInclude Include="Bleeding.hpp" />
+    <ClInclude Include="BleedingAttack.hpp" />
     <ClInclude Include="Boost.hpp" />
     <ClInclude Include="Burning.hpp" />
     <ClInclude Include="Character.hpp" />
     <ClInclude Include="Cold.hpp" />
+    <ClInclude Include="OrdinaryAttack.hpp" />
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="EffectsTest.hpp" />
     <ClInclude Include="Frozen.hpp" />
     <ClInclude Include="Movement.hpp" />
+    <ClInclude Include="PiercingAttack.hpp" />
     <ClInclude Include="TemporaryDamageModifier.hpp" />
     <ClInclude Include="TemporaryDamagePerRound.hpp" />
     <ClInclude Include="Wet.hpp" />

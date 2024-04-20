@@ -1,5 +1,11 @@
 #pragma once
 
+#define UNIT_VALUE 100.0f
+#define UNIT_DEF_VALUE UNIT_VALUE
+#define MIN_DEF_VALUE 0
+#define UNIT_ATK_VALUE UNIT_VALUE
+#define MIN_ATK_VALUE 0
+
 class Character;
 
 enum class TargetEnum {
@@ -11,9 +17,13 @@ enum class TargetEnum {
 class Movement {
 public:
 	const TargetEnum target;
-	const int wMove;
+	const float wMove;
+	const float wPierce;
 
-	Movement(const TargetEnum target, int w_move) : target{ target }, wMove{ w_move } { }
+	Movement(const TargetEnum target, int w_move, int w_pierce = 0)
+		: target{ target }, wMove{ w_move / UNIT_VALUE }, wPierce{ w_pierce / UNIT_VALUE } { }
 
 	virtual bool invoke(Character& who, Character& on_whom) = 0;
+protected:
+	int computeDMG(Character& who, Character& on_whom);
 };

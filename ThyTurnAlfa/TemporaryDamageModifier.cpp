@@ -21,11 +21,6 @@ bool TemporaryDamageModifier::nextRound(Character& affected)
 			defModifier = MIN_DEF_VALUE - affected.wDef;
 			affected.wDef = 0;
 		}
-		else if (modified_w_def > MAX_DEF_VALUE)
-		{
-			defModifier = MAX_DEF_VALUE - affected.wDef;
-			affected.wDef = MAX_DEF_VALUE;
-		}
 		else
 		{
 			affected.wDef = modified_w_def;
