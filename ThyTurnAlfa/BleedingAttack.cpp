@@ -4,6 +4,8 @@
 
 bool BleedingAttack::invoke(Character& who, Character& on_whom)
 {
+	if (!isExecutable(who, on_whom)) return false;
+
 	Bleeding bleeding_effect = Bleeding(BLEEDING_ATTACK_DEFAULT_EFFECT_DURATION,
 		BLEEDING_ATTACK_DEFAULT_DAMAGE_PER_ROUND);
 

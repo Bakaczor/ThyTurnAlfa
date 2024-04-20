@@ -15,9 +15,6 @@
     <Filter Include="Header Files\Gameplay">
       <UniqueIdentifier>{6bc0009a-db60-4f1e-86b7-4d4d3d3240b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Entities">
-      <UniqueIdentifier>{34adaa16-263a-44e7-9545-7284d4a28dab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Utilities">
       <UniqueIdentifier>{8fc5b629-5d64-4b5e-9d11-23401ad8a60f}</UniqueIdentifier>
     </Filter>
@@ -58,26 +55,8 @@
     <Filter Include="Source Files\Movements\ConventionalAttacks">
       <UniqueIdentifier>{50bb9048-5edb-4a91-bc53-fffdb157686f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Entities">
-      <UniqueIdentifier>{9d77f8cb-7084-43ea-bda4-18edc3eece77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Gameplay">
-      <UniqueIdentifier>{84c79965-226a-45ee-bf87-9abb5f5d720b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Players">
-      <UniqueIdentifier>{7ca5ca4c-5fb2-4dc3-ae01-d79b2f9a5b9e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Utilities">
-      <UniqueIdentifier>{ab90d0b8-28c2-49c1-9617-659f5ff87d8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Enums">
-      <UniqueIdentifier>{4d2f7aa0-0447-422e-9dd6-5369c9469d2d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Fonts">
-      <UniqueIdentifier>{c581364c-e8bf-493f-a9be-48171f758c7f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Images">
-      <UniqueIdentifier>{7c0d668b-8536-4a3b-90cf-07bc995f2815}</UniqueIdentifier>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{34adaa16-263a-44e7-9545-7284d4a28dab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -133,13 +112,13 @@
       <Filter>Source Files\Movements\ConventionalAttacks</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>Source Files\Gameplay</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager_GUI.cpp">
-      <Filter>Source Files\Gameplay</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager_Callbacks.cpp">
-      <Filter>Source Files\Gameplay</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager_GUI.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -156,9 +135,6 @@
       <Filter>Header Files\Players</Filter>
     </ClInclude>
     <ClInclude Include="Queue.h">
-      <Filter>Header Files\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
       <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="Reader.h">
@@ -206,16 +182,22 @@
     <ClInclude Include="BleedingAttack.hpp">
       <Filter>Header Files\Movements\ConventionalAttacks</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Movement.hpp">
+    <ClInclude Include="AI.h">
+      <Filter>Header Files\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="Human.h">
+      <Filter>Header Files\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Header Files\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>Header Files\Gameplay</Filter>
+    </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.hpp">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Effect.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Reader.h">
@@ -224,30 +206,33 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
+    <ClInclude Include="EvaluationFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ProgramState.h">
-      <Filter>Header Files\Enums</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WindowMode.h">
-      <Filter>Header Files\Enums</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EvaluationFunction.h">
-      <Filter>Header Files\Enums</Filter>
+    <ClInclude Include="Character.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Movement.hpp">
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="fonts\BlackChancery.ttf">
-      <Filter>Resource Files\Fonts</Filter>
-    </Font>
-    <Font Include="fonts\PetitFleur.ttf">
-      <Filter>Resource Files\Fonts</Filter>
-    </Font>
-    <Font Include="fonts\TheCenturion.ttf">
-      <Filter>Resource Files\Fonts</Filter>
-    </Font>
+    <Font Include="fonts\BlackChancery.ttf" />
+    <Font Include="fonts\PetitFleur.ttf" />
+    <Font Include="fonts\TheCenturion.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\png\megumin.png">
-      <Filter>Resource Files\Images</Filter>
+      <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
 </Project>
