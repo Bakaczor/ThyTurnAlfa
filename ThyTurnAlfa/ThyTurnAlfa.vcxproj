@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ActionlessEffect.cpp" />
+    <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Bleeding.cpp" />
     <ClCompile Include="BleedingAttack.cpp" />
     <ClCompile Include="Boost.cpp" />
@@ -141,7 +142,11 @@
     <ClCompile Include="Cold.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectsTest.cpp" />
+    <ClCompile Include="FireAttack.cpp" />
     <ClCompile Include="Frozen.cpp" />
+    <ClCompile Include="IceAttack.cpp" />
+    <ClCompile Include="LightningAttack.cpp" />
+    <ClCompile Include="MagicAttack.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Reader.cpp" />
@@ -153,16 +158,22 @@
     <ClCompile Include="PiercingAttack.cpp" />
     <ClCompile Include="TemporaryDamageModifier.cpp" />
     <ClCompile Include="TemporaryDamagePerRound.cpp" />
+    <ClCompile Include="WaterAttack.cpp" />
     <ClCompile Include="Wet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionlessEffect.hpp" />
+    <ClInclude Include="Attack.hpp" />
     <ClInclude Include="Bleeding.hpp" />
     <ClInclude Include="BleedingAttack.hpp" />
     <ClInclude Include="Boost.hpp" />
     <ClInclude Include="Burning.hpp" />
     <ClInclude Include="Character.hpp" />
     <ClInclude Include="Cold.hpp" />
+    <ClInclude Include="FireAttack.hpp" />
+    <ClInclude Include="IceAttack.hpp" />
+    <ClInclude Include="LightningAttack.hpp" />
+    <ClInclude Include="MagicAttack.hpp" />
     <ClInclude Include="OrdinaryAttack.hpp" />
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="EffectsTest.hpp" />
@@ -171,6 +182,7 @@
     <ClInclude Include="PiercingAttack.hpp" />
     <ClInclude Include="TemporaryDamageModifier.hpp" />
     <ClInclude Include="TemporaryDamagePerRound.hpp" />
+    <ClInclude Include="WaterAttack.hpp" />
     <ClInclude Include="Wet.hpp" />
   </ItemGroup>
   <ItemGroup>

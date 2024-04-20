@@ -19,6 +19,7 @@ enum class TargetEnum {
 
 class Movement {
 public:
+	const std::string name;
 	const TargetEnum target;
 	const float wMove;
 	const float wPierce;
@@ -28,7 +29,7 @@ public:
 
 	virtual bool invoke(Character& who, Character& on_whom) = 0;
 	virtual bool isExecutable(Character& who, Character& on_whom) = 0;
-	virtual std::string getCost();
+	virtual int getCost() { return 0; };
 protected:
 	int computeDMG(Character& who, Character& on_whom);
 };
