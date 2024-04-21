@@ -171,6 +171,7 @@
     <ClInclude Include="Character.hpp" />
     <ClInclude Include="Cold.hpp" />
     <ClInclude Include="FireAttack.hpp" />
+    <ClInclude Include="Heal.hpp" />
     <ClInclude Include="IceAttack.hpp" />
     <ClInclude Include="LightningAttack.hpp" />
     <ClInclude Include="MagicAttack.hpp" />

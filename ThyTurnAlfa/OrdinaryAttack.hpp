@@ -2,7 +2,7 @@
 
 #include "Attack.hpp"
 
-#define ORDINARY_ATTACK_DEFAULT_WEIGHT UNIT_VALUE
+#define ORDINARY_ATTACK_DEFAULT_WEIGHT 100
 
 class OrdinaryAttack: public Attack {
 public:

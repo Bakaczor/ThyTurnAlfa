@@ -12,8 +12,16 @@ void LightningAttack::applyDamage(Character& who, Character& on_whom)
             is_wet = true;
         }
     }
+
+    int old_atk = 0;
     if (is_wet)
     {
-        int 
+        old_atk = who.wAtk;
+        who.wAtk += 100;
+    }
+    Attack::applyDamage(who, on_whom);
+    if (is_wet)
+    {
+        who.wAtk = old_atk;
     }
 }
