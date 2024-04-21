@@ -12,5 +12,5 @@ public:
 	FireAttack()
 		: MagicAttack(FIRE_ATTACK_DEFAULT_COST, FIRE_ATTACK_DEFAULT_WEIGHT) { }
 
-	virtual bool invoke(Character& who, Character& on_whom) override;
+	virtual void addEffects(Character& who, Character& on_whom) override;
 };

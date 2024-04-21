@@ -10,5 +10,5 @@ class BleedingAttack : public Attack {
 public:
 	BleedingAttack() : Attack(BLEEDING_ATTACK_DEFAULT_WEIGHT) { }
 
-	virtual bool invoke(Character& who, Character& on_whom) override;
+	virtual void addEffects(Character& who, Character& on_whom) override;
 };

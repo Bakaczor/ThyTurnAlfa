@@ -10,6 +10,4 @@ public:
 	PiercingAttack() 
 	: Attack(PIERCING_ATTACK_DEFAULT_WEIGHT, 
 		PIERCING_ATTACK_DEFAULT_PIERCING_WEIGHT) { }
-
-	virtual bool invoke(Character& who, Character& on_whom) override;
 };

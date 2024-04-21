@@ -28,8 +28,9 @@ public:
 		: target{ target }, wMove{ w_move / UNIT_VALUE }, wPierce{ w_pierce / UNIT_VALUE } { }
 
 	virtual bool invoke(Character& who, Character& on_whom) = 0;
-	virtual bool isExecutable(Character& who, Character& on_whom) = 0;
 	virtual int getCost() { return 0; };
 protected:
 	int computeDMG(Character& who, Character& on_whom);
+	virtual bool isExecutable(Character& who, Character& on_whom) = 0;
+	virtual void addEffects(Character& who, Character& on_whom) { } ; // should be overridden by movement which applies effect(s)
 };
