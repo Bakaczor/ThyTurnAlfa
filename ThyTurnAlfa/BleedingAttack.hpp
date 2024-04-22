@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef BLEEDING_ATTACK_HPP
+#define BLEEDING_ATTACK_HPP
+
 #include "Attack.hpp"
 
 #define BLEEDING_ATTACK_DEFAULT_WEIGHT 60
@@ -12,3 +15,5 @@ public:
 
 	virtual void addEffects(Character& who, Character& on_whom) override;
 };
+
+#endif // !BLEEDING_ATTACK_HPP

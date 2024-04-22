@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef LIGHTNING_ATTACK_HPP
+#define LIGHTNING_ATTACK_HPP
+
 #include "MagicAttack.hpp"
 
 #define LIGHTNING_ATTACK_DEFAULT_WEIGHT 100
@@ -12,3 +15,5 @@ public:
 protected:
 	virtual void applyDamage(Character& who, Character& on_whom) override;
 };
+
+#endif // !#define LIGHTNING_ATTACK_HPP

@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef CHARACTER_HPP
+#define CHARACTER_HPP
+
 #include <vector>
 #include <cstring>
 #include <string>
@@ -21,7 +24,7 @@ public:
 	int wAtk = 0;
 	bool isAlive = true;
 	const std::string name;
-	
+
 	std::vector<std::unique_ptr<Effect>> activeEffects = std::vector<std::unique_ptr<Effect>>();
 	std::vector<std::unique_ptr<Movement>> movements = std::vector<std::unique_ptr<Movement>>();
 
@@ -33,3 +36,7 @@ public:
 	bool addEffect(Effect& c);
 	bool applyEffects();
 };
+
+#endif // !CHARACTER_HPP
+
+

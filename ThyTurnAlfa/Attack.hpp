@@ -1,5 +1,11 @@
 #pragma once
 
+#ifndef ATTACK_HPP
+#define ATTACK_HPP
+
+#endif // !ATTACK_HPP
+
+
 #include "Movement.hpp"
 
 class Attack : public Movement {

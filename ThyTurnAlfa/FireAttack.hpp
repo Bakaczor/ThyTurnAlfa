@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef FIRE_ATTACK_HPP
+#define FIRE_ATTACK_HPP
+
 #include "MagicAttack.hpp"
 
 #define FIRE_ATTACK_DEFAULT_WEIGHT 60
@@ -14,3 +17,5 @@ public:
 
 	virtual void addEffects(Character& who, Character& on_whom) override;
 };
+
+#endif // !FIRE_ATTACK_HPP

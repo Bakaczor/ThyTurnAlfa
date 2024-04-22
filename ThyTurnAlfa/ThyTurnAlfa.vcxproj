@@ -144,6 +144,7 @@
     <ClCompile Include="EffectsTest.cpp" />
     <ClCompile Include="FireAttack.cpp" />
     <ClCompile Include="Frozen.cpp" />
+    <ClCompile Include="Heal.cpp" />
     <ClCompile Include="IceAttack.cpp" />
     <ClCompile Include="LightningAttack.cpp" />
     <ClCompile Include="MagicAttack.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Burning.hpp" />
     <ClInclude Include="Character.hpp" />
     <ClInclude Include="Cold.hpp" />
+    <ClInclude Include="DefensiveMovement.hpp" />
     <ClInclude Include="FireAttack.hpp" />
     <ClInclude Include="Heal.hpp" />
     <ClInclude Include="IceAttack.hpp" />

@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef WATER_ATTACK_HPP
+#define WATER_ATTACK_HPP
+
 #include "MagicAttack.hpp"
 
 #define WATER_ATTACK_DEFAULT_WEIGHT 80
@@ -8,7 +11,9 @@
 
 class WaterAttack : public MagicAttack {
 public:
-	WaterAttack(): MagicAttack(WATER_ATTACK_DEFAULT_COST, WATER_ATTACK_DEFAULT_WEIGHT) { }
+	WaterAttack() : MagicAttack(WATER_ATTACK_DEFAULT_COST, WATER_ATTACK_DEFAULT_WEIGHT) { }
 
 	virtual void addEffects(Character& who, Character& on_whom) override;
 };
+
+#endif // !WATER_ATTACK_HPP
