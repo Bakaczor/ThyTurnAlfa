@@ -28,7 +28,7 @@ public:
 	virtual bool invoke(Character& who, Character& on_whom);
 	virtual int getCost() { return 0; };
 protected:
-	virtual bool isInvokable(Character& who, Character& on_whom) = 0;
+	virtual bool isInvokable(Character& who, Character& on_whom);
 	virtual bool individualAction(Character& who, Character& on_whom) = 0;
 	virtual void addEffects(Character& who, Character& on_whom) { }; // should be overridden by movement which applies effect(s)
 };

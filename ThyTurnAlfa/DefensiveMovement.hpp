@@ -11,7 +11,7 @@ public:
 	DefensiveMovement(int cost)
 		: Movement(TargetEnum::ally), cost{ (unsigned)cost } {}
 
-	virtual bool invoke(Character& who, Character& on_whom) override;
+	virtual int getCost() override;
 protected:
 	virtual bool isInvokable(Character& who, Character& on_whom) override;
 };

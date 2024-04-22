@@ -1,5 +1,4 @@
 #include "Attack.hpp"
-#include "Character.hpp"
 
 int Attack::computeDMG(Character& who, Character& on_whom)
 {
@@ -9,17 +8,17 @@ int Attack::computeDMG(Character& who, Character& on_whom)
     if (formula_suffix < 0 || formula_prefix < 0) return 0;
 
     int dmg = formula_prefix * formula_suffix;
-    if (dmg > on_whom.hp) dmg = on_whom.hp;
+    if (dmg > on_whom.currentHp) dmg = on_whom.currentHp;
 
     return dmg;
 }
 
 bool Attack::isInvokable(Character& who, Character& on_whom)
 {
-    return on_whom.hp > 0;
+    return on_whom.currentHp > 0;
 }
 
 bool Attack::individualAction(Character& who, Character& on_whom)
 {
-	on_whom.hp -= computeDMG(who, on_whom);
+	on_whom.currentHp -= computeDMG(who, on_whom);
 }

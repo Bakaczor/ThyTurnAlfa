@@ -1,18 +1,21 @@
 #pragma once
 
 #ifndef HEAL_HPP
+#define HEAL_HPP
 
-#include "Movement.hpp"
+#include "DefensiveMovement.hpp"
 
-#define HEAL_HP_BOOST_DEFAULT 50
+#define HEAL_DEFAULTL_HP_BOOST 50
+#define HEAL_DEFAULT_COST 20
 
-class Heal : public Movement {
+class Heal : public DefensiveMovement {
 public:
 	const int hpBoost;
 
-	Heal(int hp_boost = HEAL_HP_BOOST_DEFAULT) : Movement(TargetEnum::ally), hpBoost{ hp_boost } { }
-
+	Heal(int cost = HEAL_DEFAULT_COST, int hp_boost = HEAL_DEFAULTL_HP_BOOST)
+		: DefensiveMovement(cost), hpBoost{hp_boost} { }
 protected:
+	virtual bool isInvokable(Character& who, Character& on_whom) override;
 	virtual bool individualAction(Character& who, Character& on_whom) override;
 };
 

@@ -16,6 +16,7 @@ class Character {
 public:
 	int id = 0;
 	int hp = 0;
+	int currentHp = 0;
 	int atk = 0;
 	int def = 0;
 	int spd = 0;
