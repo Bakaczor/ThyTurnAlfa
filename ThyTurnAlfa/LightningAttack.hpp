@@ -13,7 +13,7 @@ public:
 	LightningAttack()
 		: MagicAttack(LIGHTNING_ATTACK_DEFAULT_COST, LIGHTNING_ATTACK_DEFAULT_WEIGHT) { }
 protected:
-	virtual void applyDamage(Character& who, Character& on_whom) override;
+	virtual bool individualAction(Character& who, Character& on_whom) override;
 };
 
 #endif // !#define LIGHTNING_ATTACK_HPP

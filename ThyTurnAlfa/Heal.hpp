@@ -12,9 +12,8 @@ public:
 
 	Heal(int hp_boost = HEAL_HP_BOOST_DEFAULT) : Movement(TargetEnum::ally), hpBoost{ hp_boost } { }
 
-	virtual bool invoke(Character& who, Character& on_whom) override;
 protected:
-	virtual bool isExecutable(Character& who, Character& on_whom) override;
+	virtual bool individualAction(Character& who, Character& on_whom) override;
 };
 
 #endif // !HEAL_HPP

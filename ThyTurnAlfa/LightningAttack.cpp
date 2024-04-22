@@ -2,7 +2,7 @@
 #include "Character.hpp"
 #include "Wet.hpp"
 
-void LightningAttack::applyDamage(Character& who, Character& on_whom)
+void LightningAttack::individualAction(Character& who, Character& on_whom)
 {
     bool is_wet;
     for (auto& e : on_whom.activeEffects)
@@ -19,7 +19,7 @@ void LightningAttack::applyDamage(Character& who, Character& on_whom)
         old_atk = who.wAtk;
         who.wAtk += 100;
     }
-    Attack::applyDamage(who, on_whom);
+    Attack::individualAction(who, on_whom);
     if (is_wet)
     {
         who.wAtk = old_atk;
