@@ -9,9 +9,9 @@
 
 class OrdinaryAttack : public Attack {
 public:
-	OrdinaryAttack()
-		: Attack(ORDINARY_ATTACK_DEFAULT_WEIGHT) { }
+	OrdinaryAttack(int w_move = ORDINARY_ATTACK_DEFAULT_WEIGHT)
+		: Attack(w_move) { }
 };
 
-#endif // !1
+#endif // !ORDINARY_ATTACK_HPP
 

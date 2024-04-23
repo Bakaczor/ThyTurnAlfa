@@ -13,7 +13,8 @@
 
 class WaterAttack : public MagicAttack {
 public:
-	WaterAttack() : MagicAttack(WATER_ATTACK_DEFAULT_COST, WATER_ATTACK_DEFAULT_WEIGHT) { }
+	WaterAttack(int cost = WATER_ATTACK_DEFAULT_COST, int w_move = WATER_ATTACK_DEFAULT_WEIGHT) 
+		: MagicAttack(cost, w_move) { }
 
 	virtual void addEffects(Character& who, Character& on_whom) override
 	{

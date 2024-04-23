@@ -10,10 +10,10 @@
 
 class LightningAttack : public MagicAttack {
 public:
-	LightningAttack()
-		: MagicAttack(LIGHTNING_ATTACK_DEFAULT_COST, LIGHTNING_ATTACK_DEFAULT_WEIGHT) { }
+	LightningAttack(int cost = LIGHTNING_ATTACK_DEFAULT_COST, int w_move = LIGHTNING_ATTACK_DEFAULT_WEIGHT)
+		: MagicAttack(cost, w_move) { }
 protected:
 	virtual bool individualAction(Character& who, Character& on_whom) override;
 };
 
-#endif // !#define LIGHTNING_ATTACK_HPP
+#endif // !LIGHTNING_ATTACK_HPP

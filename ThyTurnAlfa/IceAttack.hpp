@@ -11,8 +11,8 @@
 
 class IceAttack : public MagicAttack {
 public:
-	IceAttack() : MagicAttack(ICE_ATTACK_DEFAULT_COST, ICE_ATTACK_DEFAULT_WEIGHT,
-		ICE_ATTACK_DEFAULT_PIERCING_WEIGHT) { }
+	IceAttack(int cost = ICE_ATTACK_DEFAULT_COST, int w_move = ICE_ATTACK_DEFAULT_WEIGHT) 
+		: MagicAttack(cost, w_move) { }
 };
 
 #endif // !ICE_ATTACK_HPP

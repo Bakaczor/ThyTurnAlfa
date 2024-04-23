@@ -12,7 +12,7 @@
 
 class BleedingAttack : public Attack {
 public:
-	BleedingAttack() : Attack(BLEEDING_ATTACK_DEFAULT_WEIGHT) { }
+	BleedingAttack(int w_move = BLEEDING_ATTACK_DEFAULT_WEIGHT) : Attack(w_move) { }
 
 	virtual void addEffects(Character& who, Character& on_whom) override
 	{

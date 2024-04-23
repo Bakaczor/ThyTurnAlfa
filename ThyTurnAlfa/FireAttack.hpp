@@ -13,8 +13,8 @@
 
 class FireAttack : public MagicAttack {
 public:
-	FireAttack()
-		: MagicAttack(FIRE_ATTACK_DEFAULT_COST, FIRE_ATTACK_DEFAULT_WEIGHT) { }
+	FireAttack(int cost = FIRE_ATTACK_DEFAULT_COST, int w_move = FIRE_ATTACK_DEFAULT_WEIGHT)
+		: MagicAttack(cost, w_move) { }
 
 	virtual void addEffects(Character& who, Character& on_whom) override 
 	{

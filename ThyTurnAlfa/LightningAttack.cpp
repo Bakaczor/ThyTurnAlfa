@@ -24,5 +24,6 @@ bool LightningAttack::individualAction(Character& who, Character& on_whom)
     {
         who.wAtk = old_atk;
     }
+
     return true;
 }
