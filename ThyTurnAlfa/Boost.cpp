@@ -1,6 +1,6 @@
 #include "Boost.hpp"
 
-bool Boost::addTo(std::vector<std::unique_ptr<Effect>>& applied_effects)
+bool Boost::addTo(std::vector<std::unique_ptr<Effect>>& applied_effects, int duration, unsigned atkBoost, unsigned defBoost)
 {
 	for (auto it = applied_effects.begin(); it != applied_effects.end(); it++)
 	{
@@ -9,6 +9,6 @@ bool Boost::addTo(std::vector<std::unique_ptr<Effect>>& applied_effects)
 			return false;
 		}
 	}
-	applied_effects.emplace_back(new Boost(*this));
+	applied_effects.emplace_back(std::make_unique<Boost>(duration, atkBoost, defBoost));
 	return true;
 }

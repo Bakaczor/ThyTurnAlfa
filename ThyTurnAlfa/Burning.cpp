@@ -2,7 +2,7 @@
 #include "Wet.hpp"
 #include "Cold.hpp"
 
-bool Burning::addTo(std::vector<std::unique_ptr<Effect>>& applied_effects)
+bool Burning::addTo(std::vector<std::unique_ptr<Effect>>& applied_effects, int duration, int damage_per_round)
 {
 	bool apply = true;
 
@@ -23,13 +23,8 @@ bool Burning::addTo(std::vector<std::unique_ptr<Effect>>& applied_effects)
 
 	if (apply)
 	{
-		applied_effects.emplace_back(this);
+		applied_effects.emplace_back(std::make_unique<Burning>(duration, damage_per_round));
 	}
 
 	return true;
-}
-
-bool Burning::isTypeOf(Effect& e)
-{
-	return e.name.compare(EFFECT_NAME_BURNING) == 0;
 }

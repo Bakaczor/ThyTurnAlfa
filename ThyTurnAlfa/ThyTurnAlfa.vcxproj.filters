@@ -153,6 +153,9 @@
     <ClCompile Include="Cure.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BoostMovement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h">

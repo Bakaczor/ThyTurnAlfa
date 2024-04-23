@@ -1,6 +1,16 @@
 #include "Bleeding.hpp"
 
-bool Bleeding::isTypeOf(Effect& e)
+bool Bleeding::addTo(std::vector<std::unique_ptr<Effect>>& applied_effects, int duration, int damage_per_round)
 {
-	return e.name.compare(EFFECT_NAME_BLEEDING) == 0;
+	for (auto it = applied_effects.begin(); it != applied_effects.end(); it++)
+	{
+		if (dynamic_cast<Bleeding*>(it->get()))
+		{
+			applied_effects.erase(it);
+		}
+	}
+	
+	applied_effects.emplace_back(std::make_unique<Bleeding>(duration, damage_per_round));
+
+	return true;
 }
