@@ -21,4 +21,4 @@ public:
 	static bool addTo(Character& affected, int hp = SHIELD_DEFAULT_HP);
 };
 
-#endif // !SHEILD_HPP
+#endif // !SHIELD_HPP

@@ -32,6 +32,7 @@ public:
 	// usage of std::move is explained here: https://stackoverflow.com/questions/3283778/why-can-i-not-push-back-a-unique-ptr-into-a-vector
 	Character(std::string& name, std::vector<std::unique_ptr<Movement>>& movements) : name{ name }, movements{ std::move(movements) } { }
 	bool applyEffects();
+	void detachEffects();
 };
 
 #endif // !CHARACTER_HPP

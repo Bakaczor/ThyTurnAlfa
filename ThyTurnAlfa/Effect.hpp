@@ -27,8 +27,13 @@ public:
 	virtual bool nextRound(Character& affected) = 0;
 
 	// cancelFrom should be executed after effect expiration
-	// it holds the logic of deattaching the effect from a Character
+	// it holds the logic of detaching the effect from a Character
 	virtual bool cancelFrom(Character& affected) { return true; }
+
+	// each class inheriting from Effect should implement method 
+	// addTo(Character& affected, Params...) which adds the effect with
+	// specified parameters to activeEffects vector of Character.
+	// The method should not invoke nextRound inside!
 };
 
 #endif // !EFFECT_HPP

@@ -27,11 +27,13 @@ bool Attack::individualAction(Character& who, Character& on_whom)
             if (dmg > ptr->hp)
             {
                 dmg -= ptr->hp;
+                ptr->hp = 0;
             }
             else
             {
                 ptr->hp -= dmg;
                 dmg = 0;
+                return true;
             }
         }
     }
@@ -40,10 +42,13 @@ bool Attack::individualAction(Character& who, Character& on_whom)
         if (dmg >= on_whom.currentHp)
         {
             on_whom.currentHp = 0;
+            on_whom.detachEffects(); // on_whom died so all effects must be detached
+            return false;
         }
         else
         {
             on_whom.currentHp -= dmg;
         }
     }
+    return true;
 }

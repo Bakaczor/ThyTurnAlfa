@@ -13,3 +13,12 @@ bool Character::applyEffects() {
 	}
 	return true;
 }
+
+void Character::detachEffects()
+{
+	for (auto it = activeEffects.begin(); it != activeEffects.end(); it++)
+	{
+		it->get()->cancelFrom(*this);
+		activeEffects.erase(it);
+	}
+}
