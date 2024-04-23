@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Effect.hpp"
-#include "Character.hpp"
 
 class TemporaryDamageModifier : public Effect {
 public:

@@ -147,6 +147,12 @@
     <ClCompile Include="WaterAttack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DefensiveMovement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h">
@@ -252,27 +258,33 @@
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Attack.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FireAttack.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Heal.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IceAttack.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LightningAttack.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Movements</Filter>
     </ClInclude>
     <ClInclude Include="MagicAttack.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WaterAttack.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Movements</Filter>
     </ClInclude>
     <ClInclude Include="DefensiveMovement.hpp">
+      <Filter>Header Files\Movements</Filter>
+    </ClInclude>
+    <ClInclude Include="FireAttack.hpp">
+      <Filter>Header Files\Movements\MagicAttacks</Filter>
+    </ClInclude>
+    <ClInclude Include="IceAttack.hpp">
+      <Filter>Header Files\Movements\MagicAttacks</Filter>
+    </ClInclude>
+    <ClInclude Include="LightningAttack.hpp">
+      <Filter>Header Files\Movements\MagicAttacks</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterAttack.hpp">
+      <Filter>Header Files\Movements\MagicAttacks</Filter>
+    </ClInclude>
+    <ClInclude Include="Heal.hpp">
+      <Filter>Header Files\Movements\DefensiveMovements</Filter>
+    </ClInclude>
+    <ClInclude Include="Cure.hpp">
+      <Filter>Header Files\Movements\DefensiveMovements</Filter>
+    </ClInclude>
+    <ClInclude Include="BoostMovement.hpp">
       <Filter>Header Files\Movements\DefensiveMovements</Filter>
     </ClInclude>
   </ItemGroup>

@@ -23,7 +23,7 @@ bool Burning::addTo(std::vector<std::unique_ptr<Effect>>& applied_effects)
 
 	if (apply)
 	{
-		applied_effects.emplace_back(new Burning(*this));
+		applied_effects.emplace_back(this);
 	}
 
 	return true;

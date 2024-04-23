@@ -25,6 +25,7 @@ public:
 	bool isTypeOf(Effect& e);
 	virtual bool nextRound(Character& affected) = 0;
 	virtual bool remove(Character& affected) = 0;
+	// used by effects allocated on heap
 	virtual bool addTo(std::vector<std::unique_ptr<Effect>>& applied_effects);
 };
 

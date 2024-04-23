@@ -21,3 +21,8 @@ bool TemporaryDamageModifier::remove(Character& affected)
 	affected.def -= defModifier;
 	return true;
 }
+
+bool TemporaryDamageModifier::addTo(std::vector<std::unique_ptr<Effect>>& applied_effects)
+{
+	
+}
