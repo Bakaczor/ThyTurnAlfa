@@ -2,7 +2,7 @@
 #include "Character.hpp"
 #include "Wet.hpp"
 
-void LightningAttack::individualAction(Character& who, Character& on_whom)
+bool LightningAttack::individualAction(Character& who, Character& on_whom)
 {
     bool is_wet;
     for (auto& e : on_whom.activeEffects)
@@ -24,4 +24,5 @@ void LightningAttack::individualAction(Character& who, Character& on_whom)
     {
         who.wAtk = old_atk;
     }
+    return true;
 }

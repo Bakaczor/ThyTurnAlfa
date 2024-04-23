@@ -19,10 +19,8 @@ enum class TargetEnum {
 	ally,
 	any
 };
+
 #pragma endregion
-
-
-
 
 class Movement {
 public:

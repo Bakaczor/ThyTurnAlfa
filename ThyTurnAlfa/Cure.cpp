@@ -6,6 +6,7 @@ bool Cure::individualAction(Character& who, Character& on_whom)
     {
         if (dynamic_cast<Bleeding*>(it->get()))
         {
+            it->get()->cancelFrom(on_whom);
             on_whom.activeEffects.erase(it);
         }
     }

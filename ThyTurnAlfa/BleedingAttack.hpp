@@ -4,6 +4,7 @@
 #define BLEEDING_ATTACK_HPP
 
 #include "Attack.hpp"
+#include "Bleeding.hpp"
 
 #define BLEEDING_ATTACK_DEFAULT_WEIGHT 60
 #define BLEEDING_ATTACK_DEFAULT_EFFECT_DURATION 3
@@ -13,7 +14,10 @@ class BleedingAttack : public Attack {
 public:
 	BleedingAttack() : Attack(BLEEDING_ATTACK_DEFAULT_WEIGHT) { }
 
-	virtual void addEffects(Character& who, Character& on_whom) override;
+	virtual void addEffects(Character& who, Character& on_whom) override
+	{
+		Bleeding::addTo(on_whom, BLEEDING_ATTACK_DEFAULT_EFFECT_DURATION, BLEEDING_ATTACK_DEFAULT_DAMAGE_PER_ROUND);
+	};
 };
 
 #endif // !BLEEDING_ATTACK_HPP
