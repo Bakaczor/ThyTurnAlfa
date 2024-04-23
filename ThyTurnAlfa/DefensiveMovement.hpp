@@ -11,9 +11,15 @@ public:
 	DefensiveMovement(int cost)
 		: Movement(TargetEnum::ally), cost{ (unsigned)cost } {}
 
-	virtual int getCost() override;
+	virtual int getCost() override
+	{
+		return this->cost;
+	}
 protected:
-	virtual bool isInvokable(Character& who, Character& on_whom) override;
+	virtual bool isInvokable(Character& who, Character& on_whom) override
+	{
+		return Movement::isInvokable(who, on_whom) && who.mp >= cost;
+	}
 };
 
 #endif // !DEFENSIVE_MOVEMENT_HPP

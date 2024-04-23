@@ -10,6 +10,8 @@
 
 #include "Character.hpp"
 
+#define INFINITE_DURATION -1
+
 class Effect {
 protected:
 	bool elapsed() { return elapsedRounds++ < duration; };
@@ -25,6 +27,7 @@ public:
 	virtual bool nextRound(Character& affected) = 0;
 
 	// cancelFrom should be executed after effect expiration
+	// it holds the logic of deattaching the effect from a Character
 	virtual bool cancelFrom(Character& affected) { return true; }
 };
 

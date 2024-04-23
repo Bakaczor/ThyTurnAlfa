@@ -14,7 +14,7 @@ public:
 		: Effect(name, duration), dmgPerRound{ dmgPerRound } { };
 
 	virtual bool nextRound(Character& affected) override;
-	// cancelFrom method is ingerited from Effect
+	// cancelFrom method is inherited from Effect
 };
 
 #endif // !TEMPORARY_DAMAGE_PER_ROUND_HPP

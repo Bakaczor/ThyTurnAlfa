@@ -16,8 +16,11 @@ public:
 	BoostMovement(int cost = BOOST_MOVEMENT_DEFAULT_COST): DefensiveMovement(cost) {}
 
 protected:
-	// isInvokable taken from DefensiveMovement
-	// individualAction taken from Effect
+	virtual bool isInvokable(Character& who, Character& on_whom) override
+	{
+		return DefensiveMovement::isInvokable(who, on_whom) && on_whom.currentHp > 0;
+	}
+	// individualAction is inherited from Effect
 	virtual void addEffects(Character& who, Character& on_whom) override 
 	{
 		Boost::addTo(on_whom, BOOST_MOVEMENT_DEFAULT_EFFECT_DURATION,

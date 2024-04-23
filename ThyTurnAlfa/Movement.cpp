@@ -14,6 +14,6 @@ bool Movement::invoke(Character& who, Character& on_whom)
 
 bool Movement::isInvokable(Character& who, Character& on_whom)
 {
-	// TODO: Check whether both Characters fit target value
+	// TODO: Check whether both Characters fit the target value
 	return true;
 }
