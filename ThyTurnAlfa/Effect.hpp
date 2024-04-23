@@ -23,6 +23,8 @@ public:
 	Effect(const Effect& e) = default;
 
 	virtual bool nextRound(Character& affected) = 0;
+
+	// cancelFrom should be executed after effect expiration
 	virtual bool cancelFrom(Character& affected) { return true; }
 };
 

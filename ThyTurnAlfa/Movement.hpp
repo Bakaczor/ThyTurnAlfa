@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #ifndef MOVEMENT_HPP
 #define MOVEMENT_HPP
@@ -8,6 +8,9 @@
 
 #include "Character.hpp"
 
+// przenieść do osobnego pliku (skonsultować gdzie)
+#pragma region common
+
 #define UNIT_VALUE 100
 #define percent(x) x / (float)UNIT_VALUE
 
@@ -16,6 +19,10 @@ enum class TargetEnum {
 	ally,
 	any
 };
+#pragma endregion
+
+
+
 
 class Movement {
 public:
