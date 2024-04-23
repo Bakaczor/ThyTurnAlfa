@@ -75,9 +75,6 @@
     <ClCompile Include="Bleeding.cpp">
       <Filter>Source Files\Effects</Filter>
     </ClCompile>
-    <ClCompile Include="ActionlessEffect.cpp">
-      <Filter>Source Files\Effects</Filter>
-    </ClCompile>
     <ClCompile Include="Boost.cpp">
       <Filter>Source Files\Effects</Filter>
     </ClCompile>

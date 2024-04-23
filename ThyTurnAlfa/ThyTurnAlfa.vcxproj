@@ -132,7 +132,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ActionlessEffect.cpp" />
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Bleeding.cpp" />
     <ClCompile Include="BleedingAttack.cpp" />

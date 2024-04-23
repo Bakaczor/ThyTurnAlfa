@@ -3,19 +3,21 @@
 #include "Burning.hpp"
 #include "Frozen.hpp"
 
-bool Cold::addTo(std::vector<std::unique_ptr<Effect>>& applied_effects, int duration, int frozen_duration)
+bool Cold::addTo(Character& affected, int duration, int frozen_duration)
 {
 	bool apply = true;
-	for (auto it = applied_effects.begin(); it != applied_effects.end(); it++)
+	for (auto it = affected.activeEffects.begin(); it != affected.activeEffects.end(); it++)
 	{
 		if (dynamic_cast<Cold*>((*it).get()))
 		{
-			applied_effects.erase(it);
+			it->get()->cancelFrom(affected);
+			affected.activeEffects.erase(it);
 		}
 		else if (dynamic_cast<Wet*>((*it).get()))
 		{
-			applied_effects.erase(it);
-			applied_effects.emplace_back(std::make_unique<Frozen>(frozen_duration));
+			it->get()->cancelFrom(affected);
+			affected.activeEffects.erase(it);
+			affected.activeEffects.emplace_back(std::make_unique<Frozen>(frozen_duration));
 			apply = false;
 		} 
 		else if (dynamic_cast<Burning*>((*it).get()))
@@ -26,13 +28,8 @@ bool Cold::addTo(std::vector<std::unique_ptr<Effect>>& applied_effects, int dura
 
 	if (apply)
 	{
-		applied_effects.emplace_back(std::make_unique<Cold>(duration));
+		affected.activeEffects.emplace_back(std::make_unique<Cold>(duration));
 	}
 
 	return true;
-}
-
-bool Cold::isTypeOf(Effect& e)
-{
-	return e.name.compare(EFFECT_NAME_COLD) == 0;
 }

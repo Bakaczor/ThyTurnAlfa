@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef TEMPORARY_DAMAGE_PER_ROUND_HPP
+#define TEMPORARY_DAMAGE_PER_ROUND_HPP
+
 #include "Effect.hpp"
 #include "Character.hpp"
 
@@ -9,7 +12,9 @@ public:
 
 	TemporaryDamagePerRound(std::string name, int duration, int dmgPerRound)
 		: Effect(name, duration), dmgPerRound{ dmgPerRound } { };
-	
+
 	virtual bool nextRound(Character& affected) override;
-	virtual bool remove(Character& affected) override;
+	// cancelFrom method is ingerited from Effect
 };
+
+#endif // !TEMPORARY_DAMAGE_PER_ROUND_HPP

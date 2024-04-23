@@ -1,14 +1,15 @@
 #include "Boost.hpp"
 
-bool Boost::addTo(std::vector<std::unique_ptr<Effect>>& applied_effects, int duration, unsigned atkBoost, unsigned defBoost)
+bool Boost::addTo(Character& affected, int duration, unsigned atkBoost, unsigned defBoost)
 {
-	for (auto it = applied_effects.begin(); it != applied_effects.end(); it++)
+	for (auto it = affected.activeEffects.begin(); it != affected.activeEffects.end(); it++)
 	{
 		if (dynamic_cast<Boost*>(it->get()))
 		{
-			return false;
+			it->get()->cancelFrom(affected);
+			affected.activeEffects.erase(it);
 		}
 	}
-	applied_effects.emplace_back(std::make_unique<Boost>(duration, atkBoost, defBoost));
+	affected.activeEffects.emplace_back(std::make_unique<Boost>(duration, atkBoost, defBoost));
 	return true;
 }

@@ -2,19 +2,14 @@
 
 bool TemporaryDamagePerRound::nextRound(Character& affected)
 {
-	if (affected.hp <= dmgPerRound)
+	if (affected.currentHp <= dmgPerRound)
 	{
-		affected.hp = 0;
+		affected.currentHp = 0;
 		affected.isAlive = 0;
 	}
 	else
 	{
-		affected.hp -= dmgPerRound;
+		affected.currentHp -= dmgPerRound;
 	}
 	return elapsed();
-}
-
-bool TemporaryDamagePerRound::remove(Character& affected)
-{
-	return true;
 }

@@ -10,19 +10,14 @@ bool TemporaryDamageModifier::nextRound(Character& affected)
 	}
 	if (elapsedRounds == duration)
 	{
-		remove(affected);
+		cancelFrom(affected);
 	}
 	return elapsed();
 }
 
-bool TemporaryDamageModifier::remove(Character& affected)
+bool TemporaryDamageModifier::cancelFrom(Character& affected)
 {
 	affected.atk -= atkModifier;
 	affected.def -= defModifier;
 	return true;
-}
-
-bool TemporaryDamageModifier::addTo(std::vector<std::unique_ptr<Effect>>& applied_effects)
-{
-	
 }
