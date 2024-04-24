@@ -9,7 +9,7 @@ class Reader
 {
 public:
 	bool readFile(const std::string& filename);
-	std::vector<Character> extractCharacters();
+	std::vector<Character>&& extractCharacters();
 	std::vector<std::vector<std::string>> extractParties();
 private:
 	Json::Value m_jsonData;

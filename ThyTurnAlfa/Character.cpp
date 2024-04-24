@@ -6,7 +6,7 @@ bool Character::applyEffects() {
 		if (!(*it)->nextRound(*this))
 		{
 			(*it)->cancelFrom(*this);
-			// activeEffects.erase(it);
+			activeEffects.erase(it);
 		}
 	}
 	return true;
@@ -18,9 +18,6 @@ void Character::detachEffects()
 	{
 		e->cancelFrom(*this);
 	}
-	//std::for_each(activeEffects.begin(), activeEffects.end(), [this](std::unique_ptr<Effect>& e)
-	//	{
-	//		e->cancelFrom(*this);
-	//	});
+
 	activeEffects.clear();
 }

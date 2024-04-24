@@ -212,9 +212,6 @@
     <ClInclude Include="Queue.h">
       <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Reader.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>

@@ -191,7 +191,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
-    <ClInclude Include="Character.h" />
     <ClInclude Include="EvaluationFunction.h" />
     <ClInclude Include="ProgramState.h" />
     <ClInclude Include="Reader.h" />

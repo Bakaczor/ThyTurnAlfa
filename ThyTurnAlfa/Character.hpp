@@ -37,7 +37,8 @@ public:
 	Character(std::string& name, std::vector<std::unique_ptr<Movement>>& movements) : name{ name }, movements{ std::move(movements) } { }
 	Character() = default;
 	Character(Character&& c) = default;
-	Character(Character& c): Character(std::move(c)) { }
+	// Character(const Character& c): Character(std::move(c)) { }
+
 	bool applyEffects();
 	void detachEffects();
 	void Deserialize(Json::Value& root) { };
