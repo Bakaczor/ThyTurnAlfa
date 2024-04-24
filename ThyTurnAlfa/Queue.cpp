@@ -28,7 +28,7 @@ Character& Queue::peek()
 		pop();
 		emplace(*currentCharacter.character, currentCharacter.baseATV);
 
-		if (currentCharacter.character->m_isAlive) {
+		if (currentCharacter.character->isAlive) {
 			return *currentCharacter.character;
 		}
 	}

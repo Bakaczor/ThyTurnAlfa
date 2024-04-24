@@ -13,4 +13,5 @@ bool Heal::individualAction(Character& who, Character& on_whom)
 	{
 		on_whom.currentHp = on_whom.hp;
 	}
+	return true;
 }

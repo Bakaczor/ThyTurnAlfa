@@ -3,7 +3,7 @@
 #include <fstream>
 #include <json/json.h>
 #include <vector>
-#include "Character.h"
+#include "Character.hpp"
 
 class Reader
 {

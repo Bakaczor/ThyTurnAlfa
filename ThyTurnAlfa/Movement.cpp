@@ -1,4 +1,3 @@
-#include "Character.hpp"
 #include "Movement.hpp"
 
 bool Movement::invoke(Character& who, Character& on_whom)

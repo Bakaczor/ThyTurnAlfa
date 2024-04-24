@@ -6,6 +6,8 @@
 #include <cstring>
 #include <string>
 
+class Character;
+
 #include "Character.hpp"
 
 // przenieść do osobnego pliku (skonsultować gdzie)
@@ -35,7 +37,7 @@ public:
 protected:
 	virtual bool isInvokable(Character& who, Character& on_whom);
 	// individualAction method should return false if on_whom.currentHp is not greater than 0 and true in other cases
-	virtual bool individualAction(Character& who, Character& on_whom) = 0;
+	virtual bool individualAction(Character& who, Character& on_whom) { return true; };
 	virtual void addEffects(Character& who, Character& on_whom) { }; // should be overridden by movement which applies effect(s)
 };
 

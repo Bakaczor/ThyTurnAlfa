@@ -7,6 +7,9 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <algorithm>
+
+class Character;
 
 #include "Character.hpp"
 
@@ -14,6 +17,7 @@
 
 class Effect {
 protected:
+	// this should not be used for effects with infinite duration
 	bool elapsed() { return elapsedRounds++ < duration; };
 
 public:
@@ -24,7 +28,9 @@ public:
 	Effect(const std::string& name, int duration) : name{ name }, duration{ duration } { }
 	Effect(const Effect& e) = default;
 
-	virtual bool nextRound(Character& affected) = 0;
+	virtual bool nextRound(Character& affected) {
+		return true;
+	};
 
 	// cancelFrom should be executed after effect expiration
 	// it holds the logic of detaching the effect from a Character

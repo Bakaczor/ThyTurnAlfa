@@ -134,20 +134,14 @@
   <ItemGroup>
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Bleeding.cpp" />
-    <ClCompile Include="BleedingAttack.cpp" />
     <ClCompile Include="Boost.cpp" />
-    <ClCompile Include="BoostMovement.cpp" />
     <ClCompile Include="Burning.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Cold.cpp" />
     <ClCompile Include="Cure.cpp" />
-    <ClCompile Include="DefensiveMovement.cpp" />
-    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectsTest.cpp" />
-    <ClCompile Include="FireAttack.cpp" />
     <ClCompile Include="Frozen.cpp" />
     <ClCompile Include="Heal.cpp" />
-    <ClCompile Include="IceAttack.cpp" />
     <ClCompile Include="LightningAttack.cpp" />
     <ClCompile Include="MagicAttack.cpp" />
     <ClCompile Include="main.cpp" />
@@ -159,9 +153,9 @@
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="OrdinaryAttack.cpp" />
     <ClCompile Include="PiercingAttack.cpp" />
+    <ClCompile Include="Shield.cpp" />
     <ClCompile Include="TemporaryDamageModifier.cpp" />
     <ClCompile Include="TemporaryDamagePerRound.cpp" />
-    <ClCompile Include="WaterAttack.cpp" />
     <ClCompile Include="Wet.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +181,9 @@
     <ClInclude Include="Frozen.hpp" />
     <ClInclude Include="Movement.hpp" />
     <ClInclude Include="PiercingAttack.hpp" />
+    <ClInclude Include="Revive.hpp" />
+    <ClInclude Include="Shield.hpp" />
+    <ClInclude Include="ShieldMovement.hpp" />
     <ClInclude Include="TemporaryDamageModifier.hpp" />
     <ClInclude Include="TemporaryDamagePerRound.hpp" />
     <ClInclude Include="WaterAttack.hpp" />

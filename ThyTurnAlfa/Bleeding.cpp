@@ -6,11 +6,11 @@ bool Bleeding::addTo(Character& affected, int duration, int damage_per_round)
 	{
 		if (dynamic_cast<Bleeding*>(it->get()))
 		{
-			it->get()->cancelFrom(affected);
+			(*it)->cancelFrom(affected);
 			affected.activeEffects.erase(it);
 		}
 	}
-	
+
 	affected.activeEffects.emplace_back(std::make_unique<Bleeding>(duration, damage_per_round));
 
 	return true;

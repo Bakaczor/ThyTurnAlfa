@@ -1,14 +1,12 @@
 #include "Character.hpp"
-#include "Effect.hpp"
-#include "Movement.hpp"
 
 bool Character::applyEffects() {
 	for (auto it = activeEffects.begin(); it != activeEffects.end(); it++)
 	{
 		if (!(*it)->nextRound(*this))
 		{
-			it->get()->cancelFrom(*this);
-			activeEffects.erase(it);
+			(*it)->cancelFrom(*this);
+			// activeEffects.erase(it);
 		}
 	}
 	return true;
@@ -16,9 +14,13 @@ bool Character::applyEffects() {
 
 void Character::detachEffects()
 {
-	for (auto it = activeEffects.begin(); it != activeEffects.end(); it++)
+	for (auto& e : activeEffects)
 	{
-		it->get()->cancelFrom(*this);
-		activeEffects.erase(it);
+		e->cancelFrom(*this);
 	}
+	//std::for_each(activeEffects.begin(), activeEffects.end(), [this](std::unique_ptr<Effect>& e)
+	//	{
+	//		e->cancelFrom(*this);
+	//	});
+	activeEffects.clear();
 }
