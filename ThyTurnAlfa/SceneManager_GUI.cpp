@@ -81,10 +81,8 @@ void SceneManager::renderOptions() {
 
     ImGui::Spacing();
 
-    auto v = std::views::values(m_functions) | std::views::transform([](const std::string& s) { return s.c_str(); });
-    std::vector<const char*> values(v.begin(), v.end());
     ImGui::SetNextItemWidth(1.5f * buttonWidth);
-    ImGui::Combo(" Evaluation Function", &m_currFuncIndex, values.data(), values.size());
+    ImGui::Combo(" Evaluation Function", &m_currFuncIndex, m_functions.data(), m_functions.size());
     ImGui::EndGroup();
     // ===
     ImGuiStyle& style = ImGui::GetStyle();

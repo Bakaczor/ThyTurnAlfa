@@ -22,7 +22,6 @@
 #include "Queue.h"
 #include "ProgramState.h"
 #include "WindowMode.h"
-#include "EvaluationFunction.h"
 #include "Reader.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -60,11 +59,7 @@ class SceneManager {
 	//Character& m_currentCharacter;
 
 	// === OPTIONS ===
-	// if we want to have enums, this is probably the best way to "convert" them to strings
-	std::map<EvaluationFunction, std::string> m_functions = {
-		{ EvaluationFunction::Basic, "Basic" },
-		{ EvaluationFunction::NotBasic, "NotBasic" }
-	};
+	std::array<const char*, 2> m_functions = { "Basic", "NotBasic" };
 	int m_currFuncIndex = 0;
 	int m_treeDepth = 1;
 
