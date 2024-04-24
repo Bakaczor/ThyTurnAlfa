@@ -27,8 +27,8 @@ public:
 	const std::string name;
 	const TargetEnum target;
 
-	Movement(const TargetEnum target)
-		: target{ target } { }
+	Movement(std::string&& name, const TargetEnum target)
+		: name{ name }, target { target } { }
 
 	virtual bool invoke(Character& who, Character& on_whom);
 	virtual int getCost() { return 0; };

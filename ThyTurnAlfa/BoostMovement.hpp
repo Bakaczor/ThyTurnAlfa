@@ -6,6 +6,7 @@
 #include "DefensiveMovement.hpp"
 #include "Boost.hpp"
 
+#define BOOST_MOVEMENT_NAME "BoostMovement"
 #define BOOST_MOVEMENT_DEFAULT_COST 20
 #define BOOST_MOVEMENT_DEFAULT_EFFECT_DURATION 3
 #define BOOST_MOVEMENT_DEFAULT_ATK_BOOST_VALUE 30
@@ -13,7 +14,8 @@
 
 class BoostMovement : public DefensiveMovement {
 public:
-	BoostMovement(int cost = BOOST_MOVEMENT_DEFAULT_COST): DefensiveMovement(cost) {}
+	BoostMovement(int cost = BOOST_MOVEMENT_DEFAULT_COST)
+		: DefensiveMovement(BOOST_MOVEMENT_NAME, cost) {}
 
 protected:
 	virtual bool isInvokable(Character& who, Character& on_whom) override

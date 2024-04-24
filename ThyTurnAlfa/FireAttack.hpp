@@ -6,6 +6,7 @@
 #include "MagicAttack.hpp"
 #include "Burning.hpp"
 
+#define FIRE_ATTACK_MOVEMENT_NAME "FireAttack"
 #define FIRE_ATTACK_DEFAULT_WEIGHT 60
 #define FIRE_ATTACK_DEFAULT_COST 40
 #define FIRE_ATTACK_DEFAULT_DAMAGE_PER_ROUND 10
@@ -14,7 +15,7 @@
 class FireAttack : public MagicAttack {
 public:
 	FireAttack(int cost = FIRE_ATTACK_DEFAULT_COST, int w_move = FIRE_ATTACK_DEFAULT_WEIGHT)
-		: MagicAttack(cost, w_move) { }
+		: MagicAttack(FIRE_ATTACK_MOVEMENT_NAME, cost, w_move) { }
 
 	virtual void addEffects(Character& who, Character& on_whom) override 
 	{

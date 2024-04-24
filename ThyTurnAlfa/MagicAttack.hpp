@@ -9,8 +9,8 @@ class MagicAttack : public Attack {
 public:
 	const unsigned cost;
 
-	MagicAttack(int cost, int w_move, int w_pierce = 0)
-		: Attack(w_move, w_pierce), cost{ (unsigned)cost } { }
+	MagicAttack(std::string&& name, int cost, int w_move, int w_pierce = 0)
+		: Attack(std::move(name), w_move, w_pierce), cost{ (unsigned)cost } { }
 
 	virtual int getCost() override;
 protected:

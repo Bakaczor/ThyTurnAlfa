@@ -6,6 +6,7 @@
 #include "MagicAttack.hpp"
 #include "Wet.hpp"
 
+#define WATER_ATTACK_MOVEMENT_NAME "WaterAttack"
 #define WATER_ATTACK_DEFAULT_WEIGHT 80
 #define WATER_ATTACK_DEFAULT_EFFECT_DURATION 5
 #define WATER_ATTACK_DEFAULT_FROZEN_EFFECT_DURATION 5
@@ -14,7 +15,7 @@
 class WaterAttack : public MagicAttack {
 public:
 	WaterAttack(int cost = WATER_ATTACK_DEFAULT_COST, int w_move = WATER_ATTACK_DEFAULT_WEIGHT) 
-		: MagicAttack(cost, w_move) { }
+		: MagicAttack(WATER_ATTACK_MOVEMENT_NAME, cost, w_move) { }
 
 	virtual void addEffects(Character& who, Character& on_whom) override
 	{

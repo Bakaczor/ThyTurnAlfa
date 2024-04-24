@@ -5,6 +5,7 @@
 
 #include "DefensiveMovement.hpp"
 
+#define HEAL_MOVEMENT_NAME "Heal"
 #define HEAL_DEFAULTL_HP_BOOST 50
 #define HEAL_DEFAULT_COST 20
 
@@ -13,7 +14,7 @@ public:
 	const int hpBoost;
 
 	Heal(int cost = HEAL_DEFAULT_COST, int hp_boost = HEAL_DEFAULTL_HP_BOOST)
-		: DefensiveMovement(cost), hpBoost{hp_boost} { }
+		: DefensiveMovement(HEAL_MOVEMENT_NAME, cost), hpBoost{hp_boost} { }
 protected:
 	virtual bool isInvokable(Character& who, Character& on_whom) override;
 	virtual bool individualAction(Character& who, Character& on_whom) override;

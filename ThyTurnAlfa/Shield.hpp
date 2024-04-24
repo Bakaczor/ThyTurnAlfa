@@ -5,7 +5,7 @@
 
 #include "Effect.hpp"
 
-#define EFFECT_NAME_SHIELD "Shield"
+#define SHIELD_EFFECT_NAME "Shield"
 #define SHIELD_DEFAULT_DURATION INFINITE_DURATION
 #define SHIELD_DEFAULT_HP 50 
 
@@ -14,7 +14,7 @@ public:
 	int hp;
 
 	Shield(int hp) 
-		: Effect(EFFECT_NAME_SHIELD, SHIELD_DEFAULT_DURATION), hp{ hp }{ }
+		: Effect(SHIELD_EFFECT_NAME, SHIELD_DEFAULT_DURATION), hp{ hp }{ }
 
 	virtual bool nextRound(Character& affected) override { return hp > 0; }
 	// cancelFrom is inherited from Effect

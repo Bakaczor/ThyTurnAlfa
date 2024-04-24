@@ -5,12 +5,12 @@
 
 #include "ActionlessEffect.hpp"
 
-#define EFFECT_NAME_WET "Wet"
+#define WET_EFFECT_NAME "Wet"
 #define WET_DEFAULT_FROZEN_DURATION 3
 
 class Wet : public ActionlessEffect {
 public:
-	Wet(int duration) : ActionlessEffect(EFFECT_NAME_WET, duration) { };
+	Wet(int duration) : ActionlessEffect(WET_EFFECT_NAME, duration) { };
 
 	// nextRound and remove methods are inherited from ActionlessEffect
 	// cancelFrom method is inherited from Effect
