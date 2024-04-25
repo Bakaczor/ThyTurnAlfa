@@ -13,15 +13,15 @@ bool Reader::readFile(const std::string& filename)
     return false;
 }
 
-std::vector<Character> Reader::extractCharacters()
+std::vector<Character>&& Reader::extractCharacters()
 {
     auto characterArray = m_jsonData["characters"];
     for (auto character : characterArray) {
         Character deserializedCharacter;
         deserializedCharacter.Deserialize(character);
-        m_characters.push_back(deserializedCharacter);
+        m_characters.push_back(std::move(deserializedCharacter));
     }
-    return m_characters;
+    return std::move(m_characters);
 }
 
 std::vector<std::vector<std::string>> Reader::extractParties()

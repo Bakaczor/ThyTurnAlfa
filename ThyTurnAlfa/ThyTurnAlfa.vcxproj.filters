@@ -9,56 +9,131 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Header Files\Players">
       <UniqueIdentifier>{b8aa4958-3401-4333-8ac2-29e94d6e3c3c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Gameplay">
       <UniqueIdentifier>{6bc0009a-db60-4f1e-86b7-4d4d3d3240b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Entities">
-      <UniqueIdentifier>{34adaa16-263a-44e7-9545-7284d4a28dab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Utilities">
       <UniqueIdentifier>{8fc5b629-5d64-4b5e-9d11-23401ad8a60f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Entities">
-      <UniqueIdentifier>{9d77f8cb-7084-43ea-bda4-18edc3eece77}</UniqueIdentifier>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{ac98116e-d512-4af6-b453-7f7e7aee541b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Gameplay">
-      <UniqueIdentifier>{84c79965-226a-45ee-bf87-9abb5f5d720b}</UniqueIdentifier>
+    <Filter Include="Header Files\Effects">
+      <UniqueIdentifier>{2f231d72-c03b-4fb9-bcf5-26f00540bb34}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Players">
-      <UniqueIdentifier>{7ca5ca4c-5fb2-4dc3-ae01-d79b2f9a5b9e}</UniqueIdentifier>
+    <Filter Include="Source Files\Effects">
+      <UniqueIdentifier>{b6e3461a-03f4-4ad6-98cf-bbc32139667e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Utilities">
-      <UniqueIdentifier>{ab90d0b8-28c2-49c1-9617-659f5ff87d8d}</UniqueIdentifier>
+    <Filter Include="Header Files\Tests">
+      <UniqueIdentifier>{b7e970a4-675b-4596-bb06-ecca6e3db4f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Enums">
-      <UniqueIdentifier>{4d2f7aa0-0447-422e-9dd6-5369c9469d2d}</UniqueIdentifier>
+    <Filter Include="Source Files\Tests">
+      <UniqueIdentifier>{f079ca3f-ef73-4b50-a6e3-a6efb1290746}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Fonts">
-      <UniqueIdentifier>{c581364c-e8bf-493f-a9be-48171f758c7f}</UniqueIdentifier>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Resource Files\Images">
-      <UniqueIdentifier>{7c0d668b-8536-4a3b-90cf-07bc995f2815}</UniqueIdentifier>
+    <Filter Include="Header Files\Movements">
+      <UniqueIdentifier>{dabdc47e-6981-42e3-86e6-9b980dc119c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Movements\ConventionalAttacks">
+      <UniqueIdentifier>{23902dc3-b7a7-493d-b4ee-7575cf6408f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Movements\MagicAttacks">
+      <UniqueIdentifier>{8c513df9-8d0f-4dc5-8c56-c1dcce7b1a90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Movements\DefensiveMovements">
+      <UniqueIdentifier>{feb0fe73-4921-49f3-accf-150260b37442}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Movements">
+      <UniqueIdentifier>{818f01e0-5810-4b9e-98f3-ae54618bb773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Movements\ConventionalAttacks">
+      <UniqueIdentifier>{50bb9048-5edb-4a91-bc53-fffdb157686f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{34adaa16-263a-44e7-9545-7284d4a28dab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Source Files\Gameplay</Filter>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager_GUI.cpp">
-      <Filter>Source Files\Gameplay</Filter>
+    <ClCompile Include="Movement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bleeding.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Boost.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Burning.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Cold.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Frozen.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="TemporaryDamageModifier.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="TemporaryDamagePerRound.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Wet.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectsTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="OrdinaryAttack.cpp">
+      <Filter>Source Files\Movements\ConventionalAttacks</Filter>
+    </ClCompile>
+    <ClCompile Include="PiercingAttack.cpp">
+      <Filter>Source Files\Movements\ConventionalAttacks</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager_Callbacks.cpp">
-      <Filter>Source Files\Gameplay</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager_GUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Heal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LightningAttack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicAttack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Queue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shield.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,14 +152,65 @@
     <ClInclude Include="Queue.h">
       <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files\Entities</Filter>
+    <ClInclude Include="Reader.h">
+      <Filter>Header Files\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Effect.h">
-      <Filter>Header Files\Entities</Filter>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files\Entities</Filter>
+    <ClInclude Include="Bleeding.hpp">
+      <Filter>Header Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionlessEffect.hpp">
+      <Filter>Header Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost.hpp">
+      <Filter>Header Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Burning.hpp">
+      <Filter>Header Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Cold.hpp">
+      <Filter>Header Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Frozen.hpp">
+      <Filter>Header Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="TemporaryDamageModifier.hpp">
+      <Filter>Header Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="TemporaryDamagePerRound.hpp">
+      <Filter>Header Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Wet.hpp">
+      <Filter>Header Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectsTest.hpp">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="OrdinaryAttack.hpp">
+      <Filter>Header Files\Movements\ConventionalAttacks</Filter>
+    </ClInclude>
+    <ClInclude Include="PiercingAttack.hpp">
+      <Filter>Header Files\Movements\ConventionalAttacks</Filter>
+    </ClInclude>
+    <ClInclude Include="BleedingAttack.hpp">
+      <Filter>Header Files\Movements\ConventionalAttacks</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>Header Files\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="Human.h">
+      <Filter>Header Files\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Header Files\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="Reader.h">
       <Filter>Header Files\Utilities</Filter>
@@ -92,30 +218,75 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
+    <ClInclude Include="EvaluationFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ProgramState.h">
-      <Filter>Header Files\Enums</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WindowMode.h">
-      <Filter>Header Files\Enums</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EvaluationFunction.h">
-      <Filter>Header Files\Enums</Filter>
+    <ClInclude Include="Character.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Movement.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack.hpp">
+      <Filter>Header Files\Movements</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicAttack.hpp">
+      <Filter>Header Files\Movements</Filter>
+    </ClInclude>
+    <ClInclude Include="DefensiveMovement.hpp">
+      <Filter>Header Files\Movements</Filter>
+    </ClInclude>
+    <ClInclude Include="FireAttack.hpp">
+      <Filter>Header Files\Movements\MagicAttacks</Filter>
+    </ClInclude>
+    <ClInclude Include="IceAttack.hpp">
+      <Filter>Header Files\Movements\MagicAttacks</Filter>
+    </ClInclude>
+    <ClInclude Include="LightningAttack.hpp">
+      <Filter>Header Files\Movements\MagicAttacks</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterAttack.hpp">
+      <Filter>Header Files\Movements\MagicAttacks</Filter>
+    </ClInclude>
+    <ClInclude Include="Heal.hpp">
+      <Filter>Header Files\Movements\DefensiveMovements</Filter>
+    </ClInclude>
+    <ClInclude Include="Cure.hpp">
+      <Filter>Header Files\Movements\DefensiveMovements</Filter>
+    </ClInclude>
+    <ClInclude Include="BoostMovement.hpp">
+      <Filter>Header Files\Movements\DefensiveMovements</Filter>
+    </ClInclude>
+    <ClInclude Include="Revive.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shield.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShieldMovement.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="fonts\BlackChancery.ttf">
-      <Filter>Resource Files\Fonts</Filter>
-    </Font>
-    <Font Include="fonts\PetitFleur.ttf">
-      <Filter>Resource Files\Fonts</Filter>
-    </Font>
-    <Font Include="fonts\TheCenturion.ttf">
-      <Filter>Resource Files\Fonts</Filter>
-    </Font>
+    <Font Include="fonts\BlackChancery.ttf" />
+    <Font Include="fonts\PetitFleur.ttf" />
+    <Font Include="fonts\TheCenturion.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\png\megumin.png">
-      <Filter>Resource Files\Images</Filter>
+      <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="appsettings.json" />
   </ItemGroup>
 </Project>

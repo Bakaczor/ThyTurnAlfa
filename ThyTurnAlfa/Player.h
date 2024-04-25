@@ -5,7 +5,7 @@
 
 #include <vector>
 
-#include "Character.h"
+#include "Character.hpp"
 
 class Player {
 	public:
