@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef PROGRAMSTATE_H
-#define PROGRAMSTATE_H
+#ifndef PROGRAM_STATE_H
+#define PROGRAM_STATE_H
 
 enum class ProgramState {
 	Menu, Options, Setup, Game

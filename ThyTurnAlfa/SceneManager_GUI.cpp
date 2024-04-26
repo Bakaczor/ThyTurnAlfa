@@ -1,6 +1,5 @@
-#include "SceneManager.h"
+#include "SceneManager.hpp"
 
-#define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
 void SceneManager::renderMenu() {
@@ -11,7 +10,9 @@ void SceneManager::renderMenu() {
                  ImGuiWindowFlags_NoMove |
                  ImGuiWindowFlags_NoDecoration |
                  ImGuiWindowFlags_NoTitleBar);
-    // ===
+
+    // =====
+
     float currScale = 0.9f * scale;
     ImGui::PushFont(m_petitFleur);
     ImGui::SetWindowFontScale(currScale);
@@ -19,7 +20,9 @@ void SceneManager::renderMenu() {
     ImGui::SetCursorPosY(m_height / 10.0f);
     ImGui::Text("THY TURN");
     ImGui::PopFont();
-    // ===
+
+    // =====
+
     currScale = 0.5f * scale;
     ImGui::PushFont(m_theCenturion);
     ImGui::SetWindowFontScale(currScale);
@@ -44,7 +47,9 @@ void SceneManager::renderMenu() {
     };
     style.Colors[ImGuiCol_Button] = prevButtonColor;
     ImGui::EndGroup();
-    // ===
+
+    // =====
+
     ImGui::PopFont();
     ImGui::End();
 }
@@ -57,7 +62,9 @@ void SceneManager::renderOptions() {
                  ImGuiWindowFlags_NoMove |
                  ImGuiWindowFlags_NoDecoration |
                  ImGuiWindowFlags_NoTitleBar);
-    // ===
+
+    // =====
+
     float currScale = scale;
     ImGui::PushFont(m_theCenturion);
     ImGui::SetWindowFontScale(currScale);
@@ -65,7 +72,9 @@ void SceneManager::renderOptions() {
     ImGui::SetCursorPosY(m_height / 10.0f);
     ImGui::Text("OPTIONS");
     ImGui::PopFont();
-    // ===
+
+    // =====
+
     currScale = 0.2f * scale;
     ImGui::PushFont(m_blackChancery);
     ImGui::SetWindowFontScale(currScale);
@@ -81,12 +90,12 @@ void SceneManager::renderOptions() {
 
     ImGui::Spacing();
 
-    auto v = std::views::values(m_functions) | std::views::transform([](const std::string& s) { return s.c_str(); });
-    std::vector<const char*> values(v.begin(), v.end());
     ImGui::SetNextItemWidth(1.5f * buttonWidth);
-    ImGui::Combo(" Evaluation Function", &m_currFuncIndex, values.data(), values.size());
+    ImGui::Combo(" Evaluation Function", &m_curFucIdx, m_availibleFunctions.data(), m_availibleFunctions.size());
     ImGui::EndGroup();
-    // ===
+
+    // =====
+
     ImGuiStyle& style = ImGui::GetStyle();
     ImVec4 prevButtonColor = style.Colors[ImGuiCol_Button];
     style.Colors[ImGuiCol_Button] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -97,9 +106,118 @@ void SceneManager::renderOptions() {
         m_currentState = ProgramState::Menu;
     };
     style.Colors[ImGuiCol_Button] = prevButtonColor;
-    // ===
+
+    // =====
     ImGui::PopFont();
     ImGui::End();
+}
+
+void SceneManager::playerOneSetup() {
+    ImGui::BeginGroup();
+    ImGui::SetCursorPosX(0.2f * m_width-ImGui::CalcTextSize("Player 1").x * 0.5f);
+    ImGui::SetCursorPosY(0.4f * m_height);
+    ImGui::Text("Player 1");
+    ImGui::SetNextItemWidth(m_width / 2.5f);
+    ImGui::Combo("##PLAYER1", &m_curPlyIdx_1, m_availiblePlayers.data(), m_availiblePlayers.size());
+
+    ImGui::SetCursorPosX(0.2f * m_width-ImGui::CalcTextSize("Party").x * 0.5f);
+    ImGui::Text("Party");
+
+    std::vector<const char*> partyNames(m_partyPresets.size());
+    std::transform(m_partyPresets.begin(), m_partyPresets.end(), partyNames.begin(), 
+                   [](const PartyPreset& p) { return p.partyName.c_str(); });
+    partyNames.push_back("Custom");
+
+    ImGui::SetNextItemWidth(m_width / 2.5f);
+    ImGui::Combo("##PARTY1", &m_curPPrIdx_1, partyNames.data(), partyNames.size());
+
+    // the amount of tries I had to spent to get a fucking working vector
+    // containing const char* is fucking unmeasurable
+    // look at this and tell me that God exists
+    std::vector<std::string> strings(m_availibleCharacters.size());
+    std::transform(m_availibleCharacters.begin(), m_availibleCharacters.end(),
+                   strings.begin(), [](const Character& c) { return c.getName(); });
+    std::vector<const char*> characterNames(m_availibleCharacters.size());
+    std::transform(strings.begin(), strings.end(),
+                   characterNames.begin(), [](const std::string& s) { return s.c_str(); });
+    characterNames.push_back(" - ");
+
+    ImGui::SetCursorPosY(0.6f * m_height);
+    if (partyNames.at(m_curPPrIdx_1) == "Custom") {
+        for (int i = 0; i < 4; ++i) {
+            ImGui::SetNextItemWidth(m_width / 2.5f);
+            ImGui::PushID(i);
+            ImGui::Combo("##C1", &(m_curChrIds_1[i]), characterNames.data(), characterNames.size());
+            if (i < 3) { ImGui::Spacing(); }
+            ImGui::PopID();
+        }
+    } else {
+        auto getter = [](void* data, int index, const char** out_text) {
+            auto& items = *static_cast<std::vector<std::string>*>(data);
+            *out_text = items[index].c_str();
+            return true;
+        };
+
+        ImGui::SetNextItemWidth(m_width / 2.5f);
+        ImGui::ListBox("##CHARACTERS1", nullptr, getter,
+                       m_partyPresets.at(m_curPPrIdx_1).characterNames.data(),
+                       m_partyPresets.at(m_curPPrIdx_1).characterNames.size());
+    }
+    ImGui::EndGroup();
+}
+
+void SceneManager::playerTwoSetup() {
+    ImGui::BeginGroup();
+    ImGui::SetCursorPosX(0.8f * m_width-ImGui::CalcTextSize("Player 2").x * 0.5f);
+    ImGui::SetCursorPosY(0.4f * m_height);
+    ImGui::Text("Player 2");
+    ImGui::SetCursorPosX(0.6f * m_width);
+    ImGui::SetNextItemWidth(m_width / 2.5f);
+    ImGui::Combo("##PLAYER2", &m_curPlyIdx_2, m_availiblePlayers.data(), m_availiblePlayers.size());
+
+    ImGui::SetCursorPosX(0.8f * m_width-ImGui::CalcTextSize("Party").x * 0.5f);
+    ImGui::Text("Party");
+    
+    std::vector<const char*> partyNames(m_partyPresets.size());
+    std::transform(m_partyPresets.begin(), m_partyPresets.end(), partyNames.begin(),
+                   [](const auto& p) { return p.partyName.c_str(); });
+    partyNames.push_back("Custom");
+
+    ImGui::SetCursorPosX(0.6f * m_width);
+    ImGui::SetNextItemWidth(m_width / 2.5f);
+    ImGui::Combo("##P2", &m_curPPrIdx_2, partyNames.data(), partyNames.size());
+
+    std::vector<std::string> strings(m_availibleCharacters.size());
+    std::transform(m_availibleCharacters.begin(), m_availibleCharacters.end(),
+                   strings.begin(), [](const Character& c) { return c.getName(); });
+    std::vector<const char*> characterNames(m_availibleCharacters.size());
+    std::transform(strings.begin(), strings.end(),
+                   characterNames.begin(), [](const std::string& s) { return s.c_str(); });
+    characterNames.push_back(" - ");
+
+    ImGui::SetCursorPosY(0.6f * m_height);
+    if (partyNames.at(m_curPPrIdx_1) == "Custom") {
+        for (int i = 0; i < 4; ++i) {
+            ImGui::SetNextItemWidth(m_width / 2.5f);
+            ImGui::SetCursorPosX(0.6f * m_width);
+            ImGui::PushID(i);
+            ImGui::Combo("##C2", &(m_curChrIds_2[i]), characterNames.data(), characterNames.size());
+            if (i < 3) { ImGui::Spacing(); }
+            ImGui::PopID();
+        }
+    } else {
+        auto getter = [](void* data, int index, const char** out_text) {
+            auto& items = *static_cast<std::vector<std::string>*>(data);
+            *out_text = items[index].c_str();
+            return true;
+        };
+        ImGui::SetNextItemWidth(m_width / 2.5f);
+        ImGui::SetCursorPosX(0.6f * m_width);
+        ImGui::ListBox("##CHARACTERS2", nullptr, getter,
+                       m_partyPresets.at(m_curPPrIdx_2).characterNames.data(),
+                       m_partyPresets.at(m_curPPrIdx_2).characterNames.size());
+    }
+    ImGui::EndGroup();
 }
 
 void SceneManager::renderSetup() {
@@ -110,7 +228,9 @@ void SceneManager::renderSetup() {
                  ImGuiWindowFlags_NoMove |
                  ImGuiWindowFlags_NoDecoration |
                  ImGuiWindowFlags_NoTitleBar);
-    // ===
+
+    // =====
+
     float currScale = scale;
     ImGui::PushFont(m_theCenturion);
     ImGui::SetWindowFontScale(currScale);
@@ -119,77 +239,19 @@ void SceneManager::renderSetup() {
     ImGui::SetCursorPosY(m_height / 10.0f);
     ImGui::Text("SETUP");
     ImGui::PopFont();
-    // ===
-    currScale = 0.2f * scale;
+
+    // =====
+
+    currScale = 0.2f*scale;
     ImGui::PushFont(m_blackChancery);
     ImGui::SetWindowFontScale(currScale);
 
-    ImGui::BeginGroup();
-    ImGui::SetCursorPosX(0.2f * m_width - ImGui::CalcTextSize("Player 1").x * 0.5f);
-    ImGui::SetCursorPosY(0.4f * m_height);
-    ImGui::Text("Player 1");
-
-    ImGui::SetCursorPosX(0.01f * m_width);
-    ImGui::SetCursorPosY(0.45f * m_height);
-    ImGui::Text("Party", "1");
-    // TODO : real presets
-    const char* items[] = { "Custom", "Konosuba", "Lord of the Rings", "Final Fantasy VII" };
-    static int item_current1 = 0;
-    ImGui::SetNextItemWidth(m_width / 2.5f);
-    ImGui::Combo("##P1", &item_current1, items, IM_ARRAYSIZE(items));
-
-    ImGui::SetCursorPosY(0.6f * m_height);
-    for (int i = 0; i < 4; ++i) {
-        ImGui::SetNextItemWidth(m_width / 2.5f);
-        // TODO : real characters
-        ImGui::PushID(i);
-        if (ImGui::BeginCombo("##C1", "Select an option##1")) {
-            ImGui::Text("Option 1");
-            ImGui::Text("Option 2");
-            ImGui::Text("Option 3");
-            ImGui::EndCombo();
-        }
-        if (i < 3) {
-            ImGui::Spacing();
-        }
-        ImGui::PopID();
-    }
-    ImGui::EndGroup();
-    
+    playerOneSetup();
     ImGui::SameLine();
+    playerTwoSetup();
+    
+    // =====
 
-    ImGui::BeginGroup();
-    ImGui::SetCursorPosX(0.8f * m_width - ImGui::CalcTextSize("Player 2").x * 0.5f);
-    ImGui::SetCursorPosY(0.4f * m_height);
-    ImGui::Text("Player 2");
-
-    ImGui::SetCursorPosX(0.61f * m_width);
-    ImGui::SetCursorPosY(0.45f * m_height);
-    ImGui::Text("Party", "2");
-    static int item_current2 = 0;
-    ImGui::SetCursorPosX(0.6f * m_width);
-    ImGui::SetNextItemWidth(m_width / 2.5f);
-    ImGui::Combo("##P2", &item_current2, items, IM_ARRAYSIZE(items));
-
-    ImGui::SetCursorPosY(0.6f * m_height);
-    for (int i = 0; i < 4; ++i) {
-        ImGui::SetNextItemWidth(m_width / 2.5f);
-        ImGui::SetCursorPosX(0.6f * m_width);
-        // TODO : real characters
-        ImGui::PushID(i);
-        if (ImGui::BeginCombo("##C2", "Select an option##1")) {
-            ImGui::Text("Option 1");
-            ImGui::Text("Option 2");
-            ImGui::Text("Option 3");
-            ImGui::EndCombo();
-        }
-        if (i < 3) {
-            ImGui::Spacing();
-        }
-        ImGui::PopID();
-    }
-    ImGui::EndGroup();
-    // ===
     float buttonWidth = m_width / 4.0f;
     float buttonHeight = 1.2f * currScale * m_fontSize;
 
@@ -208,7 +270,9 @@ void SceneManager::renderSetup() {
     };
     style.Colors[ImGuiCol_Button] = prevButtonColor;
     ImGui::EndGroup();
-    // ===
+
+    // =====
+
     ImGui::PopFont();
     ImGui::End();
 }

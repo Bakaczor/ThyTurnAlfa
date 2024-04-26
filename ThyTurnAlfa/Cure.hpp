@@ -3,16 +3,15 @@
 #ifndef CURE_HPP
 #define CURE_HPP
 
-#include "DefensiveMovement.hpp"
 #include "Bleeding.hpp"
-
-#define CURE_MOVEMENT_NAME "Cure"
-#define CURE_DEFAULT_COST 10
+#include "DefensiveMovement.hpp"
 
 class Cure : public DefensiveMovement {
-public:
-	Cure(int cost = CURE_DEFAULT_COST) : DefensiveMovement(CURE_MOVEMENT_NAME, cost) { }
-protected:
-	virtual bool individualAction(Character& who, Character& on_whom) override;
+	public:
+	Cure();
+
+	private:
+	// isInvokable inherited from DefensiveMovement
+	virtual bool individualAction(Character& who, Character& on_whom) final;
 };
 #endif // !CURE_HPP

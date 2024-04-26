@@ -1,11 +1,8 @@
-#include "Queue.h"
+#include "Queue.hpp"
 
-Queue::Queue()
-{
-}
+Queue::Queue() { }
 
-Queue::Queue(std::vector<Player>& players)
-{
+Queue::Queue(std::array<Player, 2>& players) {
 	for (Player& player : players) {
 		for (Character& character : player.party) {
 			int atv = INT_MAX / character.getSpd();
@@ -14,8 +11,7 @@ Queue::Queue(std::vector<Player>& players)
 	}
 }
 
-Character& Queue::peek()
-{
+Character& Queue::peek() {
 	for (int i = 0; i < c.size(); ++i) {
 		Tuple currentCharacter = top();
 

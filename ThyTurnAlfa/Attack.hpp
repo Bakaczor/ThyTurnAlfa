@@ -7,15 +7,15 @@
 #include "Shield.hpp"
 
 class Attack : public Movement {
-public:
+	public:
 	const float wMove;
 	const float wPierce;
 
-	Attack(std::string&& name, int w_move, int w_pierce = 0)
-		: Movement(std::move(name), TargetEnum::enemy), wMove{ percent(w_move) }, wPierce{ percent(w_pierce) } { }
+	Attack(std::string&& name, int w_move, int w_pierce = 0);
 
-	// invoke method is inherited from Movement
-protected:
+	// invoke inherited from Movement
+
+	protected:
 	int computeDMG(Character& who, Character& on_whom);
 	virtual bool isInvokable(Character& who, Character& on_whom) override;
 	virtual bool individualAction(Character& who, Character& on_whom) override;
