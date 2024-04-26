@@ -18,7 +18,7 @@ std::vector<Character>&& Reader::extractCharacters()
     auto characterArray = m_jsonData["characters"];
     for (auto character : characterArray) {
         Character deserializedCharacter;
-        deserializedCharacter.Deserialize(character);
+        deserializedCharacter.deserialize(character);
         m_characters.push_back(std::move(deserializedCharacter));
     }
     return std::move(m_characters);

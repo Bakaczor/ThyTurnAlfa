@@ -21,3 +21,14 @@ void Character::detachEffects()
 
 	activeEffects.clear();
 }
+
+void Character::deserialize(Json::Value& root)
+{
+	hp = root["hp"].asInt();
+	currentHp = hp;
+	atk = root["atk"].asInt();
+	def = root["def"].asInt();
+	spd = root["spd"].asInt();
+	mp = root["mp"].asInt();
+	name = root["name"].asString();
+}

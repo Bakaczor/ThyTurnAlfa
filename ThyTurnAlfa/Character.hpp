@@ -41,7 +41,7 @@ public:
 
 	bool applyEffects();
 	void detachEffects();
-	void Deserialize(Json::Value& root) { };
+	void deserialize(Json::Value& root);
 	const std::string getName() const {
 		return name;
 	}
