@@ -2,7 +2,7 @@
 
 Queue::Queue() { }
 
-Queue::Queue(std::vector<Player>& players) {
+Queue::Queue(std::array<Player, 2>& players) {
 	for (Player& player : players) {
 		for (Character& character : player.party) {
 			int atv = INT_MAX / character.getSpd();

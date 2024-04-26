@@ -19,6 +19,8 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
+#include "Character.hpp"
+#include "PartyPreset.hpp"
 #include "ProgramState.hpp"
 #include "Queue.hpp"
 #include "Reader.hpp"
@@ -54,21 +56,29 @@ class SceneManager {
 	// === GAME ===
 	unsigned m_roundsCount = 0;
 	ProgramState m_currentState = ProgramState::Menu;
-	std::vector<Player> m_players;
+	std::array<Player, 2> m_players;
 	Queue m_queue;
-	//Character& m_currentCharacter;
 
 	// === OPTIONS ===
-	std::array<const char*, 2> m_functions = { "Basic", "NotBasic" };
-	int m_currFuncIndex = 0;
+	std::array<const char*, 2> m_availibleFunctions = { "Basic", "NotBasic" };
+	int m_curFucIdx = 0;
 	int m_treeDepth = 1;
+	std::array<const char*, 2> m_availiblePlayers = { "Human", "Random" };
+	int m_curPlyIdx_1 = 0;
+	int m_curPlyIdx_2 = 0;
 
 	// === SETUP ===
+	std::vector<PartyPreset> m_partyPresets;
+	int m_curPPrIdx_1 = 0;
+	int m_curPPrIdx_2 = 0;
 	std::vector<Character> m_availibleCharacters;
-	std::vector<std::vector<std::string>> m_partyPresets;
+	std::array<int, 4> m_curChrIds_1 = { -1, -1, -1, -1 };
+	std::array<int, 4> m_curChrIds_2 = { -1, -1, -1, -1 };
 
 	int arrange();
 	void renderMenu();
+	void playerOneSetup();
+	void playerTwoSetup();
 	void renderSetup();
 	void renderOptions();
 	void renderGame();

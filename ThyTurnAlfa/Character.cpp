@@ -5,7 +5,7 @@
 
 #include "Character.hpp"
 
-Character::Character(std::string& name, std::string& imagePath, std::vector<std::unique_ptr<Movement>>& movements):
+Character::Character(std::string name, std::string imagePath, std::vector<std::unique_ptr<Movement>>& movements):
 	m_name{ name }, m_imagePath{ imagePath }, movements { std::move(movements) } {}
 
 bool Character::applyEffects() {

@@ -65,9 +65,6 @@
     <Filter Include="Header Files\Entities">
       <UniqueIdentifier>{34adaa16-263a-44e7-9545-7284d4a28dab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\image">
-      <UniqueIdentifier>{777d5eb9-7598-4b8a-9a5e-975e469c0868}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\fonts">
       <UniqueIdentifier>{b56e89f3-21c2-4353-bd5b-02e308aeb20e}</UniqueIdentifier>
     </Filter>
@@ -88,6 +85,9 @@
     </Filter>
     <Filter Include="Source Files\Movements\MagicAttacks">
       <UniqueIdentifier>{b8cda3bb-f6a0-4cc7-8ed1-864e5d3aa9cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\images">
+      <UniqueIdentifier>{777d5eb9-7598-4b8a-9a5e-975e469c0868}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -219,7 +219,7 @@
     <ClInclude Include="Random.h">
       <Filter>Header Files\Players</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
+    <ClInclude Include="SceneManager.hpp">
       <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="Bleeding.hpp">
@@ -345,6 +345,9 @@
     <ClInclude Include="Revive.hpp">
       <Filter>Header Files\Movements\DefensiveMovements</Filter>
     </ClInclude>
+    <ClInclude Include="PartyPreset.hpp">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\BlackChancery.ttf">
@@ -359,7 +362,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\png\megumin.png">
-      <Filter>Resource Files\image</Filter>
+      <Filter>Resource Files\images</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

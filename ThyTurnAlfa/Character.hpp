@@ -31,7 +31,7 @@ class Character {
 	std::vector<std::unique_ptr<Movement>> movements = std::vector<std::unique_ptr<Movement>>();
 
 	// usage of std::move is explained here: https://stackoverflow.com/questions/3283778/why-can-i-not-push-back-a-unique-ptr-into-a-vector
-	Character(std::string& name, std::string& imagePath, std::vector<std::unique_ptr<Movement>>& movements);
+	Character(std::string name, std::string imagePath, std::vector<std::unique_ptr<Movement>>& movements);
 	Character() = default;
 	Character(Character&& c) = default;
 

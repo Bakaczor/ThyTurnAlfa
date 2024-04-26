@@ -3,8 +3,8 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include <queue>
 #include <climits>
+#include <queue>
 
 #include "Player.h"
 
@@ -23,7 +23,7 @@ struct Tuple {
 class Queue : private std::priority_queue<Tuple> {
 public:
 	Queue();
-	Queue(std::vector<Player>& players);
+	Queue(std::array<Player, 2>& players);
 	Character& peek();
 };
 

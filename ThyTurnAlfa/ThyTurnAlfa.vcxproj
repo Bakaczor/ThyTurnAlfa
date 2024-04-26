@@ -191,6 +191,7 @@
     <ClInclude Include="EffectsTest.hpp" />
     <ClInclude Include="Frozen.hpp" />
     <ClInclude Include="Movement.hpp" />
+    <ClInclude Include="PartyPreset.hpp" />
     <ClInclude Include="PiercingAttack.hpp" />
     <ClInclude Include="Revive.hpp" />
     <ClInclude Include="Shield.hpp" />
@@ -210,7 +211,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Queue.hpp" />
     <ClInclude Include="Random.h" />
-    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="WindowMode.hpp" />
   </ItemGroup>
   <ItemGroup>
