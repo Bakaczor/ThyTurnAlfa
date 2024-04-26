@@ -11,6 +11,7 @@ class Player {
 	public:
 	unsigned int id;
 	std::vector<Character> party;
+	virtual bool move(Character& character) = 0;
 
 	private:
 	static unsigned int m_count;
