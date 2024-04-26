@@ -2,9 +2,9 @@
 #include "Cold.hpp"
 #include "Wet.hpp"
 
-Burning::Burning(): TemporaryDamagePerRound(Const::Buring::BURNING_EFFECT_NAME, 
-											Const::Buring::BURNING_DEFAULT_DURATION,
-											Const::Buring::BURNING_DEFAULT_DAMAGE_PER_ROUND) {};
+Burning::Burning(): TemporaryDamagePerRound(Const::Burning::BURNING_EFFECT_NAME, 
+											Const::Burning::BURNING_DEFAULT_DURATION,
+											Const::Burning::BURNING_DEFAULT_DAMAGE_PER_ROUND) {};
 
 bool Burning::addTo(Character& affected) {
 	bool apply = true;

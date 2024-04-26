@@ -14,7 +14,7 @@ namespace Const {
 		constexpr int BOOST_DEFAULT_DURATION = 5;
 	}
 
-	namespace Buring {
+	namespace Burning {
 		constexpr const char* BURNING_EFFECT_NAME = "Burning";
 		constexpr int BURNING_DEFAULT_DAMAGE_PER_ROUND = 10;
 		constexpr int BURNING_DEFAULT_DURATION = 3;
