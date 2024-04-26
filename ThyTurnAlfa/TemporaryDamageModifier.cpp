@@ -16,7 +16,7 @@ bool TemporaryDamageModifier::nextRound(Character& affected) {
 }
 
 bool TemporaryDamageModifier::cancelFrom(Character& affected) {
-	affected.atk -= atkModifier;
-	affected.def -= defModifier;
+	affected.wAtk -= atkModifier;
+	affected.wDef -= defModifier;
 	return true;
 }

@@ -3,14 +3,14 @@
 #ifndef SCENEMANAGER_H
 #define SCENEMANAGER_H
 
-#include <string>
-#include <vector>
 #include <array>
+#include <iostream>
 #include <map>
 #include <ranges>
-#include <iostream>
-#include <sstream>
 #include <ranges>
+#include <sstream>
+#include <string>
+#include <vector>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -19,10 +19,10 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
-#include "Queue.hpp"
 #include "ProgramState.hpp"
-#include "WindowMode.hpp"
+#include "Queue.hpp"
 #include "Reader.hpp"
+#include "WindowMode.hpp"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);

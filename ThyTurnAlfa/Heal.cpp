@@ -8,10 +8,10 @@ bool Heal::isInvokable(Character& who, Character& on_whom) {
 }
 
 bool Heal::individualAction(Character& who, Character& on_whom) {
-	who.mp -= this->cost;
+	who.currentMp -= this->cost;
 	on_whom.currentHp += hpBoost;
-	if (on_whom.currentHp > on_whom.hp) {
-		on_whom.currentHp = on_whom.hp;
+	if (on_whom.currentHp > on_whom.getHp()) {
+		on_whom.currentHp = on_whom.getHp();
 	}
 	return true;
 }

@@ -8,6 +8,6 @@ bool Revive::isInvokable(Character& who, Character& on_whom) {
 }
 
 bool Revive::individualAction(Character& who, Character& on_whom) {
-	on_whom.currentHp = on_whom.hp;
+	on_whom.currentHp = on_whom.getHp();
 	return true;
 }

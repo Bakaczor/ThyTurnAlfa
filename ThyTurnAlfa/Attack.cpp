@@ -6,8 +6,8 @@ Attack::Attack(std::string&& name, int w_move, int w_pierce):
     wPierce{ Utils::percent(w_pierce) } {}
 
 int Attack::computeDMG(Character& who, Character& on_whom) {
-    float formula_prefix = wMove * who.atk * (1.0f + Utils::percent(who.wAtk));
-    float formula_suffix = 1.0f - Utils::percent(on_whom.def)
+    float formula_prefix = wMove * who.getAtk() * (1.0f + Utils::percent(who.wAtk));
+    float formula_suffix = 1.0f - Utils::percent(on_whom.getDef())
         * (1.0f + Utils::percent(on_whom.wDef)) * (1.0f - wPierce);
     if (formula_suffix < 0 || formula_prefix < 0) 
         return 0;
