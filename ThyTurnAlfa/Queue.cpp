@@ -1,8 +1,6 @@
-#include "Queue.h"
+#include "Queue.hpp"
 
-Queue::Queue()
-{
-}
+Queue::Queue() { }
 
 Queue::Queue(std::vector<Player>& players)
 {

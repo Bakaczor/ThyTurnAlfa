@@ -8,9 +8,9 @@
 
 class ActionlessEffect : public Effect {
 	public:
-	ActionlessEffect(std::string name, int duration): Effect(name, duration) { };
+	ActionlessEffect(std::string name, int duration);
 
-	virtual bool nextRound(Character& affected) override { return elapsed(); }
+	virtual bool nextRound(Character& affected) override;
 	// cancelFrom method is inherited from Effect
 };
 

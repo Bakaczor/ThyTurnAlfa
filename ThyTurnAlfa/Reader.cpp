@@ -1,4 +1,4 @@
-#include "Reader.h"
+#include "Reader.hpp"
 
 bool Reader::readFile(const std::string& filename)
 {

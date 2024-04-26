@@ -19,10 +19,10 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
-#include "Queue.h"
+#include "Queue.hpp"
 #include "ProgramState.hpp"
 #include "WindowMode.hpp"
-#include "Reader.h"
+#include "Reader.hpp"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);

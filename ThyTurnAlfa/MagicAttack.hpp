@@ -6,14 +6,14 @@
 #include "Attack.hpp"
 
 class MagicAttack : public Attack {
-public:
+	public:
 	const unsigned cost;
 
 	MagicAttack(std::string&& name, int cost, int w_move, int w_pierce = 0)
 		: Attack(std::move(name), w_move, w_pierce), cost{ (unsigned)cost } { }
 
 	virtual int getCost() override;
-protected:
+	protected:
 	virtual bool isInvokable(Character& who, Character& on_whom) override;
 };
 
