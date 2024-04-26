@@ -28,7 +28,7 @@ class Movement {
 	virtual bool individualAction(Character& who, Character& on_whom) { return true; };
 
 	// should be overridden by movement which applies effect(s)
-	virtual void addEffects(Character& who, Character& on_whom) { };
+	virtual void addEffects(Character& on_whom) { };
 };
 
 #endif // !MOVEMENT_HPP

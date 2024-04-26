@@ -5,7 +5,7 @@ Shield::Shield(): Effect(Const::Shield::SHIELD_EFFECT_NAME, Const::Shield::SHIEL
 bool Shield::nextRound(Character& affected) { return hp > 0; }
 
 bool Shield::addTo(Character& affected) {
-	std::erase_if(affected.activeEffects, [&affected](std::unique_ptr<Effect>& e) {
+	std::erase_if(affected.activeEffects, [&affected](auto& e) {
 		if (dynamic_cast<Shield*>(e.get())) {
 			e->cancelFrom(affected);
 			return true;

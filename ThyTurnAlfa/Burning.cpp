@@ -8,16 +8,15 @@ Burning::Burning(): TemporaryDamagePerRound(Const::Buring::BURNING_EFFECT_NAME,
 
 bool Burning::addTo(Character& affected) {
 	bool apply = true;
-	std::erase_if(affected.activeEffects, [&affected, &apply](std::unique_ptr<Burning>& e) {
+	std::erase_if(affected.activeEffects, [&affected, &apply](auto& e) {
 		if (dynamic_cast<Burning*>(e.get()))
 		{
 			e->cancelFrom(affected);
 			return true;
 		}
 		else if (dynamic_cast<Wet*>(e.get())) {
-			e->cancelFrom(affected);
 			apply = false;
-			return true;
+			return false;
 		}
 		return false;
 		});

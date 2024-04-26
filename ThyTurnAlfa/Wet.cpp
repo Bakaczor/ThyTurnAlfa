@@ -8,7 +8,7 @@ Wet::Wet(): ActionlessEffect(Const::Wet::WET_EFFECT_NAME, Const::Wet::WET_DEFAUL
 bool Wet::addTo(Character& affected) {
 	bool apply = true;
 	bool apply_frozen = false;
-	std::erase_if(affected.activeEffects, [&affected, &apply, &apply_frozen](std::unique_ptr<Effect>& e) {
+	std::erase_if(affected.activeEffects, [&affected, &apply, &apply_frozen](auto& e) {
 		if (dynamic_cast<Wet*>(e.get())) {
 			e->cancelFrom(affected);
 			return true;

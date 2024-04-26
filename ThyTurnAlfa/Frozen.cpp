@@ -8,7 +8,7 @@ Frozen::Frozen():TemporaryDamageModifier(Const::Frozen::FROZEN_EFFECT_NAME,
 
 bool Frozen::addTo(Character& affected) {
 	bool apply = true;
-	std::erase_if(affected.activeEffects, [&affected, &apply](std::unique_ptr<Effect>& e) {
+	std::erase_if(affected.activeEffects, [&affected, &apply](auto& e) {
 		if (dynamic_cast<Frozen*>(e.get())) {
 			e->cancelFrom(affected);
 			return true;

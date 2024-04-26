@@ -4,10 +4,13 @@
 #define ICE_ATTACK_HPP
 
 #include "MagicAttack.hpp"
+#include "Cold.hpp"
 
 class IceAttack : public MagicAttack {
 	public:
 	IceAttack();
+	protected:
+	virtual void addEffects(Character& on_whom) override;
 };
 
 #endif // !ICE_ATTACK_HPP

@@ -9,7 +9,7 @@ bool Cold::addTo(Character& affected) {
 	bool apply = true;
 	bool apply_frozen = false;
 	// TODO: implement adding to frozen
-	std::erase_if(affected.activeEffects, [&affected, &apply, &apply_frozen](std::unique_ptr<Effect>& e) {
+	std::erase_if(affected.activeEffects, [&affected, &apply, &apply_frozen](auto& e) {
 		if (dynamic_cast<Cold*>(e.get())) {
 			e->cancelFrom(affected);
 			return true;
