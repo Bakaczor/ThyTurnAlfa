@@ -1,4 +1,5 @@
 #include "Character.hpp"
+#include "MovementFactory.h"
 
 bool Character::applyEffects() {
 	for (auto it = activeEffects.begin(); it != activeEffects.end(); it++)
@@ -31,4 +32,12 @@ void Character::deserialize(Json::Value& root)
 	spd = root["spd"].asInt();
 	mp = root["mp"].asInt();
 	name = root["name"].asString();
+
+	auto movementArray = root["movements"];
+	for (auto move : movementArray) {
+		auto pMovement = MovementFactory::create(move["name"].asString());
+		if (pMovement != nullptr) {
+			movements.push_back(std::move(pMovement));
+		}
+	}
 }

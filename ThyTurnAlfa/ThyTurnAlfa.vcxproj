@@ -145,6 +145,7 @@
     <ClCompile Include="LightningAttack.cpp" />
     <ClCompile Include="MagicAttack.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MovementFactory.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Reader.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="IceAttack.hpp" />
     <ClInclude Include="LightningAttack.hpp" />
     <ClInclude Include="MagicAttack.hpp" />
+    <ClInclude Include="MovementFactory.h" />
     <ClInclude Include="OrdinaryAttack.hpp" />
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="EffectsTest.hpp" />
