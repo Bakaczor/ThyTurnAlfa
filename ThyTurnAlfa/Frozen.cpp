@@ -1,5 +1,7 @@
 #include "Burning.hpp"
 #include "Frozen.hpp"
+#include "Cold.hpp"
+#include "Wet.hpp"
 
 Frozen::Frozen():TemporaryDamageModifier(Const::Frozen::FROZEN_EFFECT_NAME,
 										 Const::Frozen::FROZEN_DEFAULT_ATK_DROP,
@@ -9,14 +11,16 @@ Frozen::Frozen():TemporaryDamageModifier(Const::Frozen::FROZEN_EFFECT_NAME,
 bool Frozen::addTo(Character& affected) {
 	bool apply = true;
 	std::erase_if(affected.activeEffects, [&affected, &apply](auto& e) {
-		if (dynamic_cast<Frozen*>(e.get())) {
+		if (dynamic_cast<Frozen*>(e.get()) ||
+			dynamic_cast<Cold*>(e.get()) || 
+			dynamic_cast<Wet*>(e.get())) {
 			e->cancelFrom(affected);
 			return true;
 		} else if (dynamic_cast<Burning*>(e.get())) {
 			e->cancelFrom(affected);
 			apply = false;
 			return true;
-		} 
+		}
 		return false;
 		});
 	

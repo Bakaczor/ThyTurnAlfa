@@ -22,6 +22,8 @@ bool Wet::addTo(Character& affected) {
 
 	if (apply) {
 		affected.activeEffects.emplace_back(std::make_unique<Wet>());
+	} else if (apply_frozen) {
+		Frozen::addTo(affected);
 	}
 	return true;
 }

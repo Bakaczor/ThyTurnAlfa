@@ -28,7 +28,7 @@ bool Cold::addTo(Character& affected) {
 	if (apply) {
 		affected.activeEffects.emplace_back(std::make_unique<Cold>());
 	} else if (apply_frozen) {
-		affected.activeEffects.emplace_back(std::make_unique<Frozen>());
+		Frozen::addTo(affected);
 	}
 
 	return true;
