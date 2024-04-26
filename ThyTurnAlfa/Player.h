@@ -8,12 +8,13 @@
 #include "Character.hpp"
 
 class Player {
-	public:
+public:
 	unsigned int id;
-	std::vector<Character> party;
-	virtual bool move(Character& character) = 0;
+	std::vector<Character>& party;
 
-	private:
+	Player(std::vector<Character>& party);
+	virtual bool move(Character& character, std::vector<Player>& players) = 0;
+private:
 	static unsigned int m_count;
 };
 

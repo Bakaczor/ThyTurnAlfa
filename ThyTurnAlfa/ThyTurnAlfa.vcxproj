@@ -146,7 +146,9 @@
     <ClCompile Include="MagicAttack.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MovementFactory.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Queue.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="Reader.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneManager_Callbacks.cpp" />
