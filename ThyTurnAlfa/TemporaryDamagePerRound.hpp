@@ -3,15 +3,15 @@
 #ifndef TEMPORARY_DAMAGE_PER_ROUND_HPP
 #define TEMPORARY_DAMAGE_PER_ROUND_HPP
 
-#include "Effect.hpp"
 #include "Character.hpp"
+#include "Effect.hpp"
 
 class TemporaryDamagePerRound : public Effect {
-public:
+	public:
 	const int dmgPerRound;
 
-	TemporaryDamagePerRound(std::string name, int duration, int dmgPerRound)
-		: Effect(name, duration), dmgPerRound{ dmgPerRound } { };
+	TemporaryDamagePerRound(std::string name, int duration, int dmgPerRound):
+		Effect(name, duration), dmgPerRound{ dmgPerRound } { };
 
 	virtual bool nextRound(Character& affected) override;
 	// cancelFrom method is inherited from Effect

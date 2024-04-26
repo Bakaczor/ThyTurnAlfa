@@ -20,8 +20,8 @@
 #include "imgui_impl_opengl3.h"
 
 #include "Queue.h"
-#include "ProgramState.h"
-#include "WindowMode.h"
+#include "ProgramState.hpp"
+#include "WindowMode.hpp"
 #include "Reader.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);

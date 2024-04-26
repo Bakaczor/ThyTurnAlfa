@@ -17,7 +17,7 @@ class Movement;
 #include "Movement.hpp"
 
 class Character {
-public:
+	public:
 	int id = 0;
 	int hp = 0;
 	int currentHp = 0;

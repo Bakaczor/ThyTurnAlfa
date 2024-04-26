@@ -6,13 +6,11 @@
 #include "DefensiveMovement.hpp"
 #include "Bleeding.hpp"
 
-#define CURE_MOVEMENT_NAME "Cure"
-#define CURE_DEFAULT_COST 10
-
 class Cure : public DefensiveMovement {
-public:
-	Cure(int cost = CURE_DEFAULT_COST) : DefensiveMovement(CURE_MOVEMENT_NAME, cost) { }
-protected:
-	virtual bool individualAction(Character& who, Character& on_whom) override;
+	public:
+	Cure(int cost = Const::Cure::CURE_DEFAULT_COST): DefensiveMovement(Const::Cure::CURE_MOVEMENT_NAME, cost) { }
+
+	private:
+	virtual bool individualAction(Character& who, Character& on_whom) final;
 };
 #endif // !CURE_HPP

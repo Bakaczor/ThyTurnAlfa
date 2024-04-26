@@ -9,7 +9,7 @@ class DefensiveMovement : public Movement {
 public:
 	const unsigned cost;
 	DefensiveMovement(std::string&& name, int cost)
-		: Movement(std::move(name), TargetEnum::ally), cost{ (unsigned)cost } {}
+		: Movement(std::move(name), TargetType::Ally), cost{ (unsigned)cost } {}
 
 	virtual int getCost() override
 	{

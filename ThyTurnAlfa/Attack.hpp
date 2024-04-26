@@ -12,7 +12,7 @@ public:
 	const float wPierce;
 
 	Attack(std::string&& name, int w_move, int w_pierce = 0)
-		: Movement(std::move(name), TargetEnum::enemy), wMove{ percent(w_move) }, wPierce{ percent(w_pierce) } { }
+		: Movement(std::move(name), TargetType::Enemy), wMove{ Utils::percent(w_move) }, wPierce{ Utils::percent(w_pierce) } { }
 
 	// invoke method is inherited from Movement
 protected:
