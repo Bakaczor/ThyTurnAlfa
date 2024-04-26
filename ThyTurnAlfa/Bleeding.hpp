@@ -8,7 +8,7 @@
 
 class Bleeding : public TemporaryDamagePerRound {
 	public:
-	Bleeding(int duration, int dmg_per_round);
+	Bleeding();
 
 	// nextRound methods is inherited from ActionlessEffect
 	// cancelFrom methods is inherited from Effect

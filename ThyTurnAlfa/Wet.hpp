@@ -7,12 +7,12 @@
 
 class Wet : public ActionlessEffect {
 	public:
-	Wet(int duration) : ActionlessEffect(Const::Wet::WET_EFFECT_NAME, duration) { };
+	Wet();
 
 	// nextRound and remove methods are inherited from ActionlessEffect
 	// cancelFrom method is inherited from Effect
 	static bool addTo(Character& affected, int duration,
-		int frozen_duration = Const::Wet::WET_DEFAULT_FROZEN_DURATION);
+		int frozen_duration = Const::Wet::WET_DEFAULT_DURATION);
 };
 
 #endif // !WET_HPP

@@ -7,8 +7,7 @@
 
 class Revive : public DefensiveMovement {
 	public:
-	Revive(int cost = Const::Revive::REVIVE_DEFAULT_COST):
-		DefensiveMovement(Const::Revive::REVIVE_MOVENT_NAME, cost) { }
+	Revive();
 	
 	private:
 	virtual bool isInvokable(Character& who, Character& on_whom) final;

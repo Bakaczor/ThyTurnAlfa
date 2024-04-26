@@ -6,12 +6,10 @@
 #include "DefensiveMovement.hpp"
 
 class Heal : public DefensiveMovement {
-public:
-	const int hpBoost;
+	public:
+	const int hpBoost = Const::Heal::HEAL_DEFAULTL_HP_BOOST;
 
-	Heal(int cost = Const::Heal::HEAL_DEFAULT_COST,
-		 int hp_boost = Const::Heal::HEAL_DEFAULTL_HP_BOOST
-	): DefensiveMovement(Const::Heal::HEAL_MOVEMENT_NAME, cost), hpBoost{hp_boost} { }
+	Heal();
 
 	private:
 	virtual bool isInvokable(Character& who, Character& on_whom) final;

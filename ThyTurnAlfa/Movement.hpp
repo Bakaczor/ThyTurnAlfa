@@ -23,9 +23,12 @@ class Movement {
 
 	protected:
 	virtual bool isInvokable(Character& who, Character& on_whom);
-	// individualAction method should return false if on_whom.currentHp is not greater than 0 and true in other cases
+
+	// should return false if on_whom.currentHp is not greater than 0 and true in other cases
 	virtual bool individualAction(Character& who, Character& on_whom) { return true; };
-	virtual void addEffects(Character& who, Character& on_whom) { }; // should be overridden by movement which applies effect(s)
+
+	// should be overridden by movement which applies effect(s)
+	virtual void addEffects(Character& who, Character& on_whom) { };
 };
 
 #endif // !MOVEMENT_HPP

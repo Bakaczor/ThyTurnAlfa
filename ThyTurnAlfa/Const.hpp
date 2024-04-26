@@ -1,46 +1,46 @@
 namespace Const {
-	namespace Common {
-		constexpr int INFINITE_DURATION = -1;
-	}
-
 	// ===== EFFECTS =====
 
 	namespace Bleeding {
 		constexpr const char* BLEEDING_EFFECT_NAME = "Bleeding";
 		constexpr int BLEEDING_DEFAULT_DAMAGE_PER_ROUND = 5;
+		constexpr int BLEEDING_DEFAULT_DURATION = 3;
 	}
 
 	namespace Boost {
 		constexpr const char* BOOST_EFFECT_NAME = "Boost";
 		constexpr int BOOST_DEFAULT_ATK_BOOST = 10;
 		constexpr int BOOST_DEFAULT_DEF_BOOST = 10;
+		constexpr int BOOST_DEFAULT_DURATION = 5;
 	}
 
 	namespace Buring {
 		constexpr const char* BURNING_EFFECT_NAME = "Burning";
 		constexpr int BURNING_DEFAULT_DAMAGE_PER_ROUND = 10;
+		constexpr int BURNING_DEFAULT_DURATION = 3;
 	}
 
 	namespace Cold {
 		constexpr const char* COLD_EFFECT_NAME = "Cold";
-		constexpr int COLD_DEFAULT_FROZEN_DURATION = 4;
+		constexpr int COLD_DEFAULT_DURATION = 4;
 	}
 
 	namespace Frozen {
 		constexpr const char* FROZEN_EFFECT_NAME = "Frozen";
-		constexpr int FROZEN_DEFAULT_ATK_DROP = 10;
-		constexpr int FROZEN_DEFAULT_DEF_DROP = 10;
+		constexpr int FROZEN_DEFAULT_ATK_DROP = -10;
+		constexpr int FROZEN_DEFAULT_DEF_DROP = -10;
+		constexpr int FROZEN_DEFAULT_DURATION = 5;
 	}
 
 	namespace Shield {
 		constexpr const char* SHIELD_EFFECT_NAME = "Shield";
-		constexpr int SHIELD_DEFAULT_DURATION = Const::Common::INFINITE_DURATION;
+		constexpr int SHIELD_DEFAULT_DURATION = -1;
 		constexpr int SHIELD_DEFAULT_HP = 50;
 	}
 
 	namespace Wet {
 		constexpr const char* WET_EFFECT_NAME = "Wet";
-		constexpr int WET_DEFAULT_FROZEN_DURATION = 3;
+		constexpr int WET_DEFAULT_DURATION = 4;
 	}
 
 	// ===== MOVEMENTS =====
@@ -66,7 +66,7 @@ namespace Const {
 	namespace BoostMovement {
 		constexpr const char* BOOST_MOVEMENT_NAME = "BoostMovement";
 		constexpr int BOOST_MOVEMENT_DEFAULT_COST = 20;
-		constexpr int BOOST_MOVEMENT_DEFAULT_EFFECT_DURATION = 3;
+		constexpr int BOOST_MOVEMENT_DEFAULT_EFFECT_DURATION = 5;
 		constexpr int BOOST_MOVEMENT_DEFAULT_ATK_BOOST_VALUE = 30;
 		constexpr int BOOST_MOVEMENT_DEFAULT_DEF_BOOST_VALUE = 30;
 	}
@@ -98,7 +98,7 @@ namespace Const {
 		constexpr int FIRE_ATTACK_DEFAULT_WEIGHT = 60;
 		constexpr int FIRE_ATTACK_DEFAULT_COST = 40;
 		constexpr int FIRE_ATTACK_DEFAULT_DAMAGE_PER_ROUND = 10;
-		constexpr int FIRE_ATTACK_DEFAULT_EFFECT_DURATION = 4;
+		constexpr int FIRE_ATTACK_DEFAULT_EFFECT_DURATION = 3;
 	}
 
 	namespace IceAttack {
@@ -106,18 +106,19 @@ namespace Const {
 		constexpr int ICE_ATTACK_DEFAULT_WEIGHT = 85;
 		constexpr int ICE_ATTACK_DEFAULT_PIERCING_WEIGHT = 30;
 		constexpr int ICE_ATTACK_DEFAULT_COST = 30;
+		constexpr int ICE_ATTACK_DEFAULT_EFFECT_DURATION = 4;
 	}
 
 	namespace LightningAttack {
 		constexpr const char* LIGHTNING_ATTACK_MOVEMENT_NAME = "LightningAttack";
 		constexpr int LIGHTNING_ATTACK_DEFAULT_WEIGHT = 100;
-		constexpr int LIGHTNING_ATTACK_DEFAULT_COST = 0.5f*LIGHTNING_ATTACK_DEFAULT_WEIGHT;
+		constexpr int LIGHTNING_ATTACK_DEFAULT_COST = static_cast<int>(0.5f * LIGHTNING_ATTACK_DEFAULT_WEIGHT);
 	}
 
 	namespace WaterAttack{
 		constexpr const char* WATER_ATTACK_MOVEMENT_NAME = "WaterAttack";
 		constexpr int WATER_ATTACK_DEFAULT_WEIGHT = 80;
-		constexpr int WATER_ATTACK_DEFAULT_EFFECT_DURATION = 5;
+		constexpr int WATER_ATTACK_DEFAULT_EFFECT_DURATION = 4;
 		constexpr int WATER_ATTACK_DEFAULT_FROZEN_EFFECT_DURATION = 5;
 		constexpr int WATER_ATTACK_DEFAULT_COST = 20;
 	}

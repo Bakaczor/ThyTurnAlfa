@@ -8,11 +8,9 @@
 
 class ShieldMovement : public DefensiveMovement {
 	public:
-	const int shieldHp;
+	const int shieldHp = Const::ShieldMovement::SHIELD_MOVEMENT_DEFAULT_HP;
 
-	ShieldMovement(int cost = Const::ShieldMovement::SHIELD_MOVEMENT_DEFAULT_COST,
-				   int shield_hp = Const::ShieldMovement::SHIELD_MOVEMENT_DEFAULT_HP
-	): DefensiveMovement(Const::ShieldMovement::SHIELD_MOVEMENT_NAME, cost), shieldHp{shield_hp} { }
+	ShieldMovement();
 
 	private:
 	virtual bool isInvokable(Character& who, Character& on_whom) final;

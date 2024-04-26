@@ -10,8 +10,7 @@ class TemporaryDamagePerRound : public Effect {
 	public:
 	const int dmgPerRound;
 
-	TemporaryDamagePerRound(std::string name, int duration, int dmgPerRound):
-		Effect(name, duration), dmgPerRound{ dmgPerRound } { };
+	TemporaryDamagePerRound(std::string name, int duration, int dmgPerRound);
 
 	virtual bool nextRound(Character& affected) override;
 	// cancelFrom method is inherited from Effect

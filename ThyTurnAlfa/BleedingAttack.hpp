@@ -8,8 +8,7 @@
 
 class BleedingAttack : public Attack {
 	public:
-	BleedingAttack(int w_move = Const::BleedingAttack::BLEEDING_ATTACK_DEFAULT_WEIGHT):
-		Attack(Const::BleedingAttack::BLEEDING_ATTACK_MOVEMENT_NAME, w_move) { }
+	BleedingAttack();
 
 	virtual void addEffects(Character& who, Character& on_whom) final;
 };

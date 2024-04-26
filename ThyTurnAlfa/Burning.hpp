@@ -7,9 +7,7 @@
 
 class Burning : public TemporaryDamagePerRound {
 	public:
-	Burning(int duration, 
-			int dmgPerRound = Const::Buring::BURNING_DEFAULT_DAMAGE_PER_ROUND
-	): TemporaryDamagePerRound(Const::Buring::BURNING_EFFECT_NAME, duration, dmgPerRound) { };
+	Burning();
 
 	// nextRound method is inherited from TemporaryDamagePerRound
 	// cancelFrom method is inherited from Effect

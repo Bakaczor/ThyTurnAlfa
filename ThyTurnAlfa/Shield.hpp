@@ -6,12 +6,12 @@
 #include "Effect.hpp"
 
 class Shield : public Effect {
-public:
-	int hp;
+	public:
+	int hp = Const::Shield::SHIELD_DEFAULT_HP;
 
-	Shield(int hp): Effect(Const::Shield::SHIELD_EFFECT_NAME, Const::Shield::SHIELD_DEFAULT_DURATION), hp{ hp }{ }
+	Shield();
 
-	virtual bool nextRound(Character& affected) override { return hp > 0; }
+	virtual bool nextRound(Character& affected) override;
 	// cancelFrom is inherited from Effect
 	static bool addTo(Character& affected, int hp = Const::Shield::SHIELD_DEFAULT_HP);
 };
