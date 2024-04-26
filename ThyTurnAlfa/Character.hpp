@@ -45,9 +45,6 @@ public:
 	const std::string getName() const {
 		return name;
 	}
-	const int getSpd() const {
-		return spd;
-	}
 };
 
 #endif // !CHARACTER_HPP

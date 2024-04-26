@@ -8,7 +8,7 @@ Queue::Queue(std::vector<Player>& players)
 {
 	for (Player& player : players) {
 		for (Character& character : player.party) {
-			int atv = INT_MAX / character.getSpd();
+			int atv = INT_MAX / character.spd;
 			emplace(character, atv);
 		}
 	}
