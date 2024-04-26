@@ -127,15 +127,6 @@
     <ClCompile Include="PiercingAttack.cpp">
       <Filter>Source Files\Movements\ConventionalAttacks</Filter>
     </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Queue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Reader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ActionlessEffect.cpp">
       <Filter>Source Files\Effects</Filter>
     </ClCompile>
@@ -205,6 +196,15 @@
     <ClCompile Include="ShieldMovement.cpp">
       <Filter>Source Files\Movements\DefensiveMovements</Filter>
     </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Queue.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Reader.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h">
@@ -272,12 +272,6 @@
     </ClInclude>
     <ClInclude Include="Random.h">
       <Filter>Header Files\Players</Filter>
-    </ClInclude>
-    <ClInclude Include="Queue.h">
-      <Filter>Header Files\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="Reader.h">
-      <Filter>Header Files\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>Header Files\Gameplay</Filter>
