@@ -65,15 +65,33 @@
     <Filter Include="Header Files\Entities">
       <UniqueIdentifier>{34adaa16-263a-44e7-9545-7284d4a28dab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\image">
+      <UniqueIdentifier>{777d5eb9-7598-4b8a-9a5e-975e469c0868}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\fonts">
+      <UniqueIdentifier>{b56e89f3-21c2-4353-bd5b-02e308aeb20e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enums">
+      <UniqueIdentifier>{d473ad55-1e89-4fff-884c-5cf008832084}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Gameplay">
+      <UniqueIdentifier>{cc626496-b8fc-4002-9247-44189dd9569a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Movements\DefensiveMovements">
+      <UniqueIdentifier>{0364db34-0873-4e23-a948-b16d62dc8417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{96ef16f6-0113-47dc-bcd5-19ec5bb9dec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities">
+      <UniqueIdentifier>{6047b1f3-88ee-4b62-80c5-aae0a2067a06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Movements\MagicAttacks">
+      <UniqueIdentifier>{b8cda3bb-f6a0-4cc7-8ed1-864e5d3aa9cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Movement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Bleeding.cpp">
@@ -109,39 +127,6 @@
     <ClCompile Include="PiercingAttack.cpp">
       <Filter>Source Files\Movements\ConventionalAttacks</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager_Callbacks.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager_GUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Attack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Heal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LightningAttack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MagicAttack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Queue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Reader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Cure.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Shield.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -150,6 +135,75 @@
     </ClCompile>
     <ClCompile Include="Reader.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionlessEffect.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack.cpp">
+      <Filter>Source Files\Movements</Filter>
+    </ClCompile>
+    <ClCompile Include="BleedingAttack.cpp">
+      <Filter>Source Files\Movements\ConventionalAttacks</Filter>
+    </ClCompile>
+    <ClCompile Include="BoostMovement.cpp">
+      <Filter>Source Files\Movements\DefensiveMovements</Filter>
+    </ClCompile>
+    <ClCompile Include="Cure.cpp">
+      <Filter>Source Files\Movements\DefensiveMovements</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager_GUI.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager_Callbacks.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Queue.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Reader.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="WaterAttack.cpp">
+      <Filter>Source Files\Movements\MagicAttacks</Filter>
+    </ClCompile>
+    <ClCompile Include="DefensiveMovement.cpp">
+      <Filter>Source Files\Movements</Filter>
+    </ClCompile>
+    <ClCompile Include="Movement.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Shield.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="FireAttack.cpp">
+      <Filter>Source Files\Movements\MagicAttacks</Filter>
+    </ClCompile>
+    <ClCompile Include="IceAttack.cpp">
+      <Filter>Source Files\Movements\MagicAttacks</Filter>
+    </ClCompile>
+    <ClCompile Include="LightningAttack.cpp">
+      <Filter>Source Files\Movements\MagicAttacks</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicAttack.cpp">
+      <Filter>Source Files\Movements</Filter>
+    </ClCompile>
+    <ClCompile Include="Heal.cpp">
+      <Filter>Source Files\Movements\DefensiveMovements</Filter>
+    </ClCompile>
+    <ClCompile Include="Revive.cpp">
+      <Filter>Source Files\Movements\DefensiveMovements</Filter>
+    </ClCompile>
+    <ClCompile Include="ShieldMovement.cpp">
+      <Filter>Source Files\Movements\DefensiveMovements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,12 +218,6 @@
     </ClInclude>
     <ClInclude Include="Random.h">
       <Filter>Header Files\Players</Filter>
-    </ClInclude>
-    <ClInclude Include="Queue.h">
-      <Filter>Header Files\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="Reader.h">
-      <Filter>Header Files\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>Header Files\Gameplay</Filter>
@@ -234,15 +282,6 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="EvaluationFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ProgramState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowMode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Character.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
@@ -282,27 +321,56 @@
     <ClInclude Include="BoostMovement.hpp">
       <Filter>Header Files\Movements\DefensiveMovements</Filter>
     </ClInclude>
-    <ClInclude Include="Revive.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Const.hpp">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowMode.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgramState.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.hpp">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="TargetType.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Reader.hpp">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.hpp">
+      <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="Shield.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Effects</Filter>
     </ClInclude>
     <ClInclude Include="ShieldMovement.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Movements\DefensiveMovements</Filter>
+    </ClInclude>
+    <ClInclude Include="Revive.hpp">
+      <Filter>Header Files\Movements\DefensiveMovements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="fonts\BlackChancery.ttf" />
-    <Font Include="fonts\PetitFleur.ttf" />
-    <Font Include="fonts\TheCenturion.ttf" />
+    <Font Include="fonts\BlackChancery.ttf">
+      <Filter>Resource Files\fonts</Filter>
+    </Font>
+    <Font Include="fonts\PetitFleur.ttf">
+      <Filter>Resource Files\fonts</Filter>
+    </Font>
+    <Font Include="fonts\TheCenturion.ttf">
+      <Filter>Resource Files\fonts</Filter>
+    </Font>
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\png\megumin.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\image</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="appsettings.json" />
+    <None Include="appsettings.json">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

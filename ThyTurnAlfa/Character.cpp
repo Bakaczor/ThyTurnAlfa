@@ -1,10 +1,8 @@
 #include "Character.hpp"
 
 bool Character::applyEffects() {
-	for (auto it = activeEffects.begin(); it != activeEffects.end(); it++)
-	{
-		if (!(*it)->nextRound(*this))
-		{
+	for (auto it = activeEffects.begin(); it != activeEffects.end(); it++) {
+		if (!(*it)->nextRound(*this)) {
 			(*it)->cancelFrom(*this);
 			activeEffects.erase(it);
 		}
@@ -12,12 +10,9 @@ bool Character::applyEffects() {
 	return true;
 }
 
-void Character::detachEffects()
-{
-	for (auto& e : activeEffects)
-	{
+void Character::detachEffects() {
+	for (auto& e : activeEffects) {
 		e->cancelFrom(*this);
 	}
-
 	activeEffects.clear();
 }
