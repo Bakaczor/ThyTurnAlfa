@@ -11,8 +11,7 @@ class Cold : public ActionlessEffect {
 
 	// nextRound and remove methods are inherited from ActionlessEffect
 	// cancelFrom method is inherited from Effect
-	static bool addTo(Character& affected, int duration,
-		int frozen_duration = Const::Cold::COLD_DEFAULT_DURATION);
+	static bool addTo(Character& affected);
 };
 
 #endif // !COLD_HPP

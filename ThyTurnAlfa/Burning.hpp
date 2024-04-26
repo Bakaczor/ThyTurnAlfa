@@ -11,8 +11,7 @@ class Burning : public TemporaryDamagePerRound {
 
 	// nextRound method is inherited from TemporaryDamagePerRound
 	// cancelFrom method is inherited from Effect
-	static bool addTo(Character& affected, int duration,
-		int damager_per_round = Const::Buring::BURNING_DEFAULT_DAMAGE_PER_ROUND);
+	static bool addTo(Character& affected);
 };
 
 #endif // !BURNING_HPP

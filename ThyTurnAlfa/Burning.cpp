@@ -6,19 +6,21 @@ Burning::Burning(): TemporaryDamagePerRound(Const::Buring::BURNING_EFFECT_NAME,
 											Const::Buring::BURNING_DEFAULT_DURATION,
 											Const::Buring::BURNING_DEFAULT_DAMAGE_PER_ROUND) {};
 
-bool Burning::addTo(Character& affected, int duration, int damage_per_round) {
+bool Burning::addTo(Character& affected) {
 	bool apply = true;
-
-	for (auto it = affected.activeEffects.begin(); it != affected.activeEffects.end(); it++) {
-		if (dynamic_cast<Burning*>(it->get())) {
-			it->get()->cancelFrom(affected);
-			affected.activeEffects.erase(it);
-		} else if (dynamic_cast<Wet*>(it->get())){
-			it->get()->cancelFrom(affected);
-			affected.activeEffects.erase(it);
-			apply = false;
+	std::erase_if(affected.activeEffects, [&affected, &apply](std::unique_ptr<Burning>& e) {
+		if (dynamic_cast<Burning*>(e.get()))
+		{
+			e->cancelFrom(affected);
+			return true;
 		}
-	}
+		else if (dynamic_cast<Wet*>(e.get())) {
+			e->cancelFrom(affected);
+			apply = false;
+			return true;
+		}
+		return false;
+		});
 
 	if (apply) {
 		affected.activeEffects.emplace_back(std::make_unique<Burning>());

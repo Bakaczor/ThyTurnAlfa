@@ -13,7 +13,7 @@ class Shield : public Effect {
 
 	virtual bool nextRound(Character& affected) override;
 	// cancelFrom is inherited from Effect
-	static bool addTo(Character& affected, int hp = Const::Shield::SHIELD_DEFAULT_HP);
+	static bool addTo(Character& affected);
 };
 
 #endif // !SHIELD_HPP
