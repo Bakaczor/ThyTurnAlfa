@@ -1,16 +1,14 @@
-#include "Random.h"
+#include "Random.hpp"
 
-Random::Random(std::vector<Character>& party) : Player(party)
-{
-}
+Random::Random(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrIds):
+	Player(availibleCharacters, curChrIds) {}
 
-bool Random::move(Character& character, std::array<Player, 2>& players)
-{
+bool Random::move(Character& who, std::array<std::unique_ptr<Player>, 2>& players) {
 	std::vector<std::pair<std::unique_ptr<Movement>*, Character*>> possibleMoves;
 	for (auto& player : players) {
-		for (auto& character : *player.party) {
-			for (auto& movement : character.movements) {
-				possibleMoves.push_back(std::make_pair(&movement, &character));
+		for (Character*& character : player->party) {
+			for (auto& movement : character->movements) {
+				possibleMoves.push_back(std::make_pair(&movement, character));
 			}
 		}
 	}
@@ -20,7 +18,7 @@ bool Random::move(Character& character, std::array<Player, 2>& players)
 
 	std::shuffle(possibleMoves.begin(), possibleMoves.end(), g);
 	for (auto& move : possibleMoves) {
-		if (move.first->get()->invoke(character, *move.second)) {
+		if (move.first->get()->invoke(who, *move.second)) {
 			return true;
 		}
 	}

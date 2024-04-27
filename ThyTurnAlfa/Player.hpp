@@ -13,7 +13,7 @@ class Player {
 	Player(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrIds);
 	Player() = default;
 
-	virtual bool move(Character& character, std::array<Player, 2>& players) = 0;
+	virtual bool move(Character& who, std::array<std::unique_ptr<Player>, 2>& players) = 0;
 
 	private:
 	static unsigned int m_count;

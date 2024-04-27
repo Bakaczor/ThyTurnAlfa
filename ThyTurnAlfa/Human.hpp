@@ -6,8 +6,9 @@
 #include "Player.hpp"
 
 class Human : public Player {
+	public:
 	Human(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrIds);
-	bool virtual move(Character& who) final;
+	virtual bool move(Character& who, std::array<std::unique_ptr<Player>, 2>& players) final;
 };
 
 #endif
