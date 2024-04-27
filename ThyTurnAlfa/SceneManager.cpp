@@ -61,7 +61,7 @@ int SceneManager::arrange() {
         return 1;
     }
     m_availibleCharacters = reader.extractCharacters();
-    //m_partyPresets = reader.extractParties();
+    m_partyPresets = reader.extractParties();
 
     return 0;
 }
