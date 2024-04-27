@@ -1,7 +1,7 @@
+#include "Wet.hpp"
 #include "Burning.hpp"
 #include "Cold.hpp"
 #include "Frozen.hpp"
-#include "Wet.hpp"
 
 Wet::Wet(): ActionlessEffect(Const::Wet::WET_EFFECT_NAME, Const::Wet::WET_DEFAULT_DURATION) {};
 

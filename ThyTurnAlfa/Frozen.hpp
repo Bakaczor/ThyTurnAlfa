@@ -4,9 +4,6 @@
 #define FROZEN_HPP
 
 #include "TemporaryDamageModifier.hpp"
-#include "Burning.hpp"
-#include "Cold.hpp"
-#include "Wet.hpp"
 
 class Frozen : public TemporaryDamageModifier {
 	public:

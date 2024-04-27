@@ -4,7 +4,6 @@
 #define ATTACK_HPP
 
 #include "Movement.hpp"
-#include "Shield.hpp"
 
 class Attack : public Movement {
 	public:

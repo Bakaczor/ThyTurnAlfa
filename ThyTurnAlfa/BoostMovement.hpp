@@ -3,7 +3,6 @@
 #ifndef BOOST_MOVEMENT_HPP
 #define BOOST_MOVEMENT_HPP
 
-#include "Boost.hpp"
 #include "DefensiveMovement.hpp"
 
 class BoostMovement : public DefensiveMovement {

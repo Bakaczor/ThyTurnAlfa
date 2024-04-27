@@ -1,4 +1,3 @@
-#include "Character.hpp"
 #include "MagicAttack.hpp"
 
 MagicAttack::MagicAttack(std::string&& name, int cost, int w_move, int w_pierce):

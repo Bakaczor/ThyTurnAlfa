@@ -1,5 +1,5 @@
-#include "Burning.hpp"
 #include "Cold.hpp"
+#include "Burning.hpp"
 #include "Frozen.hpp"
 #include "Wet.hpp"
 

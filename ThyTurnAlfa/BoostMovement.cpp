@@ -1,4 +1,5 @@
 #include "BoostMovement.hpp"
+#include "Boost.hpp"
 
 BoostMovement::BoostMovement():
 	DefensiveMovement(Const::BoostMovement::BOOST_MOVEMENT_NAME,

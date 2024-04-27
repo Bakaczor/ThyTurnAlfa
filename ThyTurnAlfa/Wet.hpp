@@ -4,9 +4,6 @@
 #define WET_HPP
 
 #include "ActionlessEffect.hpp"
-#include "Burning.hpp"
-#include "Cold.hpp"
-#include "Frozen.hpp"
 
 class Wet : public ActionlessEffect {
 	public:

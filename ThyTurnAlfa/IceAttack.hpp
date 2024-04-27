@@ -4,7 +4,6 @@
 #define ICE_ATTACK_HPP
 
 #include "MagicAttack.hpp"
-#include "Cold.hpp"
 
 class IceAttack : public MagicAttack {
 	public:

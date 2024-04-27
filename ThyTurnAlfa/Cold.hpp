@@ -4,9 +4,6 @@
 #define COLD_HPP
 
 #include "ActionlessEffect.hpp"
-#include "Burning.hpp"
-#include "Frozen.hpp"
-#include "Wet.hpp"
 
 class Cold : public ActionlessEffect {
 	public:

@@ -4,7 +4,6 @@
 #define BLEEDING_ATTACK_HPP
 
 #include "Attack.hpp"
-#include "Bleeding.hpp"
 
 class BleedingAttack : public Attack {
 	public:

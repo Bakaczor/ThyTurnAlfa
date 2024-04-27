@@ -1,4 +1,5 @@
 #include "BleedingAttack.hpp"
+#include "Bleeding.hpp"
 
 BleedingAttack::BleedingAttack(): Attack(Const::BleedingAttack::BLEEDING_ATTACK_MOVEMENT_NAME,
 										 Const::BleedingAttack::BLEEDING_ATTACK_DEFAULT_WEIGHT) {}

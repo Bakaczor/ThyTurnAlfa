@@ -3,7 +3,6 @@
 #ifndef FIRE_ATTACK_HPP
 #define FIRE_ATTACK_HPP
 
-#include "Burning.hpp"
 #include "MagicAttack.hpp"
 
 class FireAttack : public MagicAttack {

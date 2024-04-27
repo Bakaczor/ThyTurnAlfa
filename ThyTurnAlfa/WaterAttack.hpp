@@ -4,7 +4,6 @@
 #define WATER_ATTACK_HPP
 
 #include "MagicAttack.hpp"
-#include "Wet.hpp"
 
 class WaterAttack : public MagicAttack {
 	public:
