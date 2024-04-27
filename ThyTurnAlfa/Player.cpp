@@ -7,7 +7,7 @@ Player::Player(std::vector<Character>& party) : party(&party) {
 	id = 0; // ???
 }
 
-bool Player::move(Character& character, std::vector<Player>& players)
+bool Player::move(Character& character, std::array<Player, 2>& players)
 {
 	return true;
 }

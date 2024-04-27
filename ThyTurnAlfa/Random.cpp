@@ -4,7 +4,7 @@ Random::Random(std::vector<Character>& party) : Player(party)
 {
 }
 
-bool Random::move(Character& character, std::vector<Player>& players)
+bool Random::move(Character& character, std::array<Player, 2>& players)
 {
 	std::vector<std::pair<std::unique_ptr<Movement>*, Character*>> possibleMoves;
 	for (auto& player : players) {
