@@ -80,7 +80,7 @@ void SceneManager::setupGame() {
         int i1 = 0;
         for (const std::string& name : preset1.characterNames) {
             auto it = std::find(view.begin(), view.end(), name);
-            m_curChrIds_1[i1] = std::distance(view.begin(), it);
+            m_curChrIds_1[i1] = static_cast<int>(std::distance(view.begin(), it));
             i1++;
         }
         // player 2
@@ -88,7 +88,7 @@ void SceneManager::setupGame() {
         int i2 = 0;
         for (const std::string& name : preset1.characterNames) {
             auto it = std::find(view.begin(), view.end(), name);
-            m_curChrIds_1[i2] = std::distance(view.begin(), it);
+            m_curChrIds_1[i2] = static_cast<int>(std::distance(view.begin(), it));
             i2++;
         }
     }
@@ -114,6 +114,11 @@ void SceneManager::resetSetup() {
     m_curChrIds_1 = { -1, -1, -1, -1 };
     m_curChrIds_2 = { -1, -1, -1, -1 };
     m_partyType = PartyType::Custom;
+
+    // reset characters
+    for (auto& character : m_availibleCharacters) {
+        character.reset();
+    }
 }
 
 int SceneManager::run() {
