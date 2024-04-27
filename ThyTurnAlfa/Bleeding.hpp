@@ -3,8 +3,9 @@
 #ifndef BLEEDING_HPP
 #define BLEEDING_HPP
 
-#include "Character.hpp"
 #include "TemporaryDamagePerRound.hpp"
+
+class Character;
 
 class Bleeding : public TemporaryDamagePerRound {
 	public:

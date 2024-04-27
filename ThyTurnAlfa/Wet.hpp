@@ -5,6 +5,8 @@
 
 #include "ActionlessEffect.hpp"
 
+class Character;
+
 class Wet : public ActionlessEffect {
 	public:
 	Wet();

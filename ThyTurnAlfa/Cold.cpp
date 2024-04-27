@@ -2,6 +2,8 @@
 #include "Burning.hpp"
 #include "Frozen.hpp"
 #include "Wet.hpp"
+#include "Const.hpp"
+#include "Character.hpp"
 
 Cold::Cold(): ActionlessEffect(Const::Cold::COLD_EFFECT_NAME, Const::Cold::COLD_DEFAULT_DURATION) {}
 

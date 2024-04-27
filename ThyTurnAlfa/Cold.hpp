@@ -5,6 +5,8 @@
 
 #include "ActionlessEffect.hpp"
 
+class Character;
+
 class Cold : public ActionlessEffect {
 	public:
 	Cold();

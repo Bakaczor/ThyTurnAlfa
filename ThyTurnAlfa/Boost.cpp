@@ -1,4 +1,6 @@
 #include "Boost.hpp"
+#include "Character.hpp"
+#include "Const.hpp"
 
 Boost::Boost(): TemporaryDamageModifier(Const::Boost::BOOST_EFFECT_NAME,
 										Const::Boost::BOOST_DEFAULT_DURATION,

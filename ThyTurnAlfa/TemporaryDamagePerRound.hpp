@@ -3,8 +3,9 @@
 #ifndef TEMPORARY_DAMAGE_PER_ROUND_HPP
 #define TEMPORARY_DAMAGE_PER_ROUND_HPP
 
-#include "Character.hpp"
 #include "Effect.hpp"
+
+class Character;
 
 class TemporaryDamagePerRound : public Effect {
 	public:

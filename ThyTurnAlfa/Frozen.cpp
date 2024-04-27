@@ -2,6 +2,8 @@
 #include "Burning.hpp"
 #include "Cold.hpp"
 #include "Wet.hpp"
+#include "Character.hpp"
+#include "Const.hpp"
 
 Frozen::Frozen():TemporaryDamageModifier(Const::Frozen::FROZEN_EFFECT_NAME,
 										 Const::Frozen::FROZEN_DEFAULT_ATK_DROP,
