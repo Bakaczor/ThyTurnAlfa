@@ -148,12 +148,14 @@
     <ClCompile Include="FireAttack.cpp" />
     <ClCompile Include="Frozen.cpp" />
     <ClCompile Include="Heal.cpp" />
+    <ClCompile Include="Human.cpp" />
     <ClCompile Include="IceAttack.cpp" />
     <ClCompile Include="LightningAttack.cpp" />
     <ClCompile Include="MagicAttack.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OrdinaryAttack.cpp" />
     <ClCompile Include="PiercingAttack.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Reader.cpp" />
     <ClCompile Include="Revive.cpp" />
@@ -192,6 +194,7 @@
     <ClInclude Include="Frozen.hpp" />
     <ClInclude Include="Movement.hpp" />
     <ClInclude Include="PartyPreset.hpp" />
+    <ClInclude Include="PartyType.hpp" />
     <ClInclude Include="PiercingAttack.hpp" />
     <ClInclude Include="Revive.hpp" />
     <ClInclude Include="Shield.hpp" />
@@ -204,13 +207,13 @@
     <ClInclude Include="Wet.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AI.h" />
+    <ClInclude Include="AI.hpp" />
     <ClInclude Include="ProgramState.hpp" />
     <ClInclude Include="Reader.hpp" />
-    <ClInclude Include="Human.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Human.hpp" />
+    <ClInclude Include="Player.hpp" />
     <ClInclude Include="Queue.hpp" />
-    <ClInclude Include="Random.h" />
+    <ClInclude Include="Random.hpp" />
     <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="WindowMode.hpp" />
   </ItemGroup>

@@ -5,8 +5,7 @@
 
 #include <array>
 #include <iostream>
-#include <map>
-#include <ranges>
+#include <memory>
 #include <ranges>
 #include <sstream>
 #include <string>
@@ -20,9 +19,13 @@
 #include "imgui_impl_opengl3.h"
 
 #include "Character.hpp"
+#include "Human.hpp"
 #include "PartyPreset.hpp"
+#include "PartyType.hpp"
+#include "Player.hpp"
 #include "ProgramState.hpp"
 #include "Queue.hpp"
+#include "Random.hpp"
 #include "Reader.hpp"
 #include "WindowMode.hpp"
 
@@ -56,26 +59,29 @@ class SceneManager {
 	// === GAME ===
 	unsigned m_roundsCount = 0;
 	ProgramState m_currentState = ProgramState::Menu;
-	std::array<Player, 2> m_players;
+	std::array<std::unique_ptr<Player>, 2> m_players;
+	std::vector<Character> m_availibleCharacters;
 	Queue m_queue;
 
 	// === OPTIONS ===
 	std::array<const char*, 2> m_availibleFunctions = { "Basic", "NotBasic" };
 	int m_curFucIdx = 0;
 	int m_treeDepth = 1;
+
+	// === SETUP ===
 	std::array<const char*, 2> m_availiblePlayers = { "Human", "Random" };
 	int m_curPlyIdx_1 = 0;
 	int m_curPlyIdx_2 = 0;
-
-	// === SETUP ===
 	std::vector<PartyPreset> m_partyPresets;
 	int m_curPPrIdx_1 = 0;
 	int m_curPPrIdx_2 = 0;
-	std::vector<Character> m_availibleCharacters;
+	PartyType m_partyType = PartyType::Custom;
 	std::array<int, 4> m_curChrIds_1 = { -1, -1, -1, -1 };
 	std::array<int, 4> m_curChrIds_2 = { -1, -1, -1, -1 };
 
 	int arrange();
+	void setupGame();
+	void resetSetup();
 	void renderMenu();
 	void playerOneSetup();
 	void playerTwoSetup();

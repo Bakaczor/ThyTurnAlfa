@@ -144,6 +144,7 @@ void SceneManager::playerOneSetup() {
 
     ImGui::SetCursorPosY(0.6f * m_height);
     if (partyNames.at(m_curPPrIdx_1) == "Custom") {
+        m_partyType = PartyType::Custom;
         for (int i = 0; i < 4; ++i) {
             ImGui::SetNextItemWidth(m_width / 2.5f);
             ImGui::PushID(i);
@@ -152,6 +153,7 @@ void SceneManager::playerOneSetup() {
             ImGui::PopID();
         }
     } else {
+        m_partyType = PartyType::Preset;
         auto getter = [](void* data, int index, const char** out_text) {
             auto& items = *static_cast<std::vector<std::string>*>(data);
             *out_text = items[index].c_str();
@@ -197,6 +199,7 @@ void SceneManager::playerTwoSetup() {
 
     ImGui::SetCursorPosY(0.6f * m_height);
     if (partyNames.at(m_curPPrIdx_1) == "Custom") {
+        m_partyType = PartyType::Custom;
         for (int i = 0; i < 4; ++i) {
             ImGui::SetNextItemWidth(m_width / 2.5f);
             ImGui::SetCursorPosX(0.6f * m_width);
@@ -206,6 +209,7 @@ void SceneManager::playerTwoSetup() {
             ImGui::PopID();
         }
     } else {
+        m_partyType = PartyType::Preset;
         auto getter = [](void* data, int index, const char** out_text) {
             auto& items = *static_cast<std::vector<std::string>*>(data);
             *out_text = items[index].c_str();

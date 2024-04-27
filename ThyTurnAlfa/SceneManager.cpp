@@ -66,6 +66,56 @@ int SceneManager::arrange() {
     return 0;
 }
 
+void SceneManager::setupGame() {
+    // TODO : setup algorithm options
+    // PS : this function coudl use loops if I didn't have separate members for indices
+
+    // for custom it is already set in GUI
+    if (m_partyType == PartyType::Preset) {
+        auto view = m_availibleCharacters | std::views::transform([](const Character& c) {
+            return c.getName();
+        });
+        // player 1
+        PartyPreset& preset1 = m_partyPresets.at(m_curPPrIdx_1);
+        int i1 = 0;
+        for (const std::string& name : preset1.characterNames) {
+            auto it = std::find(view.begin(), view.end(), name);
+            m_curChrIds_1[i1] = std::distance(view.begin(), it);
+            i1++;
+        }
+        // player 2
+        PartyPreset& preset2 = m_partyPresets.at(m_curPPrIdx_2);
+        int i2 = 0;
+        for (const std::string& name : preset1.characterNames) {
+            auto it = std::find(view.begin(), view.end(), name);
+            m_curChrIds_1[i2] = std::distance(view.begin(), it);
+            i2++;
+        }
+    }
+    // player 1
+    if (m_availiblePlayers.at(m_curPlyIdx_1) == "Human") {
+        m_players[0] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_1);
+    } else if (m_availiblePlayers.at(m_curPlyIdx_1) == "Random") {
+        // TODO
+    }
+    // player 2
+    if (m_availiblePlayers.at(m_curPlyIdx_2) == "Human") {
+        m_players[1] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_2);
+    } else if (m_availiblePlayers.at(m_curPlyIdx_2) == "Random") {
+        // TODO
+    }
+}
+
+void SceneManager::resetSetup() {
+    m_curPlyIdx_1 = 0;
+    m_curPlyIdx_2 = 0;
+    m_curPPrIdx_1 = 0;
+    m_curPPrIdx_2 = 0;
+    m_curChrIds_1 = { -1, -1, -1, -1 };
+    m_curChrIds_2 = { -1, -1, -1, -1 };
+    m_partyType = PartyType::Custom;
+}
+
 int SceneManager::run() {
     while (!glfwWindowShouldClose(m_window)) {
         std::ostringstream ss;
@@ -97,6 +147,7 @@ int SceneManager::run() {
             }
             case ProgramState::Game: {
                 if (m_roundsCount == 0) {
+                    setupGame();
                     m_queue = Queue(m_players);
                 }
                 //m_currentCharacter = m_queue.peek() ?
