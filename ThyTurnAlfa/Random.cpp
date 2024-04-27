@@ -1,4 +1,5 @@
 #include "Random.h"
+#include <random>
 
 Random::Random(std::vector<Character>& party) : Player(party)
 {
