@@ -3,7 +3,6 @@
 #ifndef CURE_HPP
 #define CURE_HPP
 
-#include "Bleeding.hpp"
 #include "DefensiveMovement.hpp"
 
 class Cure : public DefensiveMovement {
