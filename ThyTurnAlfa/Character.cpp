@@ -4,6 +4,7 @@
 #include "stb_image.h"
 
 #include "Character.hpp"
+#include "MovementFactory.h"
 
 Character::Character(std::string name, std::string imagePath, std::vector<std::unique_ptr<Movement>>& movements):
 	m_name{ name }, m_imagePath{ imagePath }, movements { std::move(movements) } {}
@@ -31,6 +32,25 @@ void Character::reset() {
 	wAtk = 0;
 	wDef = 0;
 	isAlive = true;
+}
+
+void Character::deserialize(Json::Value& root)
+{
+	m_hp = root["hp"].asInt();
+	currentHp = m_hp;
+	m_atk = root["atk"].asInt();
+	m_def = root["def"].asInt();
+	m_spd = root["spd"].asInt();
+	m_mp = root["mp"].asInt();
+	m_name = root["name"].asString();
+
+	auto movementArray = root["movements"];
+	for (auto move : movementArray) {
+		auto pMovement = MovementFactory::create(move["name"].asString());
+		if (pMovement != nullptr) {
+			movements.push_back(std::move(pMovement));
+		}
+	}
 }
 
 bool Character::loadImage() {

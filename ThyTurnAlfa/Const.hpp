@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef CONST_HPP
+#define CONST_HPP
+
 namespace Const {
 	// ===== EFFECTS =====
 
@@ -113,3 +118,5 @@ namespace Const {
 		constexpr int WATER_ATTACK_DEFAULT_COST = 20;
 	}
 }
+
+#endif // CONST_HPP
