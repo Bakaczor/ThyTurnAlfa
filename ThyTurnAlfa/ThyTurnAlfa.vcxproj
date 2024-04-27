@@ -190,7 +190,7 @@
     <ClInclude Include="IceAttack.hpp" />
     <ClInclude Include="LightningAttack.hpp" />
     <ClInclude Include="MagicAttack.hpp" />
-    <ClInclude Include="MovementFactory.h" />
+    <ClInclude Include="MovementFactory.hpp" />
     <ClInclude Include="OrdinaryAttack.hpp" />
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="EffectsTest.hpp" />

@@ -4,7 +4,7 @@
 #include "stb_image.h"
 
 #include "Character.hpp"
-#include "MovementFactory.h"
+#include "MovementFactory.hpp"
 
 Character::Character(std::string name, std::string imagePath, std::vector<std::unique_ptr<Movement>>& movements):
 	m_name{ name }, m_imagePath{ imagePath }, movements { std::move(movements) } {}

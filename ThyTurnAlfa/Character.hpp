@@ -12,11 +12,11 @@
 
 #include "imgui.h"
 
-class Effect;
-class Movement;
-
 #include "Effect.hpp"
 #include "Movement.hpp"
+
+class Effect;
+class Movement;
 
 class Character {
 	public:

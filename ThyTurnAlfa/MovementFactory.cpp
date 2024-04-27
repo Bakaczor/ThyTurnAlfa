@@ -1,5 +1,5 @@
-#include "MovementFactory.h"
 #include "Const.hpp"
+#include "MovementFactory.hpp"
 
 const factoryMap MovementFactory::m_factory {
 	{Const::BleedingAttack::BLEEDING_ATTACK_MOVEMENT_NAME, []() { return std::make_unique<BleedingAttack>(); }},
@@ -16,8 +16,7 @@ const factoryMap MovementFactory::m_factory {
 	{Const::WaterAttack::WATER_ATTACK_MOVEMENT_NAME, []() { return std::make_unique<WaterAttack>(); }}
 };
 
-std::unique_ptr<Movement> MovementFactory::create(std::string movementName)
-{
+std::unique_ptr<Movement> MovementFactory::create(std::string movementName) {
 	if (m_factory.contains(movementName)) {
 		return m_factory.at(movementName)();
 	}
