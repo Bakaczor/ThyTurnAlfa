@@ -12,22 +12,22 @@ Queue::Queue(std::array<std::unique_ptr<Player>, 2>& players) {
 }
 
 Character& Queue::peek() {
-	//for (int i = 0; i < c.size(); ++i) {
-	//	Tuple currentCharacter = top();
+	for (int i = 0; i < c.size(); ++i) {
+		Tuple currentCharacter = top();
 
-	//	if (currentCharacter.currentATV != 0) {
-	//		for (int j = 1; j < c.size(); ++j) {
-	//			c[j].currentATV -= currentCharacter.currentATV;
-	//		}
-	//	}
+		if (currentCharacter.currentATV != 0) {
+			for (int j = 1; j < c.size(); ++j) {
+				c[j].currentATV -= currentCharacter.currentATV;
+			}
+		}
 
-	//	pop();
-	//	emplace(*currentCharacter.character, currentCharacter.baseATV);
+		pop();
+		emplace(currentCharacter.character, currentCharacter.baseATV);
 
-	//	if (currentCharacter.character->isAlive) {
-	//		return *currentCharacter.character;
-	//	}
-	//}
+		if (currentCharacter.character->isAlive) {
+			return *currentCharacter.character;
+		}
+	}
 
 	throw std::exception("Everyone has died");
 }
