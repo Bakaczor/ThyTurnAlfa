@@ -1,5 +1,15 @@
 ﻿#include "SceneManager.hpp"
 
+#include <iostream>
+#include <map>
+#include <ranges>
+#include <sstream>
+
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+
+#include "Reader.hpp"
+
 SceneManager::SceneManager(): m_title("Thy Turn v1.0 Alpha") { 
     // TODO : delete after testing
     std::vector<std::unique_ptr<Movement>> m;

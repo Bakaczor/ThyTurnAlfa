@@ -1,4 +1,6 @@
 #include "Reader.hpp"
+#include <iostream>
+#include <fstream>
 
 bool Reader::readFile(const std::string& filename)
 {

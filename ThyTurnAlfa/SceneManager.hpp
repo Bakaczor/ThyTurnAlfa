@@ -4,11 +4,6 @@
 #define SCENEMANAGER_H
 
 #include <array>
-#include <iostream>
-#include <map>
-#include <ranges>
-#include <ranges>
-#include <sstream>
 #include <string>
 #include <vector>
 
@@ -16,14 +11,12 @@
 #include <GLFW/glfw3.h>
 
 #include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
 
+#include "Player.h"
 #include "Character.hpp"
 #include "PartyPreset.hpp"
 #include "ProgramState.hpp"
 #include "Queue.hpp"
-#include "Reader.hpp"
 #include "WindowMode.hpp"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);

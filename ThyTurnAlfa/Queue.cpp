@@ -1,4 +1,7 @@
 #include "Queue.hpp"
+#include "Player.h"
+
+#include <climits>
 
 Queue::Queue() { }
 

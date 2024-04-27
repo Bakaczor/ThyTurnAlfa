@@ -8,18 +8,7 @@
 #include <string>
 #include <memory>
 
-#include "BleedingAttack.hpp"
-#include "OrdinaryAttack.hpp"
-#include "PiercingAttack.hpp"
-#include "BoostMovement.hpp"
-#include "Cure.hpp"
-#include "Heal.hpp"
-#include "Revive.hpp"
-#include "ShieldMovement.hpp"
-#include "FireAttack.hpp"
-#include "IceAttack.hpp"
-#include "LightningAttack.hpp"
-#include "WaterAttack.hpp"
+#include "Movement.hpp"
 
 typedef std::map<std::string, std::function<std::unique_ptr<Movement>()>> factoryMap;
 

@@ -3,11 +3,10 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 
-#include <cstring>
+#include <string>
 #include <json/json.h>
 #include <memory>
 #include <string>
-#include <utility>
 #include <vector>
 
 #include "imgui.h"
