@@ -35,6 +35,7 @@ class Character {
 	Character() = default;
 	Character(Character&& c) = default;
 
+	bool applyDamage(int dmg);
 	bool applyEffects();
 	void detachEffects();
 	void reset();

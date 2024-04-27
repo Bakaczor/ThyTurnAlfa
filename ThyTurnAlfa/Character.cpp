@@ -4,9 +4,37 @@
 #include "stb_image.h"
 
 #include "Character.hpp"
+#include "Shield.hpp"
 
 Character::Character(std::string name, std::string imagePath, std::vector<std::unique_ptr<Movement>>& movements):
 	m_name{ name }, m_imagePath{ imagePath }, movements { std::move(movements) } {}
+
+bool Character::applyDamage(int dmg)
+{
+    for (auto& e : activeEffects) {
+        Shield* ptr = dynamic_cast<Shield*>(e.get());
+        if (ptr) {
+            if (dmg > ptr->hp) {
+                dmg -= ptr->hp;
+                ptr->hp = 0;
+            } else {
+                ptr->hp -= dmg;
+                return true;
+            }
+        }
+    }
+    if (dmg > 0) {
+        if (dmg >= currentHp) {
+            currentHp = 0;
+            detachEffects(); // on_whom died so all effects must be detached
+            isAlive = false;
+            return false;
+        } else {
+            currentHp -= dmg;
+        }
+    }
+    return true;
+}
 
 bool Character::applyEffects() {
 	for (auto it = activeEffects.begin(); it != activeEffects.end(); it++) {
@@ -31,6 +59,7 @@ void Character::reset() {
 	wAtk = 0;
 	wDef = 0;
 	isAlive = true;
+    detachEffects();
 }
 
 bool Character::loadImage() {
