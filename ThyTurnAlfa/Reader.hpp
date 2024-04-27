@@ -4,15 +4,16 @@
 #include <json/json.h>
 #include <vector>
 #include "Character.hpp"
+#include "PartyPreset.hpp"
 
 class Reader
 {
 public:
 	bool readFile(const std::string& filename);
 	std::vector<Character>&& extractCharacters();
-	std::vector<std::vector<std::string>> extractParties();
+	std::vector<PartyPreset> extractParties();
 private:
 	Json::Value m_jsonData;
 	std::vector<Character> m_characters;
-	std::vector<std::vector<std::string>> m_parties;
+	std::vector<PartyPreset> m_parties;
 };
