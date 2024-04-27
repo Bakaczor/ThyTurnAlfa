@@ -39,7 +39,7 @@ class Character {
 	void detachEffects();
 	void reset();
 
-	void deserialize(Json::Value& root) { };
+	void deserialize(Json::Value& root);
 	bool loadImage();
 
 	const std::string getName() const;
