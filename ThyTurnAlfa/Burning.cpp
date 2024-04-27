@@ -1,6 +1,4 @@
 #include "Burning.hpp"
-#include "Cold.hpp"
-#include "Wet.hpp"
 
 Burning::Burning(): TemporaryDamagePerRound(Const::Burning::BURNING_EFFECT_NAME, 
 											Const::Burning::BURNING_DEFAULT_DURATION,
