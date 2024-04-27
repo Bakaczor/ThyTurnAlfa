@@ -1,6 +1,12 @@
-﻿#include "SceneManager.h"
+﻿#include "SceneManager.hpp"
 
-SceneManager::SceneManager(): m_title("Thy Turn v1.0 Alpha") { }
+SceneManager::SceneManager(): m_title("Thy Turn v1.0 Alpha") { 
+    // TODO : delete after testing
+    std::vector<std::unique_ptr<Movement>> m;
+    m_availibleCharacters.emplace_back(std::string("Megumin"),
+                                       std::string("images/Megumin.png"),
+                                       m);
+}
 
 int SceneManager::init() {
     glfwInit();
@@ -54,8 +60,8 @@ int SceneManager::arrange() {
     if (!reader.readFile("appsettings.json")) {
         return 1;
     }
-    m_availibleCharacters = reader.extractCharacters();
-    m_partyPresets = reader.extractParties();
+    //m_availibleCharacters = reader.extractCharacters();
+    //m_partyPresets = reader.extractParties();
 
     return 0;
 }

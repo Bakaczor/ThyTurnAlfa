@@ -10,10 +10,11 @@
 class Player {
 public:
 	unsigned int id;
-	std::vector<Character>& party;
+	std::vector<Character>* party;
 
+	Player() = default;
 	Player(std::vector<Character>& party);
-	virtual bool move(Character& character, std::vector<Player>& players) = 0;
+	virtual bool move(Character& character, std::vector<Player>& players);
 private:
 	static unsigned int m_count;
 };

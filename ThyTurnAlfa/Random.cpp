@@ -8,7 +8,7 @@ bool Random::move(Character& character, std::vector<Player>& players)
 {
 	std::vector<std::pair<std::unique_ptr<Movement>*, Character*>> possibleMoves;
 	for (auto& player : players) {
-		for (auto& character : player.party) {
+		for (auto& character : *player.party) {
 			for (auto& movement : character.movements) {
 				possibleMoves.push_back(std::make_pair(&movement, &character));
 			}

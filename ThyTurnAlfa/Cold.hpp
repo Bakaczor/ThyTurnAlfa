@@ -5,17 +5,13 @@
 
 #include "ActionlessEffect.hpp"
 
-#define COLD_EFFECT_NAME "Cold"
-#define COLD_DEFAULT_FROZEN_DURATION 4
-
 class Cold : public ActionlessEffect {
-public:
-	Cold(int duration) : ActionlessEffect(COLD_EFFECT_NAME, duration) { };
+	public:
+	Cold();
 
 	// nextRound and remove methods are inherited from ActionlessEffect
 	// cancelFrom method is inherited from Effect
-	static bool addTo(Character& affected, int duration,
-		int frozen_duration = COLD_DEFAULT_FROZEN_DURATION);
+	static bool addTo(Character& affected);
 };
 
 #endif // !COLD_HPP

@@ -6,20 +6,14 @@
 #include "Movement.hpp"
 
 class DefensiveMovement : public Movement {
-public:
-	const unsigned cost;
-	DefensiveMovement(std::string&& name, int cost)
-		: Movement(std::move(name), TargetEnum::ally), cost{ (unsigned)cost } {}
+	public:
+	const int cost;
+	DefensiveMovement(std::string&& name, int cost);
 
-	virtual int getCost() override
-	{
-		return this->cost;
-	}
-protected:
-	virtual bool isInvokable(Character& who, Character& on_whom) override
-	{
-		return Movement::isInvokable(who, on_whom) && who.mp >= cost;
-	}
+	virtual int getCost() override;
+
+	protected:
+	virtual bool isInvokable(Character& who, Character& on_whom) override;
 };
 
 #endif // !DEFENSIVE_MOVEMENT_HPP

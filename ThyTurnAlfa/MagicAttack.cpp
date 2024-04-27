@@ -1,14 +1,13 @@
 #include "MagicAttack.hpp"
-#include "Character.hpp"
-#include "sstream"
 
-bool MagicAttack::isInvokable(Character& who, Character& on_whom)
-{
-    return Attack::isInvokable(who, on_whom) && on_whom.mp >= this->cost;
+MagicAttack::MagicAttack(std::string&& name, int cost, int w_move, int w_pierce):
+    Attack(std::move(name), w_move, w_pierce), cost{ cost } {}
+
+int MagicAttack::getCost() {
+    return cost;
 }
 
-int MagicAttack::getCost()
-{
-    return this->cost;
+bool MagicAttack::isInvokable(Character& who, Character& on_whom) {
+    return Attack::isInvokable(who, on_whom) && on_whom.currentMp >= cost;
 }
 

@@ -1,16 +1,17 @@
 #include "Shield.hpp"
 
-bool Shield::addTo(Character& affected, int hp)
-{
-	for (auto it = affected.activeEffects.begin(); it != affected.activeEffects.end(); it++)
-	{
-		if (dynamic_cast<Shield*>(it->get()))
-		{
-			it->get()->cancelFrom(affected);
-			affected.activeEffects.erase(it);
-		}
-	}
+Shield::Shield(): Effect(Const::Shield::SHIELD_EFFECT_NAME, Const::Shield::SHIELD_DEFAULT_DURATION) {}
 
-	affected.activeEffects.emplace_back(std::make_unique<Shield>(hp));
+bool Shield::nextRound(Character& affected) { return hp > 0; }
+
+bool Shield::addTo(Character& affected) {
+	std::erase_if(affected.activeEffects, [&affected](auto& e) {
+		if (dynamic_cast<Shield*>(e.get())) {
+			e->cancelFrom(affected);
+			return true;
+		}
+		return false; });
+
+	affected.activeEffects.emplace_back(std::make_unique<Shield>());
 	return true;
 }

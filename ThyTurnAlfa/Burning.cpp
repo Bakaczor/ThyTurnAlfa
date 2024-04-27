@@ -1,32 +1,26 @@
 #include "Burning.hpp"
-#include "Wet.hpp"
-#include "Cold.hpp"
 
-bool Burning::addTo(Character& affected, int duration, int damage_per_round)
-{
+Burning::Burning(): TemporaryDamagePerRound(Const::Burning::BURNING_EFFECT_NAME, 
+											Const::Burning::BURNING_DEFAULT_DURATION,
+											Const::Burning::BURNING_DEFAULT_DAMAGE_PER_ROUND) {};
+
+bool Burning::addTo(Character& affected) {
 	bool apply = true;
-
-	std::unique_ptr<Burning> ptr;
-
-	for (auto it = affected.activeEffects.begin(); it != affected.activeEffects.end(); it++)
-	{
-		if (dynamic_cast<Burning*>(it->get()))
+	std::erase_if(affected.activeEffects, [&affected, &apply](auto& e) {
+		if (dynamic_cast<Burning*>(e.get()))
 		{
-			it->get()->cancelFrom(affected);
-			affected.activeEffects.erase(it);
+			e->cancelFrom(affected);
+			return true;
 		}
-		else if (dynamic_cast<Wet*>(it->get()))
-		{
-			it->get()->cancelFrom(affected);
-			affected.activeEffects.erase(it);
+		else if (dynamic_cast<Wet*>(e.get())) {
 			apply = false;
+			return false;
 		}
-	}
+		return false;
+		});
 
-	if (apply)
-	{
-		affected.activeEffects.emplace_back(std::make_unique<Burning>(duration, damage_per_round));
+	if (apply) {
+		affected.activeEffects.emplace_back(std::make_unique<Burning>());
 	}
-
 	return true;
 }
