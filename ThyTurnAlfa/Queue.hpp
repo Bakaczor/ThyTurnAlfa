@@ -9,11 +9,8 @@
 #include "Player.hpp"
 
 struct Tuple {
-	Tuple(Character* t_character, int t_baseATV) :
-		character{ t_character }, baseATV{ t_baseATV }, currentATV{ t_baseATV } {}
-	bool operator < (const Tuple& rhs) const {
-		return currentATV > rhs.currentATV;
-	}
+	Tuple(Character* t_character, int t_baseATV);
+	bool operator < (const Tuple& rhs) const;
 
 	Character* character;
 	int baseATV;

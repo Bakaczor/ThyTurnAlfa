@@ -4,11 +4,11 @@ Random::Random(std::vector<Character>& availibleCharacters, std::array<int, 4>& 
 	Player(availibleCharacters, curChrIds) {}
 
 bool Random::move(Character& who, std::array<std::unique_ptr<Player>, 2>& players) {
-	std::vector<std::pair<std::unique_ptr<Movement>*, Character*>> possibleMoves;
+	std::vector<std::pair<std::shared_ptr<Movement>*, Character*>> possibleMoves;
 	for (auto& player : players) {
-		for (Character*& character : player->party) {
-			for (auto& movement : character->movements) {
-				possibleMoves.push_back(std::make_pair(&movement, character));
+		for (Character& character : player->party) {
+			for (auto& movement : character.movements) {
+				possibleMoves.push_back(std::make_pair(&movement, &character));
 			}
 		}
 	}

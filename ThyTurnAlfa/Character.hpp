@@ -20,19 +20,18 @@ class Movement;
 
 class Character {
 	public:
-	int id = 0;
+	unsigned int id = 0;
 	int currentHp = 0;
 	int currentMp = 0;
 	int wAtk = 0;
 	int wDef = 0;
 	bool isAlive = true;
 
-	std::vector<std::unique_ptr<Effect>> activeEffects = std::vector<std::unique_ptr<Effect>>();
-	std::vector<std::unique_ptr<Movement>> movements = std::vector<std::unique_ptr<Movement>>();
+	std::vector<std::unique_ptr<Effect>> activeEffects;
+	std::vector<std::shared_ptr<Movement>> movements;
 
-	// usage of std::move is explained here: https://stackoverflow.com/questions/3283778/why-can-i-not-push-back-a-unique-ptr-into-a-vector
-	Character(std::string name, std::string imagePath, std::vector<std::unique_ptr<Movement>>& movements);
 	Character() = default;
+	Character(const Character& c);
 	Character(Character&& c) = default;
 
 	bool applyEffects();
@@ -49,6 +48,8 @@ class Character {
 	const int getAtk() const;
 	const int getDef() const;
 	const int getSpd() const;
+
+	const unsigned int getPlayerId() const;
 
 	private:
 	std::string m_name;

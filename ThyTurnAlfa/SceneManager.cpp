@@ -1,12 +1,6 @@
 ﻿#include "SceneManager.hpp"
 
-SceneManager::SceneManager(): m_title("Thy Turn v1.0 Alpha") { 
-    // TODO : delete after testing
-    std::vector<std::unique_ptr<Movement>> m;
-    m_availibleCharacters.emplace_back(std::string("Megumin"),
-                                       std::string("images/Megumin.png"),
-                                       m);
-}
+SceneManager::SceneManager(): m_title("Thy Turn v1.0 Alpha") { }
 
 int SceneManager::init() {
     glfwInit();
@@ -80,7 +74,9 @@ void SceneManager::setupGame() {
         int i1 = 0;
         for (const std::string& name : preset1.characterNames) {
             auto it = std::find(view.begin(), view.end(), name);
-            m_curChrIds_1[i1] = static_cast<int>(std::distance(view.begin(), it));
+            if (it != view.end()) {
+                m_curChrIds_1[i1] = static_cast<int>(std::distance(view.begin(), it));
+            }
             i1++;
         }
         // player 2
@@ -88,7 +84,9 @@ void SceneManager::setupGame() {
         int i2 = 0;
         for (const std::string& name : preset1.characterNames) {
             auto it = std::find(view.begin(), view.end(), name);
-            m_curChrIds_1[i2] = static_cast<int>(std::distance(view.begin(), it));
+            if (it != view.end()) {
+                m_curChrIds_2[i2] = static_cast<int>(std::distance(view.begin(), it));
+            }
             i2++;
         }
     }
@@ -138,7 +136,7 @@ int SceneManager::run() {
         ImGui::NewFrame();
         switch (m_currentState) {
             case ProgramState::Menu: {
-                m_roundsCount = 0;
+                m_gameStart = true;
                 renderMenu();
                 break; 
             }
@@ -151,13 +149,17 @@ int SceneManager::run() {
                 break;
             }
             case ProgramState::Game: {
-                if (m_roundsCount == 0) {
+                if (m_gameStart) {
+                    m_gameStart = false;
                     setupGame();
                     m_queue = Queue(m_players);
                 }
-                //m_currentCharacter = m_queue.peek() ?
-                renderGame();
-                // m_roundsCount++;
+                Character& character = m_queue.peek();
+                unsigned int id = character.getPlayerId();
+                auto it = std::find_if(m_players.begin(), m_players.end(), [&id](const auto& p) {
+                    return p->id == id;
+                });
+                (*it)->move(character, m_players);
                 break;
             }
         }

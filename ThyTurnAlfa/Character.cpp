@@ -6,8 +6,12 @@
 #include "Character.hpp"
 #include "MovementFactory.hpp"
 
-Character::Character(std::string name, std::string imagePath, std::vector<std::unique_ptr<Movement>>& movements):
-	m_name{ name }, m_imagePath{ imagePath }, movements { std::move(movements) } {}
+Character::Character(const Character& c):
+	id{ c.id }, currentHp{ c.currentHp }, currentMp{ c.currentMp },
+	wAtk{ c.wAtk }, wDef{ c.wDef }, isAlive{ c.isAlive }, m_name { c.m_name },
+	m_imagePath { c.m_imagePath }, m_textureID { c.m_textureID }, 
+	m_hp { c.m_hp }, m_mp { c.m_mp }, m_atk { c.m_atk }, m_def{ c.m_def }, m_spd{ c.m_spd },
+	movements { c.movements } { }
 
 bool Character::applyEffects() {
 	for (auto it = activeEffects.begin(); it != activeEffects.end(); it++) {
@@ -95,3 +99,5 @@ const int Character::getAtk() const { return m_atk; }
 const int Character::getDef() const { return m_def; }
 
 const int Character::getSpd() const { return m_spd; }
+
+const unsigned int Character::getPlayerId() const { return id / Const::Sizes::MAX_PARTY_SIZE; }

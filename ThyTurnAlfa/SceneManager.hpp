@@ -28,7 +28,8 @@
 #include "Random.hpp"
 #include "Reader.hpp"
 #include "WindowMode.hpp"
-
+#include "Const.hpp"
+ 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
@@ -57,7 +58,7 @@ class SceneManager {
 	int m_height = 0;
 
 	// === GAME ===
-	unsigned m_roundsCount = 0;
+	bool m_gameStart = true;
 	ProgramState m_currentState = ProgramState::Menu;
 	std::array<std::unique_ptr<Player>, 2> m_players;
 	std::vector<Character> m_availibleCharacters;
@@ -76,8 +77,8 @@ class SceneManager {
 	int m_curPPrIdx_1 = 0;
 	int m_curPPrIdx_2 = 0;
 	PartyType m_partyType = PartyType::Custom;
-	std::array<int, 4> m_curChrIds_1 = { -1, -1, -1, -1 };
-	std::array<int, 4> m_curChrIds_2 = { -1, -1, -1, -1 };
+	std::array<int, Const::Sizes::MAX_PARTY_SIZE> m_curChrIds_1 = { -1, -1, -1, -1 };
+	std::array<int, Const::Sizes::MAX_PARTY_SIZE> m_curChrIds_2 = { -1, -1, -1, -1 };
 
 	int arrange();
 	void setupGame();

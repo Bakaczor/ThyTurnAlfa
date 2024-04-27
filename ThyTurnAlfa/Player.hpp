@@ -8,7 +8,7 @@
 class Player {
 	public:
 	unsigned int id;
-	std::vector<Character*> party;
+	std::vector<Character> party;
 
 	Player(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrIds);
 	Player() = default;
