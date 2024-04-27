@@ -8,8 +8,9 @@
 class IceAttack : public MagicAttack {
 	public:
 	IceAttack();
-	protected:
-	virtual void addEffects(Character& on_whom) override;
+
+	private:
+	virtual void addEffects(Character& on_whom) final;
 };
 
 #endif // !ICE_ATTACK_HPP

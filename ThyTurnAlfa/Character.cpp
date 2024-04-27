@@ -26,6 +26,7 @@ void Character::detachEffects() {
 }
 
 void Character::reset() {
+    detachEffects();
 	currentHp = m_hp;
 	currentMp = m_mp;
 	wAtk = 0;
