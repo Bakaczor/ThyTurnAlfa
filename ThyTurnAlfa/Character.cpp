@@ -48,6 +48,7 @@ void Character::deserialize(Json::Value& root)
 	m_spd = root["spd"].asInt();
 	m_mp = root["mp"].asInt();
 	m_name = root["name"].asString();
+	m_imagePath = root["imagePath"].asString();
 
 	auto movementArray = root["movements"];
 	for (auto move : movementArray) {
