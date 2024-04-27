@@ -160,6 +160,7 @@ int SceneManager::run() {
                     return p->id == id;
                 });
                 (*it)->move(character, m_players);
+                // renderMove(tuple(strings)))
                 break;
             }
         }
