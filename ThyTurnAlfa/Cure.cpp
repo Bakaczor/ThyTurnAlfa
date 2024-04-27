@@ -1,4 +1,5 @@
 #include "Cure.hpp"
+#include "Bleeding.hpp"
 
 Cure::Cure(): DefensiveMovement(Const::Cure::CURE_MOVEMENT_NAME,
                                         Const::Cure::CURE_DEFAULT_COST) {}

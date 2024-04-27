@@ -6,7 +6,7 @@ bool Movement::invoke(Character& who, Character& on_whom)
 
 	if (!individualAction(who, on_whom)) return true;
 
-	addEffects(who, on_whom);
+	addEffects(on_whom);
 
 	return true;
 }

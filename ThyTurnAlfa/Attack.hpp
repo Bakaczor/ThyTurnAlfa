@@ -4,7 +4,6 @@
 #define ATTACK_HPP
 
 #include "Movement.hpp"
-#include "Shield.hpp"
 
 class Attack : public Movement {
 	public:
@@ -16,7 +15,7 @@ class Attack : public Movement {
 	// invoke inherited from Movement
 
 	protected:
-	int computeDMG(Character& who, Character& on_whom);
+	int computeDmg(Character& who, Character& on_whom);
 	virtual bool isInvokable(Character& who, Character& on_whom) override;
 	virtual bool individualAction(Character& who, Character& on_whom) override;
 };

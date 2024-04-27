@@ -1,4 +1,3 @@
-#include "Character.hpp"
 #include "LightningAttack.hpp"
 #include "Wet.hpp"
 

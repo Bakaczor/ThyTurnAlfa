@@ -10,9 +10,7 @@ class Boost : public TemporaryDamageModifier {
 	Boost();
 
 	// nextRound and cancelFrom methods are inherited from TemporaryDamageModifier
-	static bool addTo(Character& affected, int duration,
-					  int atkBoost = Const::Boost::BOOST_DEFAULT_ATK_BOOST, 
-					  int defBoost = Const::Boost::BOOST_DEFAULT_DEF_BOOST);
+	static bool addTo(Character& affected);
 };
 
 #endif // !BOOST_HPP

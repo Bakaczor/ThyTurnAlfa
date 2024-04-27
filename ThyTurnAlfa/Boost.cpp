@@ -5,13 +5,14 @@ Boost::Boost(): TemporaryDamageModifier(Const::Boost::BOOST_EFFECT_NAME,
 										Const::Boost::BOOST_DEFAULT_ATK_BOOST,
 										Const::Boost::BOOST_DEFAULT_DEF_BOOST) {}
 
-bool Boost::addTo(Character& affected, int duration, int atkBoost, int defBoost) {
-	for (auto it = affected.activeEffects.begin(); it != affected.activeEffects.end(); it++) {
-		if (dynamic_cast<Boost*>(it->get())) {
-			it->get()->cancelFrom(affected);
-			affected.activeEffects.erase(it);
+bool Boost::addTo(Character& affected) {
+	std::erase_if(affected.activeEffects, [&affected](auto& e) {
+		if (dynamic_cast<Boost*>(e.get())) {
+			e->cancelFrom(affected);
+			return true;
 		}
-	}
+		return false; });
+
 	affected.activeEffects.emplace_back(std::make_unique<Boost>());
 	return true;
 }

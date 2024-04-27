@@ -12,8 +12,7 @@ class Bleeding : public TemporaryDamagePerRound {
 
 	// nextRound methods is inherited from ActionlessEffect
 	// cancelFrom methods is inherited from Effect
-	static bool addTo(Character& affected, int duration,
-					  int damage_per_round = Const::Bleeding::BLEEDING_DEFAULT_DAMAGE_PER_ROUND);
+	static bool addTo(Character& affected);
 };
 
 #endif // !BLEEDING_HPP

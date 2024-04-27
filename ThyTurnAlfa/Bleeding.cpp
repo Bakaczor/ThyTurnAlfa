@@ -4,13 +4,15 @@ Bleeding::Bleeding(): TemporaryDamagePerRound(Const::Bleeding::BLEEDING_EFFECT_N
 											  Const::Bleeding::BLEEDING_DEFAULT_DURATION,
 											  Const::Bleeding::BLEEDING_DEFAULT_DAMAGE_PER_ROUND) {};
 
-bool Bleeding::addTo(Character& affected, int duration, int damage_per_round) {
-	for (auto it = affected.activeEffects.begin(); it != affected.activeEffects.end(); it++) {
-		if (dynamic_cast<Bleeding*>(it->get())) {
-			(*it)->cancelFrom(affected);
-			affected.activeEffects.erase(it);
+bool Bleeding::addTo(Character& affected) {
+	std::erase_if(affected.activeEffects, [&affected](std::unique_ptr<Effect>& e) {
+		if (dynamic_cast<Bleeding*>(e.get())) {
+			e->cancelFrom(affected);
+			return true;
 		}
-	}
+		return false; 
+		});
+
 	affected.activeEffects.emplace_back(std::make_unique<Bleeding>());
 	return true;
 }
