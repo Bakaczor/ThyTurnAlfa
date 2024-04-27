@@ -1,5 +1,7 @@
 #include "LightningAttack.hpp"
 #include "Wet.hpp"
+#include "Character.hpp"
+#include "Const.hpp"
 
 LightningAttack::LightningAttack(): MagicAttack(Const::LightningAttack::LIGHTNING_ATTACK_MOVEMENT_NAME,
                                                 Const::LightningAttack::LIGHTNING_ATTACK_DEFAULT_COST,

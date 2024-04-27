@@ -5,7 +5,9 @@
 
 #include "Character.hpp"
 #include "Shield.hpp"
+#include "Effect.hpp"
 #include "MovementFactory.h"
+#include "Movement.hpp"
 
 Character::Character(std::string name, std::string imagePath, std::vector<std::unique_ptr<Movement>>& movements):
 	m_name{ name }, m_imagePath{ imagePath }, movements { std::move(movements) } {}

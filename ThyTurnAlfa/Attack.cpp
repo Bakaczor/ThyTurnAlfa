@@ -1,5 +1,7 @@
 #include "Attack.hpp"
 #include "Shield.hpp"
+#include "Character.hpp"
+#include "Utils.hpp"
 
 Attack::Attack(std::string&& name, int w_move, int w_pierce): 
     Movement(std::move(name), TargetType::Enemy), 

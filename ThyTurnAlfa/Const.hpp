@@ -78,7 +78,7 @@ namespace Const {
 
 	namespace Heal {
 		constexpr const char* HEAL_MOVEMENT_NAME = "Heal";
-		constexpr int HEAL_DEFAULTL_HP_BOOST = 50;
+		constexpr int HEAL_DEFAULT_HP_BOOST = 50;
 		constexpr int HEAL_DEFAULT_COST = 20;
 	}
 

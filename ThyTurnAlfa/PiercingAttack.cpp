@@ -1,4 +1,5 @@
 #include "PiercingAttack.hpp"
+#include "Const.hpp"
 
 PiercingAttack::PiercingAttack(): Attack(Const::PiercingAttack::PIERCING_ATTACK_MOVEMENT_NAME,
 										 Const::PiercingAttack::PIERCING_ATTACK_DEFAULT_WEIGHT,

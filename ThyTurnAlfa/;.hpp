@@ -12,8 +12,8 @@
 
 #include "imgui.h"
 
-#include "Effect.hpp"
-#include "Movement.hpp"
+#include "Effect.hpp";
+#include "Movement.hpp";
 
 class Character {
 	public:

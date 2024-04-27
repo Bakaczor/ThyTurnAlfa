@@ -6,6 +6,7 @@
 #include <map>
 #include <functional>
 #include <string>
+#include <memory>
 
 #include "BleedingAttack.hpp"
 #include "OrdinaryAttack.hpp"

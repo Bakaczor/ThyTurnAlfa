@@ -5,6 +5,8 @@
 
 #include "DefensiveMovement.hpp"
 
+class Character;
+
 class Revive : public DefensiveMovement {
 	public:
 	Revive();

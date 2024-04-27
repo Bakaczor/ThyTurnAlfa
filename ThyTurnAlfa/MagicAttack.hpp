@@ -5,6 +5,8 @@
 
 #include "Attack.hpp"
 
+class Character;
+
 class MagicAttack : public Attack {
 	public:
 	const int cost;

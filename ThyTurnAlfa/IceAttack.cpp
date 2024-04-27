@@ -1,5 +1,6 @@
 #include "IceAttack.hpp"
 #include "Cold.hpp"
+#include "Const.hpp"
 
 IceAttack::IceAttack(): MagicAttack(Const::IceAttack::ICE_ATTACK_MOVEMENT_NAME,
 									Const::IceAttack::ICE_ATTACK_DEFAULT_COST,

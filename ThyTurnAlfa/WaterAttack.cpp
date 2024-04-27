@@ -1,5 +1,6 @@
 #include "WaterAttack.hpp"
 #include "Wet.hpp"
+#include "Const.hpp"
 
 WaterAttack::WaterAttack(): MagicAttack(Const::WaterAttack::WATER_ATTACK_MOVEMENT_NAME,
 										Const::WaterAttack::WATER_ATTACK_DEFAULT_COST,

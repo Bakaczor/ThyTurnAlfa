@@ -4,10 +4,13 @@
 #define HEAL_HPP
 
 #include "DefensiveMovement.hpp"
+#include "Const.hpp"
+
+class Character;
 
 class Heal : public DefensiveMovement {
 	public:
-	const int hpBoost = Const::Heal::HEAL_DEFAULTL_HP_BOOST;
+	const int hpBoost = Const::Heal::HEAL_DEFAULT_HP_BOOST;
 
 	Heal();
 
