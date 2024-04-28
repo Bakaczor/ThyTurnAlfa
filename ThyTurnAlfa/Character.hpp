@@ -41,15 +41,15 @@ class Character {
 	void deserialize(Json::Value& root);
 	bool loadImage();
 
-	const std::string getName() const;
-	const ImTextureID* getTextureID() const;
-	const int getHp() const;
-	const int getMp() const;
-	const int getAtk() const;
-	const int getDef() const;
-	const int getSpd() const;
+	std::string getName() const;
+	unsigned int getTextureID() const;
+	int getHp() const;
+	int getMp() const;
+	int getAtk() const;
+	int getDef() const;
+	int getSpd() const;
 
-	const unsigned int getPlayerId() const;
+	unsigned int getPlayerId() const;
 
 	private:
 	std::string m_name;

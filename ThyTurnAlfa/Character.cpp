@@ -60,8 +60,7 @@ void Character::deserialize(Json::Value& root)
 }
 
 bool Character::loadImage() {
-    unsigned int textureID;
-    glGenTextures(1, &textureID);
+    glGenTextures(1, &m_textureID);
     int width, height, channels;
     unsigned char* data = stbi_load(m_imagePath.c_str(), &width, &height, &channels, 0);
     if (data) {
@@ -74,7 +73,7 @@ bool Character::loadImage() {
             format = GL_RGBA;
         }
 
-        glBindTexture(GL_TEXTURE_2D, textureID);
+        glBindTexture(GL_TEXTURE_2D, m_textureID);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
@@ -87,18 +86,18 @@ bool Character::loadImage() {
     return true;
 }
 
-const std::string Character::getName() const { return m_name; }
+std::string Character::getName() const { return m_name; }
 
-const ImTextureID* Character::getTextureID() const { return (ImTextureID*)m_textureID; }
+unsigned int Character::getTextureID() const { return m_textureID; }
 
-const int Character::getHp() const { return m_hp; }
+int Character::getHp() const { return m_hp; }
 
-const int Character::getMp() const { return m_mp; }
+int Character::getMp() const { return m_mp; }
 
-const int Character::getAtk() const { return m_atk; }
+int Character::getAtk() const { return m_atk; }
 
-const int Character::getDef() const { return m_def; }
+int Character::getDef() const { return m_def; }
 
-const int Character::getSpd() const { return m_spd; }
+int Character::getSpd() const { return m_spd; }
 
-const unsigned int Character::getPlayerId() const { return id / Const::Sizes::MAX_PARTY_SIZE; }
+unsigned int Character::getPlayerId() const { return id / Const::Sizes::MAX_PARTY_SIZE; }

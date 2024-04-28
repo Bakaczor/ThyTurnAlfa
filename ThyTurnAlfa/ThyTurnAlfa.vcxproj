@@ -191,6 +191,7 @@
     <ClInclude Include="IceAttack.hpp" />
     <ClInclude Include="LightningAttack.hpp" />
     <ClInclude Include="MagicAttack.hpp" />
+    <ClInclude Include="Message.hpp" />
     <ClInclude Include="MovementFactory.hpp" />
     <ClInclude Include="OrdinaryAttack.hpp" />
     <ClInclude Include="Effect.hpp" />

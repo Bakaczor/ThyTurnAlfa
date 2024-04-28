@@ -159,8 +159,12 @@ int SceneManager::run() {
                 auto it = std::find_if(m_players.begin(), m_players.end(), [&id](const auto& p) {
                     return p->id == id;
                 });
-                (*it)->move(character, m_players);
-                // renderMove(tuple(strings)))
+                std::optional<Message> message = ((*it)->move(character, m_players));
+                if (!message.has_value()) {
+                    // TODO : discuss this part
+                    message = Message{ "Megumin", "what", "Aqua" };
+                }
+                renderMove(message.value(), id);
                 break;
             }
         }

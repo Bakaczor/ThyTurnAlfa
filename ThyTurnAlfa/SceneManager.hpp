@@ -10,6 +10,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <thread>
+#include <chrono>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -60,17 +62,17 @@ class SceneManager {
 	// === GAME ===
 	bool m_gameStart = true;
 	ProgramState m_currentState = ProgramState::Menu;
-	std::array<std::unique_ptr<Player>, 2> m_players;
+	std::array<std::unique_ptr<Player>, Const::Sizes::PLAYER_NUMBER> m_players;
 	std::vector<Character> m_availibleCharacters;
 	Queue m_queue;
 
 	// === OPTIONS ===
-	std::array<const char*, 2> m_availibleFunctions = { "Basic", "NotBasic" };
+	std::array<const char*, Const::Sizes::PLAYER_NUMBER> m_availibleFunctions = { "Basic", "NotBasic" };
 	int m_curFucIdx = 0;
 	int m_treeDepth = 1;
 
 	// === SETUP ===
-	std::array<const char*, 2> m_availiblePlayers = { "Human", "Random" };
+	std::array<const char*, Const::Sizes::PLAYER_NUMBER> m_availiblePlayers = { "Human", "Random" };
 	int m_curPlyIdx_1 = 0;
 	int m_curPlyIdx_2 = 0;
 	std::vector<PartyPreset> m_partyPresets;
@@ -88,7 +90,7 @@ class SceneManager {
 	void playerTwoSetup();
 	void renderSetup();
 	void renderOptions();
-	void renderGame();
+	void renderMove(const Message& message, const unsigned int& id);
 	int terminate();
 };
 #endif

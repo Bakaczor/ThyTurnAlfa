@@ -8,6 +8,9 @@ Player::Player(std::vector<Character>& availibleCharacters, std::array<int, 4>& 
 		if (k == -1) { continue; }
 		Character newCharacter(availibleCharacters[k]);
 		newCharacter.id = id * curChrIds.size() + i;
+		if (!newCharacter.loadImage()) {
+			throw std::exception("Image loading exception");
+		}
 		party.push_back(newCharacter);
 	}
 }

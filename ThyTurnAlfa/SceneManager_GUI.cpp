@@ -249,7 +249,7 @@ void SceneManager::renderSetup() {
 
     // =====
 
-    currScale = 0.2f*scale;
+    currScale = 0.2f * scale;
     ImGui::PushFont(m_blackChancery);
     ImGui::SetWindowFontScale(currScale);
 
@@ -284,7 +284,8 @@ void SceneManager::renderSetup() {
     ImGui::End();
 }
 
-void SceneManager::renderGame() {
+void SceneManager::renderMove(const Message& message, const unsigned int& id) {
+    int i = 0;
     float scale = m_height / static_cast<float>(m_fullscreenHeight);
     ImGui::SetNextWindowPos(ImVec2(0, 0));
     ImGui::SetNextWindowSize(ImVec2(m_width, m_height));
@@ -297,104 +298,114 @@ void SceneManager::renderGame() {
     ImGui::PushFont(m_blackChancery);
     ImGui::SetWindowFontScale(currScale);
 
-    // TODO : This is just a preview
-    // This is how to load images
-    // I think the image should be loaded while creating character and the textureID should be stored in character class
-
-    unsigned int textureID;
-    glGenTextures(1, &textureID);
-    int width, height, nrComponents;
-    unsigned char* data = stbi_load("images/megumin.png", &width, &height, &nrComponents, 0);
-    if (data) {
-        GLenum format;
-        if (nrComponents == 1) {
-            format = GL_RED;
-        } else if (nrComponents == 3) {
-            format = GL_RGB;
-        } else if (nrComponents == 4) {
-            format = GL_RGBA;
-        }
-
-        glBindTexture(GL_TEXTURE_2D, textureID);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    stbi_image_free(data);
-
     ImVec2 imageSize(90, 90);
-
     ImGui::Text("NEXT   ");
-    ImGui::SameLine();
-    ImGui::Image((ImTextureID*)textureID, imageSize);
-    ImGui::SameLine();
-    ImGui::Image((ImTextureID*)textureID, imageSize);
-    ImGui::SameLine();
-    ImGui::Image((ImTextureID*)textureID, imageSize);
-    ImGui::SameLine();
-    ImGui::Image((ImTextureID*)textureID, imageSize);
+
+    i = 0;
+    const auto& queue = m_queue.getQueue();
+    for (const auto& tuple : queue) {
+        ImGui::PushID(i++);
+        ImGui::SameLine();
+        if (tuple.character->getPlayerId() == 0) {
+            ImGui::Image((ImTextureID*)tuple.character->getTextureID(), imageSize,
+                         ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
+        } else {
+            ImGui::Image((ImTextureID*)tuple.character->getTextureID(), imageSize);
+        }
+        ImGui::PopID();
+    }
 
     // Second row: 4 columns
     ImGui::Columns(4, "MyColumns");
 
-    imageSize = ImVec2(360, 360);
-
     // Column 1
+    imageSize = ImVec2(360, 360);
     ImGui::Text("Player 1");
-    ImGui::Image((ImTextureID*)textureID, imageSize, ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
-    ImGui::Button("Move 1##1");
-    ImGui::Button("Move 2##1");
-    ImGui::Button("Move 3##1");
+    // there probably should be a better check for this
+    {
+        std::string search = id == 0 ? message.who : message.onWhom;
+        auto& party = m_players.at(id)->party;
+        auto it = std::find_if(party.begin(), party.end(), [&search](const Character& c) {
+            return search == c.getName();
+        });
+        ImGui::Image((ImTextureID*)it->getTextureID(), imageSize,
+                     ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
+        i = 0;
+        for (const auto& move : it->movements) {
+            ImGui::PushID(i++);
+            ImGui::Button(move->name.c_str());
+            ImGui::PopID();
+        }
+    }
+    
     ImGui::NextColumn();
 
     imageSize = ImVec2(180, 180);
 
     // Column 2
     ImGui::Text("Characters of player 1");
-    ImGui::ImageButton((ImTextureID*)textureID, imageSize, ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
-    ImGui::ImageButton((ImTextureID*)textureID, imageSize, ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
-    ImGui::ImageButton((ImTextureID*)textureID, imageSize, ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
-    ImGui::ImageButton((ImTextureID*)textureID, imageSize, ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
+    i = 0;
+    for (const auto& character : m_players.at(0)->party) {
+        ImGui::PushID(i++);
+        ImGui::ImageButton((ImTextureID*)character.getTextureID(), imageSize,
+                           ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
+        ImGui::PopID();
+    }
     ImGui::NextColumn();
 
     // Column 3
     ImGui::Text("Characters of player 2");
-    ImGui::ImageButton((ImTextureID*)textureID, imageSize);
-    ImGui::ImageButton((ImTextureID*)textureID, imageSize);
-    ImGui::ImageButton((ImTextureID*)textureID, imageSize);
-    ImGui::ImageButton((ImTextureID*)textureID, imageSize);
+    i = 0;
+    for (const auto& character : m_players.at(1)->party) {
+        ImGui::PushID(i++);
+        ImGui::ImageButton((ImTextureID*)character.getTextureID(), imageSize);
+        ImGui::PopID();
+    }
     ImGui::NextColumn();
 
     // Column 4
-    ImGui::Text("Player 2");
     imageSize = ImVec2(360, 360);
-    ImGui::Image((ImTextureID*)textureID, imageSize);
-    ImGui::Button("Move 1##2");
-    ImGui::Button("Move 2##2");
-    ImGui::Button("Move 3##2");
+    ImGui::Text("Player 2");
+    {
+        std::string search = id == 1 ? message.who : message.onWhom;
+        auto& party = m_players.at(id)->party;
+        auto it = std::find_if(party.begin(), party.end(), [&search](const Character& c) {
+            return search == c.getName();
+        });
+        ImGui::Image((ImTextureID*)it->getTextureID(), imageSize);
+        i = 0;
+        for (const auto& move : it->movements) {
+            ImGui::PushID(i++);
+            ImGui::Button(move->name.c_str());
+            ImGui::PopID();
+        }
+    }
 
     ImGui::Columns(1);
 
     // Third row: 2 columns
     ImGui::Columns(2, "MyColumns2");
 
+    // TODO : display statistics too, not just names
+
     // Column 1
     ImGui::Text("Characters of player 1");
-    ImGui::Text("Character 1");
-    ImGui::Text("Character 2");
-    ImGui::Text("Character 3");
-    ImGui::Text("Character 4");
+    i = 0;
+    for (const auto& character : m_players.at(0)->party) {
+        ImGui::PushID(i++);
+        ImGui::Text(character.getName().c_str());
+        ImGui::PopID();
+    }
     ImGui::NextColumn();
 
     // Column 2
     ImGui::Text("Characters of player 2");
-    ImGui::Text("Character 1");
-    ImGui::Text("Character 2");
-    ImGui::Text("Character 3");
-    ImGui::Text("Character 4");
+    i = 0;
+    for (const auto& character : m_players.at(1)->party) {
+        ImGui::PushID(i++);
+        ImGui::Text(character.getName().c_str());
+        ImGui::PopID();
+    }
 
     ImGui::Columns(1);
 
