@@ -1,13 +1,13 @@
-#include "Player.h"
+#include "Player.hpp"
 
 unsigned int Player::m_count = 0;
 
-Player::Player(std::vector<Character>& party) : party(&party) {
-	++m_count;
-	id = 0; // ???
-}
-
-bool Player::move(Character& character, std::array<Player, 2>& players)
-{
-	return true;
+Player::Player(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrIds): id{ m_count++ } {
+	for (int i = 0; i < curChrIds.size(); i++) {
+		int& k = curChrIds.at(i);
+		if (k == -1) { continue; }
+		Character newCharacter(availibleCharacters[k]);
+		newCharacter.id = id * curChrIds.size() + i;
+		party.push_back(newCharacter);
+	}
 }

@@ -3,13 +3,20 @@
 
 #include <climits>
 
+Tuple::Tuple(Character* t_character, int t_baseATV):
+	character{ t_character }, baseATV{ t_baseATV }, currentATV{ t_baseATV } {}
+
+bool Tuple::operator < (const Tuple& rhs) const {
+	return currentATV > rhs.currentATV;
+}
+
 Queue::Queue() { }
 
-Queue::Queue(std::array<Player, 2>& players) {
-	for (Player& player : players) {
-		for (Character& character : *player.party) {
+Queue::Queue(std::array<std::unique_ptr<Player>, 2>& players) {
+	for (std::unique_ptr<Player>& player : players) {
+		for (Character& character : player->party) {
 			int atv = INT_MAX / character.getSpd();
-			emplace(character, atv);
+			emplace(&character, atv);
 		}
 	}
 }
@@ -25,7 +32,7 @@ Character& Queue::peek() {
 		}
 
 		pop();
-		emplace(*currentCharacter.character, currentCharacter.baseATV);
+		emplace(currentCharacter.character, currentCharacter.baseATV);
 
 		if (currentCharacter.character->isAlive) {
 			return *currentCharacter.character;

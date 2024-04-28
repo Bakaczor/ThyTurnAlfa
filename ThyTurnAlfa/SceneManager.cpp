@@ -70,10 +70,69 @@ int SceneManager::arrange() {
     if (!reader.readFile("appsettings.json")) {
         return 1;
     }
-    //m_availibleCharacters = reader.extractCharacters();
-    //m_partyPresets = reader.extractParties();
+    m_availibleCharacters = reader.extractCharacters();
+    m_partyPresets = reader.extractParties();
 
     return 0;
+}
+
+void SceneManager::setupGame() {
+    // TODO : setup algorithm options
+    // PS : this function coudl use loops if I didn't have separate members for indices
+
+    // for custom it is already set in GUI
+    if (m_partyType == PartyType::Preset) {
+        auto view = m_availibleCharacters | std::views::transform([](const Character& c) {
+            return c.getName();
+        });
+        // player 1
+        PartyPreset& preset1 = m_partyPresets.at(m_curPPrIdx_1);
+        int i1 = 0;
+        for (const std::string& name : preset1.characterNames) {
+            auto it = std::find(view.begin(), view.end(), name);
+            if (it != view.end()) {
+                m_curChrIds_1[i1] = static_cast<int>(std::distance(view.begin(), it));
+            }
+            i1++;
+        }
+        // player 2
+        PartyPreset& preset2 = m_partyPresets.at(m_curPPrIdx_2);
+        int i2 = 0;
+        for (const std::string& name : preset1.characterNames) {
+            auto it = std::find(view.begin(), view.end(), name);
+            if (it != view.end()) {
+                m_curChrIds_2[i2] = static_cast<int>(std::distance(view.begin(), it));
+            }
+            i2++;
+        }
+    }
+    // player 1
+    if (m_availiblePlayers.at(m_curPlyIdx_1) == "Human") {
+        m_players[0] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_1);
+    } else if (m_availiblePlayers.at(m_curPlyIdx_1) == "Random") {
+        m_players[0] = std::make_unique<Random>(m_availibleCharacters, m_curChrIds_1);
+    }
+    // player 2
+    if (m_availiblePlayers.at(m_curPlyIdx_2) == "Human") {
+        m_players[1] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_2);
+    } else if (m_availiblePlayers.at(m_curPlyIdx_2) == "Random") {
+        m_players[1] = std::make_unique<Random>(m_availibleCharacters, m_curChrIds_2);
+    }
+}
+
+void SceneManager::resetSetup() {
+    m_curPlyIdx_1 = 0;
+    m_curPlyIdx_2 = 0;
+    m_curPPrIdx_1 = 0;
+    m_curPPrIdx_2 = 0;
+    m_curChrIds_1 = { -1, -1, -1, -1 };
+    m_curChrIds_2 = { -1, -1, -1, -1 };
+    m_partyType = PartyType::Custom;
+
+    // reset characters
+    for (auto& character : m_availibleCharacters) {
+        character.reset();
+    }
 }
 
 int SceneManager::run() {
@@ -93,7 +152,7 @@ int SceneManager::run() {
         ImGui::NewFrame();
         switch (m_currentState) {
             case ProgramState::Menu: {
-                m_roundsCount = 0;
+                m_gameStart = true;
                 renderMenu();
                 break; 
             }
@@ -106,12 +165,18 @@ int SceneManager::run() {
                 break;
             }
             case ProgramState::Game: {
-                if (m_roundsCount == 0) {
+                if (m_gameStart) {
+                    m_gameStart = false;
+                    setupGame();
                     m_queue = Queue(m_players);
                 }
-                //m_currentCharacter = m_queue.peek() ?
-                renderGame();
-                // m_roundsCount++;
+                Character& character = m_queue.peek();
+                unsigned int id = character.getPlayerId();
+                auto it = std::find_if(m_players.begin(), m_players.end(), [&id](const auto& p) {
+                    return p->id == id;
+                });
+                (*it)->move(character, m_players);
+                // renderMove(tuple(strings)))
                 break;
             }
         }

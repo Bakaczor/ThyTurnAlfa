@@ -11,6 +11,7 @@ class FireAttack : public MagicAttack {
 	public:
 	FireAttack();
 
+	private:
 	virtual void addEffects(Character& on_whom) final;
 };
 

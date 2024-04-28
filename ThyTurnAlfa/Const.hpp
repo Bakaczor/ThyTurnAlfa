@@ -4,6 +4,11 @@
 #define CONST_HPP
 
 namespace Const {
+	// ===== COMMON =====
+	namespace Sizes {
+		constexpr unsigned int MAX_PARTY_SIZE = 4;
+	}
+
 	// ===== EFFECTS =====
 
 	namespace Bleeding {

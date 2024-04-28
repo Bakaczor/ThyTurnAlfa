@@ -26,15 +26,16 @@ std::vector<Character>&& Reader::extractCharacters()
     return std::move(m_characters);
 }
 
-std::vector<std::vector<std::string>> Reader::extractParties()
+std::vector<PartyPreset> Reader::extractParties()
 {
     auto partyArray = m_jsonData["parties"];
     for (auto party : partyArray) {
         m_parties.emplace_back();
+        m_parties.back().partyName = party["partyName"].asString();
         auto characterArray = party["characters"];
         for (auto character : characterArray) {
             std::string characterName = character["name"].asString();
-            m_parties.back().push_back(characterName);
+            m_parties.back().characterNames.push_back(characterName);
         }
     }
     return m_parties;

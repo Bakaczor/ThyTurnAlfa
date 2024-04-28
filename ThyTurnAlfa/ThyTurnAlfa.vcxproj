@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ActionlessEffect.cpp" />
+    <ClCompile Include="AI.cpp" />
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Bleeding.cpp" />
     <ClCompile Include="BleedingAttack.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="FireAttack.cpp" />
     <ClCompile Include="Frozen.cpp" />
     <ClCompile Include="Heal.cpp" />
+    <ClCompile Include="Human.cpp" />
     <ClCompile Include="IceAttack.cpp" />
     <ClCompile Include="LightningAttack.cpp" />
     <ClCompile Include="MagicAttack.cpp" />
@@ -189,13 +191,14 @@
     <ClInclude Include="IceAttack.hpp" />
     <ClInclude Include="LightningAttack.hpp" />
     <ClInclude Include="MagicAttack.hpp" />
-    <ClInclude Include="MovementFactory.h" />
+    <ClInclude Include="MovementFactory.hpp" />
     <ClInclude Include="OrdinaryAttack.hpp" />
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="EffectsTest.hpp" />
     <ClInclude Include="Frozen.hpp" />
     <ClInclude Include="Movement.hpp" />
     <ClInclude Include="PartyPreset.hpp" />
+    <ClInclude Include="PartyType.hpp" />
     <ClInclude Include="PiercingAttack.hpp" />
     <ClInclude Include="Revive.hpp" />
     <ClInclude Include="Shield.hpp" />
@@ -208,13 +211,13 @@
     <ClInclude Include="Wet.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AI.h" />
+    <ClInclude Include="AI.hpp" />
     <ClInclude Include="ProgramState.hpp" />
     <ClInclude Include="Reader.hpp" />
-    <ClInclude Include="Human.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Human.hpp" />
+    <ClInclude Include="Player.hpp" />
     <ClInclude Include="Queue.hpp" />
-    <ClInclude Include="Random.h" />
+    <ClInclude Include="Random.hpp" />
     <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="WindowMode.hpp" />
   </ItemGroup>
