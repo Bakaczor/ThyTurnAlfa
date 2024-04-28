@@ -15,8 +15,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     switch (key) {
         case GLFW_KEY_ESCAPE: {
             context->m_currentState = ProgramState::Menu;
-            context->m_curChrIds_1 = { -1, -1, -1, -1 };
-            context->m_curChrIds_2 = { -1, -1, -1, -1 };
+            context->resetSetup();
             break;
         }
         case GLFW_KEY_TAB: {
