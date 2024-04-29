@@ -10,6 +10,7 @@
 
 class Player {
 	public:
+	static unsigned int count;
 	unsigned int id;
 	std::vector<Character> party;
 
@@ -17,9 +18,6 @@ class Player {
 	Player() = default;
 
 	virtual std::optional<Message> move(Character& who, std::array<std::unique_ptr<Player>, 2>& players) = 0;
-
-	private:
-	static unsigned int m_count;
 };
 
 #endif

@@ -52,7 +52,7 @@ class SceneManager {
 	SceneManager();
 	int init();
 	int run();
-	std::pair<std::string, unsigned int> chooseMove(const unsigned int& id);
+	std::tuple<std::string, unsigned int, bool> chooseMove(Character& who);
 
 	private:
 	// === WINDOW ===
@@ -98,10 +98,13 @@ class SceneManager {
 	void renderMenu();
 	void renderSetup();
 	void renderOptions();
+	void renderPopUp(const Message& message, const unsigned int& id);
 	void renderMove(const Message& message, const unsigned int& id);
 	int terminate();
 
 	// === IMGUI HELPERS ===
+	void newFrame();
+	void renderNewFrame();
 	float renderBegin() const;
 	void renderQueue() const;
 	void renderPlayerSetup(float x,

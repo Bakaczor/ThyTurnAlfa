@@ -105,6 +105,7 @@ void SceneManager::setupGame() {
 }
 
 void SceneManager::resetSetup() {
+    Player::count = 0;
     m_curPlyIdx_1 = 0;
     m_curPlyIdx_2 = 0;
     m_curPPrIdx_1 = 0;
@@ -121,37 +122,32 @@ void SceneManager::resetSetup() {
 
 int SceneManager::run() {
     while (!glfwWindowShouldClose(m_window)) {
-        std::ostringstream ss;
-        ss << "[";
-        ss.precision(0);
-        ss << std::fixed << ImGui::GetIO().Framerate;
-        ss << " FPS] " << m_title;
-        glfwSetWindowTitle(m_window, ss.str().c_str());
-
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
         switch (m_currentState) {
             case ProgramState::Menu: {
                 m_gameStart = true;
+                newFrame();
                 renderMenu();
+                renderNewFrame();
                 break; 
             }
             case ProgramState::Options: {
+                newFrame();
                 renderOptions();
+                renderNewFrame();
                 break;
             }
             case ProgramState::Setup: {
+                newFrame();
                 renderSetup();
+                renderNewFrame();
                 break;
             }
             case ProgramState::Game: {
                 if (m_gameStart) {
                     m_gameStart = false;
+                    newFrame();
                     setupGame();
+                    renderNewFrame();
                     m_queue = Queue(m_players);
                 }
                 Character& character = m_queue.peek();
@@ -160,18 +156,15 @@ int SceneManager::run() {
                     return p->id == id;
                 });
                 std::optional<Message> message = ((*it)->move(character, m_players));
+                if (m_currentState != ProgramState::Game) { break; }
                 if (!message.has_value()) {
                     // TODO : discuss this part
-                    message = Message{ "Megumin", "what", "Aqua" };
+                    message = Message{ "Megumin", "ERROR", "Aqua" };
                 }
-                renderMove(message.value(), id);
+                renderPopUp(message.value(), id);
                 break;
             }
         }
-        ImGui::Render();
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-        glfwSwapBuffers(m_window);
-        glfwPollEvents();
     }
     return terminate();
 }
