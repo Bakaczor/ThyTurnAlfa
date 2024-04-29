@@ -4,14 +4,22 @@
 #define SCENEMANAGER_H
 
 #include <array>
+#include <chrono>
 #include <iostream>
 #include <memory>
 #include <ranges>
 #include <sstream>
 #include <string>
-#include <vector>
 #include <thread>
-#include <chrono>
+#include <vector>
+#include <array>
+#include <iostream>
+#include <memory>
+#include <ranges>
+#include <sstream>
+#include <string>
+#include <thread>
+#include <vector>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -19,8 +27,10 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
+#include "imgui_internal.h"
 
 #include "Character.hpp"
+#include "Const.hpp"
 #include "Human.hpp"
 #include "PartyPreset.hpp"
 #include "PartyType.hpp"
@@ -30,7 +40,6 @@
 #include "Random.hpp"
 #include "Reader.hpp"
 #include "WindowMode.hpp"
-#include "Const.hpp"
  
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -43,6 +52,7 @@ class SceneManager {
 	SceneManager();
 	int init();
 	int run();
+	std::pair<std::string, unsigned int> chooseMove(const unsigned int& id);
 
 	private:
 	// === WINDOW ===

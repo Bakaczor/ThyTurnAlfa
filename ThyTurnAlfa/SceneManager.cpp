@@ -92,13 +92,13 @@ void SceneManager::setupGame() {
     }
     // player 1
     if (m_availiblePlayers.at(m_curPlyIdx_1) == "Human") {
-        m_players[0] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_1);
+        m_players[0] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_1, this);
     } else if (m_availiblePlayers.at(m_curPlyIdx_1) == "Random") {
         m_players[0] = std::make_unique<Random>(m_availibleCharacters, m_curChrIds_1);
     }
     // player 2
     if (m_availiblePlayers.at(m_curPlyIdx_2) == "Human") {
-        m_players[1] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_2);
+        m_players[1] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_2, this);
     } else if (m_availiblePlayers.at(m_curPlyIdx_2) == "Random") {
         m_players[1] = std::make_unique<Random>(m_availibleCharacters, m_curChrIds_2);
     }
