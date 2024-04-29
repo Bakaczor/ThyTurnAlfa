@@ -79,7 +79,8 @@ int SceneManager::arrange() {
 
 void SceneManager::setupGame() {
     // TODO : setup algorithm options
-    // PS : this function coudl use loops if I didn't have separate members for indices
+    // PS : this function could use loops if I didn't have separate members for indices
+
 
     // for custom it is already set in GUI
     if (m_partyType == PartyType::Preset) {
