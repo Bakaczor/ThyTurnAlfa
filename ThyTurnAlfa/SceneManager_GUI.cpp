@@ -352,7 +352,7 @@ void SceneManager::renderMove(const Message& message, const unsigned int& id) {
         ImGui::SameLine();
         ImGui::Text(("HP: " + std::to_string(character.currentHp)).c_str());
         ImGui::SameLine();
-        ImGui::Text(("MP: " + std::to_string(character.getMp())).c_str());
+        ImGui::Text(("MP: " + std::to_string(character.currentMp)).c_str());
         ImGui::Spacing();
         ImGui::PopID();
     }
@@ -369,7 +369,7 @@ void SceneManager::renderMove(const Message& message, const unsigned int& id) {
         ImGui::SameLine();
         ImGui::Text(("HP: " + std::to_string(character.currentHp)).c_str());
         ImGui::SameLine();
-        ImGui::Text(("MP: " + std::to_string(character.getMp())).c_str());
+        ImGui::Text(("MP: " + std::to_string(character.currentMp)).c_str());
         ImGui::Spacing();
         ImGui::PopID();
     }
@@ -540,7 +540,7 @@ std::tuple<std::string, unsigned int, bool> SceneManager::chooseMove(Character& 
             ImGui::SameLine();
             ImGui::Text(("HP: " + std::to_string(character.currentHp)).c_str());
             ImGui::SameLine();
-            ImGui::Text(("MP: " + std::to_string(character.getMp())).c_str());
+            ImGui::Text(("MP: " + std::to_string(character.currentMp)).c_str());
             ImGui::Spacing();
             ImGui::PopID();
         }
@@ -557,7 +557,7 @@ std::tuple<std::string, unsigned int, bool> SceneManager::chooseMove(Character& 
             ImGui::SameLine();
             ImGui::Text(("HP: " + std::to_string(character.currentHp)).c_str());
             ImGui::SameLine();
-            ImGui::Text(("MP: " + std::to_string(character.getMp())).c_str());
+            ImGui::Text(("MP: " + std::to_string(character.currentMp)).c_str());
             ImGui::Spacing();
             ImGui::PopID();
         }

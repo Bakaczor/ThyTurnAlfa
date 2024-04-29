@@ -47,6 +47,7 @@ void Character::deserialize(Json::Value& root)
 	m_def = root["def"].asInt();
 	m_spd = root["spd"].asInt();
 	m_mp = root["mp"].asInt();
+	currentMp = m_mp;
 	m_name = root["name"].asString();
 	m_imagePath = root["imagePath"].asString();
 
