@@ -1,6 +1,15 @@
 ﻿#include "SceneManager.hpp"
 
-SceneManager::SceneManager(): m_title("Thy Turn v1.0 Alpha") { }
+#include <iostream>
+#include <ranges>
+#include <sstream>
+
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+
+#include "Reader.hpp"
+#include "Random.hpp"
+#include "Human.hpp"
 
 int SceneManager::init() {
     glfwInit();
@@ -62,7 +71,8 @@ int SceneManager::arrange() {
 
 void SceneManager::setupGame() {
     // TODO : setup algorithm options
-    // PS : this function coudl use loops if I didn't have separate members for indices
+    // PS : this function could use loops if I didn't have separate members for indices
+
 
     // for custom it is already set in GUI
     if (m_partyType == PartyType::Preset) {

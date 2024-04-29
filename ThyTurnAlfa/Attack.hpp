@@ -5,6 +5,8 @@
 
 #include "Movement.hpp"
 
+class Character;
+
 class Attack : public Movement {
 	public:
 	const float wMove;

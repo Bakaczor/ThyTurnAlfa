@@ -5,6 +5,8 @@
 
 #include "MagicAttack.hpp"
 
+class Character;
+
 class IceAttack : public MagicAttack {
 	public:
 	IceAttack();

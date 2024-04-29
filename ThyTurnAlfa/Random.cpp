@@ -1,4 +1,5 @@
 #include "Random.hpp"
+#include <random>
 
 Random::Random(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrIds):
 	Player(availibleCharacters, curChrIds) {}

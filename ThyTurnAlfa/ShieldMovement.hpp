@@ -4,6 +4,9 @@
 #define SHIELD_MOVEMENT_HPP
 
 #include "DefensiveMovement.hpp"
+#include "Const.hpp"
+
+class Character;
 
 class ShieldMovement : public DefensiveMovement {
 	public:

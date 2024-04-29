@@ -5,6 +5,8 @@
 
 #include "Attack.hpp"
 
+class Character;
+
 class BleedingAttack : public Attack {
 	public:
 	BleedingAttack();

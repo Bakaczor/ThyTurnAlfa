@@ -1,4 +1,5 @@
 #include "Shield.hpp"
+#include "Character.hpp"
 
 Shield::Shield(): Effect(Const::Shield::SHIELD_EFFECT_NAME, Const::Shield::SHIELD_DEFAULT_DURATION) {}
 

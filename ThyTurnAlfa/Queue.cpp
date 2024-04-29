@@ -1,4 +1,8 @@
 #include "Queue.hpp"
+#include "Player.hpp"
+
+#include <climits>
+#include <memory>
 
 Tuple::Tuple(Character* t_character, int t_baseATV):
 	character{ t_character }, baseATV{ t_baseATV }, currentATV{ t_baseATV } {}

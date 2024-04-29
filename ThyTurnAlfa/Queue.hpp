@@ -3,10 +3,11 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include <climits>
 #include <queue>
+#include <memory>
 
-#include "Player.hpp"
+class Player;
+class Character;
 
 struct Tuple {
 	Tuple(Character* t_character, int t_baseATV);

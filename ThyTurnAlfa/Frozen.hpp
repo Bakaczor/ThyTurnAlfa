@@ -5,6 +5,8 @@
 
 #include "TemporaryDamageModifier.hpp"
 
+class Character;
+
 class Frozen : public TemporaryDamageModifier {
 	public:
 	Frozen();

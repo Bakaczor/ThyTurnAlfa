@@ -1,4 +1,5 @@
 #include "TemporaryDamageModifier.hpp"
+#include "Character.hpp"
 
 TemporaryDamageModifier::TemporaryDamageModifier(std::string name, int duration, int atkModifier, int defModifier):
 	Effect(name, duration), atkModifier{ atkModifier }, defModifier{ defModifier } {};
