@@ -24,5 +24,8 @@ bool LightningAttack::individualAction(Character& who, Character& on_whom) {
     if (is_wet) {
         who.wAtk = old_atk;
     }
+
+    who.currentMp -= cost;
+
     return true;
 }

@@ -3,7 +3,7 @@
 Random::Random(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrIds):
 	Player(availibleCharacters, curChrIds) {}
 
-bool Random::move(Character& who, std::array<std::unique_ptr<Player>, 2>& players) {
+std::optional<Message> Random::move(Character& who, std::array<std::unique_ptr<Player>, 2>& players) {
 	std::vector<std::pair<std::shared_ptr<Movement>*, Character*>> possibleMoves;
 	for (auto& player : players) {
 		for (Character& character : player->party) {
@@ -19,8 +19,8 @@ bool Random::move(Character& who, std::array<std::unique_ptr<Player>, 2>& player
 	std::shuffle(possibleMoves.begin(), possibleMoves.end(), g);
 	for (auto& move : possibleMoves) {
 		if (move.first->get()->invoke(who, *move.second)) {
-			return true;
+			return Message{ "Megumin", "what", "Aqua" };
 		}
 	}
-	return false;
+	return std::nullopt;
 }

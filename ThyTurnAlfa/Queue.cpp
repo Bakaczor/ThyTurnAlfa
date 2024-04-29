@@ -38,3 +38,7 @@ Character& Queue::peek() {
 
 	throw std::exception("Everyone has died");
 }
+
+const std::vector<Tuple>& Queue::getQueue() const {
+	return c;
+}
