@@ -40,6 +40,7 @@
 #include "Random.hpp"
 #include "Reader.hpp"
 #include "WindowMode.hpp"
+#include "State.hpp"
  
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -75,6 +76,7 @@ class SceneManager {
 	std::array<std::unique_ptr<Player>, Const::Sizes::PLAYER_NUMBER> m_players;
 	std::vector<Character> m_availibleCharacters;
 	Queue m_queue;
+	std::map<std::string, Node> m_transpositionTable;
 
 	// === OPTIONS ===
 	std::array<const char*, Const::Sizes::PLAYER_NUMBER> m_availibleFunctions = { "Basic", "NotBasic" };
