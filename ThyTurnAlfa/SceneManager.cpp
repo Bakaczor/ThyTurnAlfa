@@ -150,6 +150,8 @@ int SceneManager::run() {
                     renderNewFrame();
                     m_queue = Queue(m_players);
                 }
+                // TODO : check if one of the players won,
+                //  if so dispaly message and change state to Menu
                 Character& character = m_queue.peek();
                 unsigned int id = character.getPlayerId();
                 auto it = std::find_if(m_players.begin(), m_players.end(), [&id](const auto& p) {
@@ -158,10 +160,11 @@ int SceneManager::run() {
                 std::optional<Message> message = ((*it)->move(character, m_players));
                 if (m_currentState != ProgramState::Game) { break; }
                 if (!message.has_value()) {
-                    // TODO : discuss this part
-                    message = Message{ "Megumin", "ERROR", "Aqua" };
-                }
+                    message = Message{ character.getName(), "cannot", "move :<" };
+                } 
+                // TODO : add parameter with current character name to display
                 renderPopUp(message.value(), id);
+                
                 break;
             }
         }

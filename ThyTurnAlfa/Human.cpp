@@ -5,6 +5,8 @@ Human::Human(std::vector<Character>& availibleCharacters, std::array<int, 4>& cu
 	Player(availibleCharacters, curChrIds), m_context{ context } {}
 
 std::optional<Message> Human::move(Character& who, std::array<std::unique_ptr<Player>, 2>& players) {
+	// TODO : add for loop (number of tries)
+	// {
 	auto move = m_context->chooseMove(who);
 	if (!std::get<2>(move)) {
 		auto what = std::find_if(who.movements.begin(), who.movements.end(),
@@ -20,5 +22,6 @@ std::optional<Message> Human::move(Character& who, std::array<std::unique_ptr<Pl
 			return Message{ who.getName(), std::get<0>(move), party[i].getName() };
 		}
 	}
+	// }
 	return std::nullopt;
 }

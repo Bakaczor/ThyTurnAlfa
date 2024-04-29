@@ -19,7 +19,7 @@ std::optional<Message> Random::move(Character& who, std::array<std::unique_ptr<P
 	std::shuffle(possibleMoves.begin(), possibleMoves.end(), g);
 	for (auto& move : possibleMoves) {
 		if (move.first->get()->invoke(who, *move.second)) {
-			return Message{ "Megumin", "what", "Aqua" };
+			return Message{ who.getName(), move.first->get()->name, move.second->getName() };
 		}
 	}
 	return std::nullopt;
