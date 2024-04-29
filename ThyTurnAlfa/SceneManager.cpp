@@ -109,19 +109,20 @@ void SceneManager::setupGame() {
     }
     // player 1
     if (m_availiblePlayers.at(m_curPlyIdx_1) == "Human") {
-        m_players[0] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_1);
+        m_players[0] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_1, this);
     } else if (m_availiblePlayers.at(m_curPlyIdx_1) == "Random") {
         m_players[0] = std::make_unique<Random>(m_availibleCharacters, m_curChrIds_1);
     }
     // player 2
     if (m_availiblePlayers.at(m_curPlyIdx_2) == "Human") {
-        m_players[1] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_2);
+        m_players[1] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_2, this);
     } else if (m_availiblePlayers.at(m_curPlyIdx_2) == "Random") {
         m_players[1] = std::make_unique<Random>(m_availibleCharacters, m_curChrIds_2);
     }
 }
 
 void SceneManager::resetSetup() {
+    Player::count = 0;
     m_curPlyIdx_1 = 0;
     m_curPlyIdx_2 = 0;
     m_curPPrIdx_1 = 0;
@@ -138,37 +139,32 @@ void SceneManager::resetSetup() {
 
 int SceneManager::run() {
     while (!glfwWindowShouldClose(m_window)) {
-        std::ostringstream ss;
-        ss << "[";
-        ss.precision(0);
-        ss << std::fixed << ImGui::GetIO().Framerate;
-        ss << " FPS] " << m_title;
-        glfwSetWindowTitle(m_window, ss.str().c_str());
-
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
         switch (m_currentState) {
             case ProgramState::Menu: {
                 m_gameStart = true;
+                newFrame();
                 renderMenu();
+                renderNewFrame();
                 break; 
             }
             case ProgramState::Options: {
+                newFrame();
                 renderOptions();
+                renderNewFrame();
                 break;
             }
             case ProgramState::Setup: {
+                newFrame();
                 renderSetup();
+                renderNewFrame();
                 break;
             }
             case ProgramState::Game: {
                 if (m_gameStart) {
                     m_gameStart = false;
+                    newFrame();
                     setupGame();
+                    renderNewFrame();
                     m_queue = Queue(m_players);
                 }
                 Character& character = m_queue.peek();
@@ -176,15 +172,16 @@ int SceneManager::run() {
                 auto it = std::find_if(m_players.begin(), m_players.end(), [&id](const auto& p) {
                     return p->id == id;
                 });
-                (*it)->move(character, m_players);
-                // renderMove(tuple(strings)))
+                std::optional<Message> message = ((*it)->move(character, m_players));
+                if (m_currentState != ProgramState::Game) { break; }
+                if (!message.has_value()) {
+                    // TODO : discuss this part
+                    message = Message{ "Megumin", "ERROR", "Aqua" };
+                }
+                renderPopUp(message.value(), id);
                 break;
             }
         }
-        ImGui::Render();
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-        glfwSwapBuffers(m_window);
-        glfwPollEvents();
     }
     return terminate();
 }

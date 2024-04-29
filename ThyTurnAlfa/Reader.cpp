@@ -21,6 +21,7 @@ std::vector<Character>&& Reader::extractCharacters()
     for (auto character : characterArray) {
         Character deserializedCharacter;
         deserializedCharacter.deserialize(character);
+        deserializedCharacter.loadImage();
         m_characters.push_back(std::move(deserializedCharacter));
     }
     return std::move(m_characters);

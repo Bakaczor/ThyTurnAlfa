@@ -16,6 +16,7 @@ class MagicAttack : public Attack {
 	virtual int getCost() override;
 	protected:
 	virtual bool isInvokable(Character& who, Character& on_whom) override;
+	virtual bool individualAction(Character& who, Character& on_whom) override;
 };
 
 #endif // !#define MAGIC_ATTACK_HPP

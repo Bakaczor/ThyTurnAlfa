@@ -4,13 +4,30 @@
 #define SCENEMANAGER_H
 
 #include <array>
+#include <chrono>
+#include <iostream>
+#include <memory>
+#include <ranges>
+#include <sstream>
 #include <string>
+#include <thread>
+#include <vector>
+#include <array>
+#include <iostream>
+#include <memory>
+#include <ranges>
+#include <sstream>
+#include <string>
+#include <thread>
 #include <vector>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+#include "imgui_internal.h"
 
 #include "Player.hpp"
 #include "Character.hpp"
@@ -20,7 +37,6 @@
 #include "ProgramState.hpp"
 #include "Queue.hpp"
 #include "WindowMode.hpp"
-#include "Const.hpp"
  
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -33,6 +49,7 @@ class SceneManager {
 	SceneManager();
 	int init();
 	int run();
+	std::tuple<std::string, unsigned int, bool> chooseMove(Character& who);
 
 	private:
 	// === WINDOW ===
@@ -52,17 +69,17 @@ class SceneManager {
 	// === GAME ===
 	bool m_gameStart = true;
 	ProgramState m_currentState = ProgramState::Menu;
-	std::array<std::unique_ptr<Player>, 2> m_players;
+	std::array<std::unique_ptr<Player>, Const::Sizes::PLAYER_NUMBER> m_players;
 	std::vector<Character> m_availibleCharacters;
 	Queue m_queue;
 
 	// === OPTIONS ===
-	std::array<const char*, 2> m_availibleFunctions = { "Basic", "NotBasic" };
+	std::array<const char*, Const::Sizes::PLAYER_NUMBER> m_availibleFunctions = { "Basic", "NotBasic" };
 	int m_curFucIdx = 0;
 	int m_treeDepth = 1;
 
 	// === SETUP ===
-	std::array<const char*, 2> m_availiblePlayers = { "Human", "Random" };
+	std::array<const char*, Const::Sizes::PLAYER_NUMBER> m_availiblePlayers = { "Human", "Random" };
 	int m_curPlyIdx_1 = 0;
 	int m_curPlyIdx_2 = 0;
 	std::vector<PartyPreset> m_partyPresets;
@@ -76,11 +93,21 @@ class SceneManager {
 	void setupGame();
 	void resetSetup();
 	void renderMenu();
-	void playerOneSetup();
-	void playerTwoSetup();
 	void renderSetup();
 	void renderOptions();
-	void renderGame();
+	void renderPopUp(const Message& message, const unsigned int& id);
+	void renderMove(const Message& message, const unsigned int& id);
 	int terminate();
+
+	// === IMGUI HELPERS ===
+	void newFrame();
+	void renderNewFrame();
+	float renderBegin() const;
+	void renderQueue() const;
+	void renderPlayerSetup(float x,
+						   int* curPlyIdx,
+						   int* curPPrIdx,
+						   const std::string& num,
+						   std::array<int, Const::Sizes::MAX_PARTY_SIZE>& curChrIds);
 };
 #endif

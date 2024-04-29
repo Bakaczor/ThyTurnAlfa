@@ -9,6 +9,13 @@ int MagicAttack::getCost() {
 }
 
 bool MagicAttack::isInvokable(Character& who, Character& on_whom) {
-    return Attack::isInvokable(who, on_whom) && on_whom.currentMp >= cost;
+    return Attack::isInvokable(who, on_whom) && who.currentMp >= cost;
+}
+
+bool MagicAttack::individualAction(Character& who, Character& on_whom)
+{
+    Attack::individualAction(who, on_whom);
+    who.currentMp -= cost;
+    return true;
 }
 

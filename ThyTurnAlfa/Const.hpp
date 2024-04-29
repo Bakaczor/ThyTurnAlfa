@@ -7,6 +7,7 @@ namespace Const {
 	// ===== COMMON =====
 	namespace Sizes {
 		constexpr unsigned int MAX_PARTY_SIZE = 4;
+		constexpr unsigned int PLAYER_NUMBER = 2;
 	}
 
 	// ===== EFFECTS =====

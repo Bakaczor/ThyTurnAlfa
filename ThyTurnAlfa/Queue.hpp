@@ -23,6 +23,7 @@ public:
 	Queue();
 	Queue(std::array<std::unique_ptr<Player>, 2>& players);
 	Character& peek();
+	const std::vector<Tuple>& getQueue() const;
 };
 
 #endif
