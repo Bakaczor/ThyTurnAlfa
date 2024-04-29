@@ -11,14 +11,6 @@
 #include "Random.hpp"
 #include "Human.hpp"
 
-SceneManager::SceneManager(): m_title("Thy Turn v1.0 Alpha") { 
-    // TODO : delete after testing
-    std::vector<std::unique_ptr<Movement>> m;
-    //m_availibleCharacters.emplace_back(std::string("Megumin"),
-    //                                   std::string("images/Megumin.png"),
-    //                                   m);
-}
-
 int SceneManager::init() {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);

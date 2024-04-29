@@ -31,7 +31,6 @@ class SceneManager {
 	friend void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 	public:
-	SceneManager();
 	int init();
 	int run();
 	std::tuple<std::string, unsigned int, bool> chooseMove(Character& who);
