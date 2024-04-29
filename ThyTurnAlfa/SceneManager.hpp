@@ -103,6 +103,7 @@ class SceneManager {
 
 	// === IMGUI HELPERS ===
 	float renderBegin() const;
+	void renderQueue() const;
 	void renderPlayerSetup(float x,
 						   int* curPlyIdx,
 						   int* curPPrIdx,

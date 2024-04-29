@@ -233,20 +233,10 @@ void SceneManager::renderSetup() {
     ImGui::End();
 }
 
-void SceneManager::renderMove(const Message& message, const unsigned int& id) {
-    ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
-    int i = 0;
-    float scale = renderBegin();
-
-    // ===
-    float currScale = 0.2f * scale;
-    ImGui::PushFont(m_blackChancery);
-    ImGui::SetWindowFontScale(currScale);
-
+void SceneManager::renderQueue() const {
     ImVec2 imageSize(90, 90);
     ImGui::Text("NEXT   ");
-
-    i = 0;
+    int i = 0;
     const auto& queue = m_queue.getQueue();
     for (const auto& tuple : queue) {
         ImGui::PushID(i++);
@@ -259,12 +249,24 @@ void SceneManager::renderMove(const Message& message, const unsigned int& id) {
         }
         ImGui::PopID();
     }
+}
+
+void SceneManager::renderMove(const Message& message, const unsigned int& id) {
+    ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+    int i = 0;
+    float scale = renderBegin();
+
+    // ===
+    float currScale = 0.2f * scale;
+    ImGui::PushFont(m_blackChancery);
+    ImGui::SetWindowFontScale(currScale);
+    renderQueue();
 
     // Second row: 4 columns
     ImGui::Columns(4, "MyColumns", false);
 
     // Column 1
-    imageSize = ImVec2(360, 360);
+    ImVec2 imageSize = ImVec2(360, 360);
     ImGui::Text("Player 1");
     // there probably should be a better check for this
     if (id == 0) {
@@ -369,141 +371,120 @@ void SceneManager::renderMove(const Message& message, const unsigned int& id) {
 }
 
 std::pair<std::string, unsigned int> SceneManager::chooseMove(const unsigned int& id) {
-    //int i = 0;
-    //float scale = m_height / static_cast<float>(m_fullscreenHeight);
-    //ImGui::SetNextWindowPos(ImVec2(0, 0));
-    //ImGui::SetNextWindowSize(ImVec2(m_width, m_height));
-    //ImGui::Begin("game", nullptr,
-    //             ImGuiWindowFlags_NoMove |
-    //             ImGuiWindowFlags_NoDecoration |
-    //             ImGuiWindowFlags_NoTitleBar);
-    //// ===
-    //float currScale = 0.2f * scale;
-    //ImGui::PushFont(m_blackChancery);
-    //ImGui::SetWindowFontScale(currScale);
+    int i = 0;
+    float scale = renderBegin();
 
-    //ImVec2 imageSize(90, 90);
-    //ImGui::Text("NEXT   ");
+    // ===
+    float currScale = 0.2f * scale;
+    ImGui::PushFont(m_blackChancery);
+    ImGui::SetWindowFontScale(currScale);
+    renderQueue();
+    
+    // Second row: 4 columns
+    ImGui::Columns(4, "MyColumns", false);
 
-    //i = 0;
-    //const auto& queue = m_queue.getQueue();
-    //for (const auto& tuple : queue) {
-    //    ImGui::PushID(i++);
-    //    ImGui::SameLine();
-    //    if (tuple.character->getPlayerId() == 0) {
-    //        ImGui::Image((ImTextureID*)tuple.character->getTextureID(), imageSize,
-    //                     ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
-    //    } else {
-    //        ImGui::Image((ImTextureID*)tuple.character->getTextureID(), imageSize);
-    //    }
-    //    ImGui::PopID();
-    //}
+    // Column 1
+    ImVec2 imageSize = ImVec2(360, 360);
+    ImGui::Text("Player 1");
+    // there probably should be a better check for this
+    if (id == 0) {
+        auto& party = m_players.at(id)->party;
+        auto it = std::find_if(party.begin(), party.end(), [&message](const Character& c) {
+            return message.who == c.getName();
+        });
+        ImGui::Image((ImTextureID*)it->getTextureID(), imageSize,
+                     ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
+        i = 0;
+        ImGui::SetCursorPosY(0.45f * m_height);
+        for (const auto& move : it->movements) {
+            ImGui::PushID(i++);
+            ImGui::Button(move->name.c_str());
+            ImGui::Spacing();
+            ImGui::PopID();
+        }
+    }
 
-    //// Second row: 4 columns
-    //ImGui::Columns(4, "MyColumns", false);
+    ImGui::NextColumn();
 
-    //// Column 1
-    //imageSize = ImVec2(360, 360);
-    //ImGui::Text("Player 1");
-    //// there probably should be a better check for this
-    //if (id == 0) {
-    //    auto& party = m_players.at(id)->party;
-    //    auto it = std::find_if(party.begin(), party.end(), [&message](const Character& c) {
-    //        return message.who == c.getName();
-    //    });
-    //    ImGui::Image((ImTextureID*)it->getTextureID(), imageSize,
-    //                 ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
-    //    i = 0;
-    //    ImGui::SetCursorPosY(0.45f * m_height);
-    //    for (const auto& move : it->movements) {
-    //        ImGui::PushID(i++);
-    //        ImGui::Button(move->name.c_str());
-    //        ImGui::Spacing();
-    //        ImGui::PopID();
-    //    }
-    //}
+    imageSize = ImVec2(180, 180);
 
-    //ImGui::NextColumn();
+    // Column 2
+    ImGui::Text("Characters of player 1");
+    i = 0;
+    for (const auto& character : m_players.at(0)->party) {
+        ImGui::PushID(i++);
+        ImGui::ImageButton((ImTextureID*)character.getTextureID(), imageSize,
+                           ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
+        ImGui::PopID();
+    }
+    ImGui::NextColumn();
 
-    //imageSize = ImVec2(180, 180);
+    // Column 3
+    ImGui::Text("Characters of player 2");
+    i = 0;
+    for (const auto& character : m_players.at(1)->party) {
+        ImGui::PushID(i++);
+        ImGui::ImageButton((ImTextureID*)character.getTextureID(), imageSize);
+        ImGui::PopID();
+    }
+    ImGui::NextColumn();
 
-    //// Column 2
-    //ImGui::Text("Characters of player 1");
-    //i = 0;
-    //for (const auto& character : m_players.at(0)->party) {
-    //    ImGui::PushID(i++);
-    //    ImGui::ImageButton((ImTextureID*)character.getTextureID(), imageSize,
-    //                       ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
-    //    ImGui::PopID();
-    //}
-    //ImGui::NextColumn();
+    // Column 4
+    imageSize = ImVec2(360, 360);
+    ImGui::Text("Player 2");
+    if (id == 1) {
+        auto& party = m_players.at(id)->party;
+        auto it = std::find_if(party.begin(), party.end(), [&message](const Character& c) {
+            return message.who == c.getName();
+        });
+        ImGui::Image((ImTextureID*)it->getTextureID(), imageSize);
+        i = 0;
+        ImGui::SetCursorPosY(0.45f * m_height);
+        for (const auto& move : it->movements) {
+            ImGui::PushID(i++);
+            ImGui::Button(move->name.c_str());
+            ImGui::Spacing();
+            ImGui::PopID();
+        }
+    }
 
-    //// Column 3
-    //ImGui::Text("Characters of player 2");
-    //i = 0;
-    //for (const auto& character : m_players.at(1)->party) {
-    //    ImGui::PushID(i++);
-    //    ImGui::ImageButton((ImTextureID*)character.getTextureID(), imageSize);
-    //    ImGui::PopID();
-    //}
-    //ImGui::NextColumn();
+    ImGui::Columns(1);
 
-    //// Column 4
-    //imageSize = ImVec2(360, 360);
-    //ImGui::Text("Player 2");
-    //if (id == 1) {
-    //    auto& party = m_players.at(id)->party;
-    //    auto it = std::find_if(party.begin(), party.end(), [&message](const Character& c) {
-    //        return message.who == c.getName();
-    //    });
-    //    ImGui::Image((ImTextureID*)it->getTextureID(), imageSize);
-    //    i = 0;
-    //    ImGui::SetCursorPosY(0.45f * m_height);
-    //    for (const auto& move : it->movements) {
-    //        ImGui::PushID(i++);
-    //        ImGui::Button(move->name.c_str());
-    //        ImGui::Spacing();
-    //        ImGui::PopID();
-    //    }
-    //}
+    // Third row: 2 columns
+    ImGui::Columns(2, "MyColumns2", false);
 
-    //ImGui::Columns(1);
+    // TODO : display statistics too, not just names
 
-    //// Third row: 2 columns
-    //ImGui::Columns(2, "MyColumns2", false);
+    // Column 1
+    ImGui::SetCursorPosY(0.7f * m_height);
+    ImGui::Text("Characters of player 1");
+    ImGui::Spacing();
+    i = 0;
+    for (const auto& character : m_players.at(0)->party) {
+        ImGui::PushID(i++);
+        ImGui::Text(character.getName().c_str());
+        ImGui::Spacing();
+        ImGui::PopID();
+    }
+    ImGui::NextColumn();
 
-    //// TODO : display statistics too, not just names
+    // Column 2
+    ImGui::SetCursorPosY(0.7f * m_height);
+    ImGui::Text("Characters of player 2");
+    ImGui::Spacing();
+    i = 0;
+    for (const auto& character : m_players.at(1)->party) {
+        ImGui::PushID(i++);
+        ImGui::Text(character.getName().c_str());
+        ImGui::Spacing();
+        ImGui::PopID();
+    }
 
-    //// Column 1
-    //ImGui::SetCursorPosY(0.7f * m_height);
-    //ImGui::Text("Characters of player 1");
-    //ImGui::Spacing();
-    //i = 0;
-    //for (const auto& character : m_players.at(0)->party) {
-    //    ImGui::PushID(i++);
-    //    ImGui::Text(character.getName().c_str());
-    //    ImGui::Spacing();
-    //    ImGui::PopID();
-    //}
-    //ImGui::NextColumn();
+    ImGui::Columns(1);
 
-    //// Column 2
-    //ImGui::SetCursorPosY(0.7f * m_height);
-    //ImGui::Text("Characters of player 2");
-    //ImGui::Spacing();
-    //i = 0;
-    //for (const auto& character : m_players.at(1)->party) {
-    //    ImGui::PushID(i++);
-    //    ImGui::Text(character.getName().c_str());
-    //    ImGui::Spacing();
-    //    ImGui::PopID();
-    //}
-
-    //ImGui::Columns(1);
-
-    //// End the ImGui window
-    //ImGui::PopFont();
-    //ImGui::End();
+    // End the ImGui window
+    ImGui::PopFont();
+    ImGui::End();
 
     return std::make_pair("", 0);
 }
