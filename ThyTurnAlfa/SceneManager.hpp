@@ -96,11 +96,17 @@ class SceneManager {
 	void setupGame();
 	void resetSetup();
 	void renderMenu();
-	void playerOneSetup();
-	void playerTwoSetup();
 	void renderSetup();
 	void renderOptions();
 	void renderMove(const Message& message, const unsigned int& id);
 	int terminate();
+
+	// === IMGUI HELPERS ===
+	float renderBegin() const;
+	void renderPlayerSetup(float x,
+						   int* curPlyIdx,
+						   int* curPPrIdx,
+						   const std::string& num,
+						   std::array<int, Const::Sizes::MAX_PARTY_SIZE>& curChrIds);
 };
 #endif
