@@ -8,7 +8,7 @@
 #include "Character.hpp"
 #include "Shield.hpp"
 #include "Effect.hpp"
-#include "MovementFactory.h"
+#include "MovementFactory.hpp"
 #include "Movement.hpp"
 
 Character::Character(const Character& c):

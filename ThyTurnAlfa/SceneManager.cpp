@@ -1,7 +1,6 @@
 ﻿#include "SceneManager.hpp"
 
 #include <iostream>
-#include <map>
 #include <ranges>
 #include <sstream>
 
@@ -9,13 +8,15 @@
 #include "imgui_impl_opengl3.h"
 
 #include "Reader.hpp"
+#include "Random.hpp"
+#include "Human.hpp"
 
 SceneManager::SceneManager(): m_title("Thy Turn v1.0 Alpha") { 
     // TODO : delete after testing
     std::vector<std::unique_ptr<Movement>> m;
-    m_availibleCharacters.emplace_back(std::string("Megumin"),
-                                       std::string("images/Megumin.png"),
-                                       m);
+    //m_availibleCharacters.emplace_back(std::string("Megumin"),
+    //                                   std::string("images/Megumin.png"),
+    //                                   m);
 }
 
 int SceneManager::init() {

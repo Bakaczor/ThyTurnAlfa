@@ -12,9 +12,8 @@
 
 #include "imgui.h"
 
-#include "Player.h"
+#include "Player.hpp"
 #include "Character.hpp"
-#include "Human.hpp"
 #include "PartyPreset.hpp"
 #include "PartyType.hpp"
 #include "Player.hpp"

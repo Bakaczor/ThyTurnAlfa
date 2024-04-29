@@ -1,4 +1,4 @@
-#include "Random.h"
+#include "Random.hpp"
 #include <random>
 
 Random::Random(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrIds):

@@ -1,3 +1,4 @@
+#include "MovementFactory.hpp"
 #include "Const.hpp"
 #include "BleedingAttack.hpp"
 #include "OrdinaryAttack.hpp"

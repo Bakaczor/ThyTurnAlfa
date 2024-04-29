@@ -4,6 +4,7 @@
 #define QUEUE_H
 
 #include <queue>
+#include <memory>
 
 class Player;
 class Character;
