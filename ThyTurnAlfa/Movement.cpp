@@ -1,5 +1,6 @@
 #include "Movement.hpp"
 #include "Character.hpp"
+#include "TargetType.hpp"
 
 bool Movement::invoke(Character& who, Character& on_whom) {
 	if (!isInvokable(who, on_whom)) return false;
@@ -12,6 +13,13 @@ bool Movement::invoke(Character& who, Character& on_whom) {
 }
 
 bool Movement::isInvokable(Character& who, Character& on_whom) {
-	// TODO: Check whether both Characters fit the target value
-	return true;
+	bool are_allies = who.getPlayerId() == on_whom.getPlayerId();
+	switch (target) {
+	case TargetType::Enemy:
+		return !are_allies;
+	case TargetType::Ally:
+		return are_allies;
+	default:
+		return true;
+	}
 }
