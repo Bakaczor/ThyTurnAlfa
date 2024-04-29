@@ -1,4 +1,6 @@
 #include "Bleeding.hpp"
+#include "Character.hpp"
+#include "Const.hpp"
 
 Bleeding::Bleeding(): TemporaryDamagePerRound(Const::Bleeding::BLEEDING_EFFECT_NAME,
 											  Const::Bleeding::BLEEDING_DEFAULT_DURATION,

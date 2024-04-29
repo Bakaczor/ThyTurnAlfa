@@ -6,19 +6,9 @@
 #include <functional>
 #include <map>
 #include <string>
+#include <memory>
 
-#include "BleedingAttack.hpp"
-#include "BoostMovement.hpp"
-#include "Cure.hpp"
-#include "FireAttack.hpp"
-#include "Heal.hpp"
-#include "IceAttack.hpp"
-#include "LightningAttack.hpp"
-#include "OrdinaryAttack.hpp"
-#include "PiercingAttack.hpp"
-#include "Revive.hpp"
-#include "ShieldMovement.hpp"
-#include "WaterAttack.hpp"
+#include "Movement.hpp"
 
 typedef std::map<std::string, std::function<std::shared_ptr<Movement>()>> factoryMap;
 

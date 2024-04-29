@@ -1,4 +1,6 @@
 #include "Heal.hpp"
+#include "Character.hpp"
+#include "Const.hpp"
 
 Heal::Heal(): DefensiveMovement(Const::Heal::HEAL_MOVEMENT_NAME,
 								Const::Heal::HEAL_DEFAULT_COST) {}

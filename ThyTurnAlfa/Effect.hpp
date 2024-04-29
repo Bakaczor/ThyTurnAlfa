@@ -3,16 +3,10 @@
 #ifndef EFFECT_HPP
 #define EFFECT_HPP
 
-#include <algorithm>
 #include <cstring>
-#include <memory>
 #include <string>
-#include <vector>
 
 class Character;
-
-#include "Character.hpp"
-#include "Const.hpp"
 
 class Effect {
 	public:

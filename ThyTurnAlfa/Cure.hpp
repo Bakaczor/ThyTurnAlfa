@@ -5,6 +5,8 @@
 
 #include "DefensiveMovement.hpp"
 
+class Character;
+
 class Cure : public DefensiveMovement {
 	public:
 	Cure();

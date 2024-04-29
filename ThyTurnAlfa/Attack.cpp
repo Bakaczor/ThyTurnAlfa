@@ -1,5 +1,7 @@
 #include "Attack.hpp"
 #include "Shield.hpp"
+#include "Character.hpp"
+#include "Utils.hpp"
 
 Attack::Attack(std::string&& name, int w_move, int w_pierce): 
     Movement(std::move(name), TargetType::Enemy), 
@@ -22,28 +24,6 @@ bool Attack::isInvokable(Character& who, Character& on_whom) {
 
 bool Attack::individualAction(Character& who, Character& on_whom) {
     int dmg = computeDmg(who, on_whom);
-    for (auto it = on_whom.activeEffects.begin(); it != on_whom.activeEffects.end(); it++) {
-        Shield* ptr = dynamic_cast<Shield*>(it->get());
-        if (ptr) {
-            if (dmg > ptr->hp) {
-                dmg -= ptr->hp;
-                ptr->hp = 0;
-            } else {
-                ptr->hp -= dmg;
-                dmg = 0;
-                return true;
-            }
-        }
-    }
-    if (dmg > 0) {
-        if (dmg >= on_whom.currentHp) {
-            on_whom.currentHp = 0;
-            on_whom.detachEffects(); // on_whom died so all effects must be detached
-            on_whom.isAlive = false;
-            return false;
-        } else {
-            on_whom.currentHp -= dmg;
-        }
-    }
+    on_whom.applyDamage(dmg);
     return true;
 }

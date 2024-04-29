@@ -1,5 +1,17 @@
-#include "Const.hpp"
 #include "MovementFactory.hpp"
+#include "Const.hpp"
+#include "BleedingAttack.hpp"
+#include "OrdinaryAttack.hpp"
+#include "PiercingAttack.hpp"
+#include "BoostMovement.hpp"
+#include "Cure.hpp"
+#include "Heal.hpp"
+#include "Revive.hpp"
+#include "ShieldMovement.hpp"
+#include "FireAttack.hpp"
+#include "IceAttack.hpp"
+#include "LightningAttack.hpp"
+#include "WaterAttack.hpp"
 
 const factoryMap MovementFactory::m_factory {
 	{Const::BleedingAttack::BLEEDING_ATTACK_MOVEMENT_NAME, []() { return std::make_shared<BleedingAttack>(); }},

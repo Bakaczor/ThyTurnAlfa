@@ -1,4 +1,5 @@
 #include "DefensiveMovement.hpp"
+#include "Character.hpp"
 
 DefensiveMovement::DefensiveMovement(std::string&& name, int cost):
 	Movement(std::move(name), TargetType::Ally), cost{ cost } {}

@@ -1,5 +1,6 @@
 #include "ShieldMovement.hpp"
 #include "Shield.hpp"
+#include "Character.hpp"
 
 ShieldMovement::ShieldMovement(): DefensiveMovement(Const::ShieldMovement::SHIELD_MOVEMENT_NAME,
 													Const::ShieldMovement::SHIELD_MOVEMENT_DEFAULT_COST) {}

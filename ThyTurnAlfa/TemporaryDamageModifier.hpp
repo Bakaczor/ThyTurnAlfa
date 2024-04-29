@@ -5,6 +5,8 @@
 
 #include "Effect.hpp"
 
+class Character;
+
 class TemporaryDamageModifier : public Effect {
 	public:
 	int atkModifier;
