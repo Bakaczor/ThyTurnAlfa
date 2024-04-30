@@ -381,34 +381,46 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
     ImGui::Columns(2, "MyColumns2", false);
 
     // Column 1
-    ImGui::SetCursorPosY(0.8f * m_height);
+    ImGui::SetCursorPosY(0.7f * m_height);
     ImGui::Text("Characters of player 1");
     ImGui::Spacing();
     i = 0;
     for (const auto& character : m_players.at(0)->party) {
         ImGui::PushID(i++);
-        ImGui::Text(character.getName().c_str());
+        ImGui::Text(("<" + character.getName() + ">").c_str());
         ImGui::SameLine();
-        ImGui::Text(("HP: " + std::to_string(character.currentHp)).c_str());
+        ImGui::Text(("HP: " + std::to_string(character.currentHp) + " ").c_str());
         ImGui::SameLine();
-        ImGui::Text(("MP: " + std::to_string(character.currentMp)).c_str());
+        ImGui::Text(("MP: " + std::to_string(character.currentMp) + " ").c_str());
+        ImGui::SameLine();
+        ImGui::Text(("ATK: " + std::to_string(character.getAtk()) + " ").c_str());
+        ImGui::SameLine();
+        ImGui::Text(("DEF: " + std::to_string(character.getDef()) + " ").c_str());
+        ImGui::SameLine();
+        ImGui::Text(("SPD: " + std::to_string(character.getSpd()) + " ").c_str());
         ImGui::Spacing();
         ImGui::PopID();
     }
     ImGui::NextColumn();
 
     // Column 2
-    ImGui::SetCursorPosY(0.8f * m_height);
+    ImGui::SetCursorPosY(0.7f * m_height);
     ImGui::Text("Characters of player 2");
     ImGui::Spacing();
     i = 0;
     for (const auto& character : m_players.at(1)->party) {
         ImGui::PushID(i++);
-        ImGui::Text(character.getName().c_str());
+        ImGui::Text(("<" + character.getName() + ">").c_str());
         ImGui::SameLine();
-        ImGui::Text(("HP: " + std::to_string(character.currentHp)).c_str());
+        ImGui::Text(("HP: " + std::to_string(character.currentHp) + " ").c_str());
         ImGui::SameLine();
-        ImGui::Text(("MP: " + std::to_string(character.currentMp)).c_str());
+        ImGui::Text(("MP: " + std::to_string(character.currentMp) + " ").c_str());
+        ImGui::SameLine();
+        ImGui::Text(("ATK: " + std::to_string(character.getAtk()) + " ").c_str());
+        ImGui::SameLine();
+        ImGui::Text(("DEF: " + std::to_string(character.getDef()) + " ").c_str());
+        ImGui::SameLine();
+        ImGui::Text(("SPD: " + std::to_string(character.getSpd()) + " ").c_str());
         ImGui::Spacing();
         ImGui::PopID();
     }
