@@ -1,4 +1,6 @@
 #include "Revive.hpp"
+#include "Character.hpp"
+#include "Const.hpp"
 
 Revive::Revive(): DefensiveMovement(Const::Revive::REVIVE_MOVENT_NAME, 
 									Const::Revive::REVIVE_DEFAULT_COST) {}

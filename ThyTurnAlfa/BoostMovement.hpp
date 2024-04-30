@@ -5,6 +5,8 @@
 
 #include "DefensiveMovement.hpp"
 
+class Character;
+
 class BoostMovement : public DefensiveMovement {
 	public:
 	BoostMovement();

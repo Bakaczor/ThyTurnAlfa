@@ -6,11 +6,9 @@
 #include <cstring>
 #include <string>
 
-class Character;
-
-#include "Character.hpp"
 #include "TargetType.hpp"
-#include "Utils.hpp"
+
+class Character;
 
 class Movement {
 	public:

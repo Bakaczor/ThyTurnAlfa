@@ -5,6 +5,8 @@
 
 #include "TemporaryDamageModifier.hpp"
 
+class Character;
+
 class Boost : public TemporaryDamageModifier {
 	public:
 	Boost();

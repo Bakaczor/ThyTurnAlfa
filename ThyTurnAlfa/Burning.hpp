@@ -4,8 +4,8 @@
 #define BURNING_HPP
 
 #include "TemporaryDamagePerRound.hpp"
-#include "Cold.hpp"
-#include "Wet.hpp"
+
+class Character;
 
 class Burning : public TemporaryDamagePerRound {
 	public:

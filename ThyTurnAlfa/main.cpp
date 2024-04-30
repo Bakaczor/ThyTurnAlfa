@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "SceneManager.hpp"
 
 int main() {

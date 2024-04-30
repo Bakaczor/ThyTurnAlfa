@@ -5,6 +5,8 @@
 
 #include "Movement.hpp"
 
+class Character;
+
 class DefensiveMovement : public Movement {
 	public:
 	const int cost;

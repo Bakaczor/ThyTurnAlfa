@@ -4,43 +4,24 @@
 #define SCENEMANAGER_H
 
 #include <array>
-#include <chrono>
-#include <iostream>
 #include <memory>
-#include <ranges>
-#include <sstream>
 #include <string>
-#include <thread>
-#include <vector>
-#include <array>
-#include <iostream>
-#include <memory>
-#include <ranges>
-#include <sstream>
-#include <string>
-#include <thread>
 #include <vector>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
-#include "imgui_internal.h"
 
+#include "Player.hpp"
 #include "Character.hpp"
-#include "Const.hpp"
-#include "Human.hpp"
 #include "PartyPreset.hpp"
 #include "PartyType.hpp"
 #include "Player.hpp"
 #include "ProgramState.hpp"
 #include "Queue.hpp"
-#include "Random.hpp"
-#include "Reader.hpp"
 #include "WindowMode.hpp"
-#include "State.hpp"
+#include "Const.hpp"
  
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -50,7 +31,6 @@ class SceneManager {
 	friend void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 	public:
-	SceneManager();
 	int init();
 	int run();
 	std::tuple<std::string, unsigned int, bool> chooseMove(Character& who);
@@ -76,7 +56,6 @@ class SceneManager {
 	std::array<std::unique_ptr<Player>, Const::Sizes::PLAYER_NUMBER> m_players;
 	std::vector<Character> m_availibleCharacters;
 	Queue m_queue;
-	std::map<std::string, Node> m_transpositionTable;
 
 	// === OPTIONS ===
 	std::array<const char*, Const::Sizes::PLAYER_NUMBER> m_availibleFunctions = { "Basic", "NotBasic" };

@@ -4,6 +4,9 @@
 #define SHIELD_HPP
 
 #include "Effect.hpp"
+#include "Const.hpp"
+
+class Character;
 
 class Shield : public Effect {
 	public:

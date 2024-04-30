@@ -3,8 +3,9 @@
 #ifndef ACTIONLESS_EFFECT_HPP
 #define ACTIONLESS_EFFECT_HPP
 
-#include "Character.hpp"
 #include "Effect.hpp"
+
+class Character;
 
 class ActionlessEffect : public Effect {
 	public:
