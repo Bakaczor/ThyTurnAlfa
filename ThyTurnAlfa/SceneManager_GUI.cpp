@@ -316,6 +316,15 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
             onWhom = character.id;
             setOnWhom = true;
         }
+        ImGui::SameLine();
+        ImGui::BeginGroup();
+        for (const auto& effect : character.activeEffects) {
+            ImGui::Text(effect->name.c_str());
+            if (!character.isAlive) {
+                ImGui::Text("Dead");
+            }
+        }
+        ImGui::EndGroup();
         ImGui::Text(character.getName().c_str());
         ImGui::PopID();
     }
@@ -329,6 +338,15 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
             onWhom = character.id;
             setOnWhom = true;
         }
+        ImGui::SameLine();
+        ImGui::BeginGroup();
+        for (const auto& effect : character.activeEffects) {
+            ImGui::Text(effect->name.c_str());
+            if (!character.isAlive) {
+                ImGui::Text("Dead");
+            }
+        }
+        ImGui::EndGroup();
         ImGui::Text(character.getName().c_str());
         ImGui::PopID();
     }
@@ -440,7 +458,7 @@ void SceneManager::renderMove(const Character& who, const Message& message, cons
 }
 
 void SceneManager::renderWinner(unsigned int& who) {
-    std::string msg = "PLAYER " + std::to_string(who) + " WON!";
+    std::string msg = "PLAYER " + std::to_string(who + 1) + " WON!";
     bool run = true;
     while (run) {
         newFrame();
