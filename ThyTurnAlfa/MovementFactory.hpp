@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef MOVEMENT_FACTORY_H
-#define MOVEMENT_FACTORY_H
+#ifndef MOVEMENT_FACTORY_HPP
+#define MOVEMENT_FACTORY_HPP
 
 #include <functional>
 #include <map>

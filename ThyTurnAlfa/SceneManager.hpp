@@ -13,15 +13,16 @@
 
 #include "imgui.h"
 
-#include "Player.hpp"
 #include "Character.hpp"
+#include "Choice.hpp"
+#include "Const.hpp"
 #include "PartyPreset.hpp"
 #include "PartyType.hpp"
+#include "Player.hpp"
 #include "Player.hpp"
 #include "ProgramState.hpp"
 #include "Queue.hpp"
 #include "WindowMode.hpp"
-#include "Const.hpp"
  
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -81,8 +82,10 @@ class SceneManager {
 	void renderMenu();
 	void renderSetup();
 	void renderOptions();
-	void renderPopUp(const Message& message, const unsigned int& id);
-	void renderMove(const Message& message, const unsigned int& id);
+	void renderMove(const Character& who, const Message& message, const unsigned int& id);
+	std::optional<Choice> renderBackground(const std::string& who, const unsigned int& id, bool lock);
+	int playerWon() const;
+	void renderWinner(unsigned int& who);
 	int terminate();
 
 	// === IMGUI HELPERS ===

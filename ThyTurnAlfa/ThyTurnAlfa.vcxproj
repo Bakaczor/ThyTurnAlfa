@@ -182,6 +182,7 @@
     <ClInclude Include="BoostMovement.hpp" />
     <ClInclude Include="Burning.hpp" />
     <ClInclude Include="Character.hpp" />
+    <ClInclude Include="Choice.hpp" />
     <ClInclude Include="Cold.hpp" />
     <ClInclude Include="Const.hpp" />
     <ClInclude Include="Cure.hpp" />

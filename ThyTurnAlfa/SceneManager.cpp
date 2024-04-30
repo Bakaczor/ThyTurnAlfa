@@ -169,6 +169,13 @@ int SceneManager::run() {
                     renderNewFrame();
                     m_queue = Queue(m_players);
                 }
+                unsigned int winner = playerWon();
+                if (-1 != winner) {
+                    m_currentState = ProgramState::Menu;
+                    resetSetup();
+                    renderWinner(winner);
+                    break;
+                }
                 Character& character = m_queue.peek();
                 unsigned int id = character.getPlayerId();
                 auto it = std::find_if(m_players.begin(), m_players.end(), [&id](const auto& p) {
@@ -177,17 +184,32 @@ int SceneManager::run() {
                 std::optional<Message> message = ((*it)->move(character, m_players));
                 if (m_currentState != ProgramState::Game) { break; }
                 if (!message.has_value()) {
-                    // TODO : discuss this part
-                    message = Message{ "Megumin", "ERROR", "Aqua" };
+                    message = Message{ character.getName(), "cannot", "move :<" };
                 } else {
                     applyEffects();
                 }
-                renderPopUp(message.value(), id);
+                renderMove(character, message.value(), id);
                 break;
             }
         }
     }
     return terminate();
+}
+
+int SceneManager::playerWon() const {
+    for (int i = 0; i < m_players.size(); i++) {
+        bool alive = false;
+        for (const Character& c : m_players.at(i)->party) {
+            if (c.isAlive) {
+                alive = true;
+                break;
+            }
+        }
+        if (!alive) {
+            return m_players.at((i + 1) % m_players.size())->id;
+        }
+    }
+    return -1;
 }
 
 int SceneManager::terminate() {
