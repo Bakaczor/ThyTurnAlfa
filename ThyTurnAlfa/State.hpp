@@ -3,6 +3,9 @@
 #ifndef STATE_HPP
 #define STATE_HPP
 
+#include <map>
+#include <string>
+
 #include "Queue.hpp"
 
 struct Node
@@ -16,7 +19,7 @@ class State
 {
 public:
 	State(Queue& t_queue, std::vector<Character>& t_characters);
-	void extractNode(std::map<std::string, Node>& transpositionTable, std::string& key);
+	bool extractNode(std::map<std::string, Node>& transpositionTable, std::string& key);
 
 	Queue queue;
 	std::vector<Character> characters;
