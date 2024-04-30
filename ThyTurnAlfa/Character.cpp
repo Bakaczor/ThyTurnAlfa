@@ -9,7 +9,6 @@
 #include "Shield.hpp"
 #include "Effect.hpp"
 #include "MovementFactory.hpp"
-#include "Movement.hpp"
 
 Character::Character(const Character& c):
 	id{ c.id }, currentHp{ c.currentHp }, currentMp{ c.currentMp },
@@ -36,7 +35,7 @@ bool Character::applyDamage(int dmg) {
     if (dmg > 0) {
         if (dmg >= currentHp) {
             currentHp = 0;
-            detachEffects(); // on_whom died so all effects must be detached
+            // removed detaching because it causes errors
             isAlive = false;
             return false;
         } else {
@@ -54,6 +53,11 @@ bool Character::applyEffects() {
             return true;
         }
         return false; });
+
+    if (!this->isAlive) {
+        detachEffects();
+        return false;
+    }
 
 	return true;
 }
