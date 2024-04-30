@@ -57,6 +57,15 @@ int SceneManager::init() {
     return arrange();
 }
 
+void SceneManager::applyEffects()
+{
+    for (auto& player : m_players) {
+        for (auto& character : player->party) {
+            character.applyEffects();
+        }
+    }
+}
+
 int SceneManager::arrange() {
     // === CONFIG ===
     Reader reader;
@@ -170,6 +179,8 @@ int SceneManager::run() {
                 if (!message.has_value()) {
                     // TODO : discuss this part
                     message = Message{ "Megumin", "ERROR", "Aqua" };
+                } else {
+                    applyEffects();
                 }
                 renderPopUp(message.value(), id);
                 break;
