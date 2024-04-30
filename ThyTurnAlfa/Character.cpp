@@ -47,12 +47,14 @@ bool Character::applyDamage(int dmg) {
 }
 
 bool Character::applyEffects() {
-	for (auto it = activeEffects.begin(); it != activeEffects.end(); it++) {
-		if (!(*it)->nextRound(*this)) {
-			(*it)->cancelFrom(*this);
-			activeEffects.erase(it);
-		}
-	}
+    std::erase_if(activeEffects, [this](std::unique_ptr<Effect>& e) {
+        if (!e->nextRound(*this))
+        {
+            e->cancelFrom(*this);
+            return true;
+        }
+        return false; });
+
 	return true;
 }
 

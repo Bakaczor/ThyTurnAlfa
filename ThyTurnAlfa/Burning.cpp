@@ -16,8 +16,7 @@ bool Burning::addTo(Character& affected) {
 		{
 			e->cancelFrom(affected);
 			return true;
-		}
-		else if (dynamic_cast<Wet*>(e.get())) {
+		} else if (dynamic_cast<Wet*>(e.get())) {
 			apply = false;
 			return false;
 		}
