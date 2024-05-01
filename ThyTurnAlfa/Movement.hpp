@@ -6,6 +6,7 @@
 #include <cstring>
 #include <string>
 
+#include "MovementType.hpp"
 #include "TargetType.hpp"
 
 class Character;
@@ -17,11 +18,11 @@ class Movement {
 
 	Movement(std::string&& name, const TargetType target): name{ name }, target { target } { }
 	bool invoke(Character& who, Character& on_whom);
+
 	virtual int getCost();
+	virtual bool isInvokable(const Character& who, const Character& on_whom) const;
 
 	protected:
-	virtual bool isInvokable(Character& who, Character& on_whom);
-
 	// should return false if on_whom.currentHp is not greater than 0 and true in other cases
 	virtual bool individualAction(Character& who, Character& on_whom);
 

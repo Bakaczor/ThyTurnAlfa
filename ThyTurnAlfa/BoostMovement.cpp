@@ -7,7 +7,7 @@ BoostMovement::BoostMovement():
 	DefensiveMovement(Const::BoostMovement::BOOST_MOVEMENT_NAME,
 					  Const::BoostMovement::BOOST_MOVEMENT_DEFAULT_COST) {}
 
-bool BoostMovement::isInvokable(Character& who, Character& on_whom) {
+bool BoostMovement::isInvokable(const Character& who, const Character& on_whom) const {
 	return DefensiveMovement::isInvokable(who, on_whom) && on_whom.currentHp > 0;
 }
 

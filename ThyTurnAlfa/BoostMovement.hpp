@@ -10,9 +10,9 @@ class Character;
 class BoostMovement : public DefensiveMovement {
 	public:
 	BoostMovement();
+	virtual bool isInvokable(const Character& who, const Character& on_whom) const final;
 
 	private:
-	virtual bool isInvokable(Character& who, Character& on_whom) final;
 	virtual void addEffects(Character& on_whom) final;
 };
 

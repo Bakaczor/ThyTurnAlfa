@@ -13,10 +13,10 @@ int Attack::computeDmg(const Character& who, const Character& on_whom) const {
     float formula_suffix = 1.0f - (on_whom.getDef() * (1.0f + Utils::percent(on_whom.wDef)) * 
                                    (1.0f - wPierce)) / Const::Calculations::NDEF;
     if (formula_suffix < 0 || formula_prefix < 0) { return 0; }
-    return formula_prefix * formula_suffix;
+    return static_cast<int>(formula_prefix * formula_suffix);
 }
 
-bool Attack::isInvokable(Character& who, Character& on_whom) {
+bool Attack::isInvokable(const Character& who, const Character& on_whom) const {
     return Movement::isInvokable(who, on_whom) && on_whom.currentHp > 0;
 }
 

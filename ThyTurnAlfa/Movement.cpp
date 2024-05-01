@@ -18,14 +18,11 @@ bool Movement::invoke(Character& who, Character& on_whom) {
 	return true;
 }
 
-bool Movement::isInvokable(Character& who, Character& on_whom) {
+bool Movement::isInvokable(const Character& who, const Character& on_whom) const {
 	bool are_allies = who.getPlayerId() == on_whom.getPlayerId();
 	switch (target) {
-	case TargetType::Enemy:
-		return !are_allies;
-	case TargetType::Ally:
-		return are_allies;
-	default:
-		return true;
+		case TargetType::Enemy: return !are_allies;
+		case TargetType::Ally: return are_allies;
+		default: return true;
 	}
 }

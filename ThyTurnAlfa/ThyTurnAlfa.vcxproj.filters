@@ -375,6 +375,12 @@
     <ClInclude Include="DmgTable.hpp">
       <Filter>Header Files\Algorithm</Filter>
     </ClInclude>
+    <ClInclude Include="MovementType.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="HeuristicList.hpp">
+      <Filter>Header Files\Algorithm</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\BlackChancery.ttf">
