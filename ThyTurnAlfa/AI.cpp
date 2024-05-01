@@ -7,6 +7,7 @@ AI::AI(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrId
 	Player(availibleCharacters, curChrIds), m_treeHeight{ treeHeight }, m_pGlobalQueue{ pQueue } {}
 
 std::optional<Message> AI::move(Character& who, std::array<std::unique_ptr<Player>, 2>& players) {
+	// arrange
 	m_bestMove = std::tuple(-1, -1, -1);
 	std::unordered_map<int, Character> characters;
 	for (std::unique_ptr<Player>& p : players) {
@@ -16,14 +17,15 @@ std::optional<Message> AI::move(Character& who, std::array<std::unique_ptr<Playe
 	}
 	State state(*m_pGlobalQueue, characters);
 
+	// algorithm evaluation
 	int evaluation = 0; // TODO: evaluate root
 	evaluation = runAB_SSS(evaluation, m_treeHeight, state);
 	
+	// invoke movement
 	int invokerId = std::get<0>(m_bestMove);
 	int movementId = std::get<1>(m_bestMove);
 	int targetId = std::get<2>(m_bestMove);
 	if (invokerId != -1) {
-		//who.movements[movementId]->invoke(who, )
 		int targetPlayerId = characters[targetId].getPlayerId();
 		int targetCharacterId = targetId % Const::Sizes::MAX_PARTY_SIZE;
 		who.movements[movementId]->invoke(who, players[targetPlayerId].get()->party[targetCharacterId]);
