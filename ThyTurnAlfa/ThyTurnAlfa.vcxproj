@@ -144,6 +144,7 @@
     <ClCompile Include="Cold.cpp" />
     <ClCompile Include="Cure.cpp" />
     <ClCompile Include="DefensiveMovement.cpp" />
+    <ClCompile Include="DmgTable.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectsTest.cpp" />
     <ClCompile Include="FireAttack.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="Const.hpp" />
     <ClInclude Include="Cure.hpp" />
     <ClInclude Include="DefensiveMovement.hpp" />
+    <ClInclude Include="DmgTable.hpp" />
     <ClInclude Include="FireAttack.hpp" />
     <ClInclude Include="Heal.hpp" />
     <ClInclude Include="IceAttack.hpp" />

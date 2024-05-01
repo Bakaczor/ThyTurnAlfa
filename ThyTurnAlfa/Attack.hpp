@@ -17,7 +17,7 @@ class Attack : public Movement {
 	// invoke inherited from Movement
 
 	protected:
-	int computeDmg(Character& who, Character& on_whom);
+	int computeDmg(const Character& who, const Character& on_whom) const;
 	virtual bool isInvokable(Character& who, Character& on_whom) override;
 	virtual bool individualAction(Character& who, Character& on_whom) override;
 };

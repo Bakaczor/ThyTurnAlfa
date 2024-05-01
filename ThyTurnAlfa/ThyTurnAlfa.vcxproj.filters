@@ -92,6 +92,12 @@
     <Filter Include="Source Files\Players">
       <UniqueIdentifier>{71df4900-618b-4e2c-84cf-1e7cec170ecd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Algorithm">
+      <UniqueIdentifier>{808fdb17-f11e-4fcd-b557-f7c5b15ec484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Algorithm">
+      <UniqueIdentifier>{f5a886a8-1f9e-464a-97e4-276e5e4fedee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -166,9 +172,6 @@
     <ClCompile Include="DefensiveMovement.cpp">
       <Filter>Source Files\Movements</Filter>
     </ClCompile>
-    <ClCompile Include="Movement.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Effect.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
@@ -222,6 +225,12 @@
     </ClCompile>
     <ClCompile Include="AI.cpp">
       <Filter>Source Files\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="DmgTable.cpp">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="Movement.cpp">
+      <Filter>Source Files\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -362,6 +371,9 @@
     </ClInclude>
     <ClInclude Include="Choice.hpp">
       <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="DmgTable.hpp">
+      <Filter>Header Files\Algorithm</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

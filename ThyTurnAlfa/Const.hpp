@@ -11,6 +11,10 @@ namespace Const {
 		constexpr unsigned int MAX_NUM_OF_TRIES = 10;
 	}
 
+	namespace Calculations {
+		constexpr float NDEF = 200.0f;
+	}
+
 	// ===== EFFECTS =====
 
 	namespace Bleeding {
