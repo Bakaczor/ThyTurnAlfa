@@ -18,8 +18,8 @@ std::optional<Message> AI::move(Character& who, std::array<std::unique_ptr<Playe
 	State state(*m_pGlobalQueue, characters);
 
 	// algorithm evaluation
-	int evaluation = 0; // TODO: evaluate root
-	evaluation = runAB_SSS(evaluation, m_treeHeight, state);
+	int evaluation = state.evaluate(id);
+	evaluation = runAB_SSS(who.id, evaluation, m_treeHeight, state);
 	
 	// invoke movement
 	int invokerId = std::get<0>(m_bestMove);
@@ -34,7 +34,7 @@ std::optional<Message> AI::move(Character& who, std::array<std::unique_ptr<Playe
 	return std::nullopt;
 }
 
-int AI::runAB_SSS(int firstEval, int treeHeight, State& state)
+int AI::runAB_SSS(int characterId, int firstEval, int treeHeight, State& state)
 {
 	int evaluation = firstEval;
 	int upperbound = INT_MAX;
@@ -47,7 +47,7 @@ int AI::runAB_SSS(int firstEval, int treeHeight, State& state)
 		}
 
 		std::string path;
-		evaluation = runAlphaBeta(bound - 1, bound, treeHeight, path, state);
+		evaluation = runAlphaBeta(characterId, bound - 1, bound, treeHeight, path, state);
 		if (evaluation < bound) {
 			upperbound = evaluation;
 		}
@@ -59,7 +59,7 @@ int AI::runAB_SSS(int firstEval, int treeHeight, State& state)
 	return evaluation;
 }
 
-int AI::runAlphaBeta(int alpha, int beta, int treeDepth, std::string& path, State& state)
+int AI::runAlphaBeta(int characterId, int alpha, int beta, int treeDepth, std::string& path, State& state)
 {
 	int evaluation = INT_MIN;
 
@@ -77,26 +77,24 @@ int AI::runAlphaBeta(int alpha, int beta, int treeDepth, std::string& path, Stat
 	}
 
 	if (treeDepth == 0) {
-		evaluation = 0; // TODO: evaluate(state)
+		evaluation = state.evaluate(id);
 	}
 	else {
-		Character currentCharacter = state.queue.peek();
-
 		// MAX_NODE
-		if (id == currentCharacter.getPlayerId()) {
+		if (id == state.characters[characterId].getPlayerId()) {
 			evaluation = INT_MIN;
 			int childAlpha = alpha;
 			
 			for (int i = 0; i < state.node->movements.size(); ++i) {
 				std::pair<int, int> move = state.node->movements[i];
-				std::tuple<int, int, int> moveWithInvoker(currentCharacter.id, move.first, move.second);
+				std::tuple<int, int, int> moveWithInvoker(characterId, move.first, move.second);
 
 				State childState(state);
 				std::string childPath = extendPath(path, moveWithInvoker);
 				
 				// TODO: probably should check if move is possible before making copy os state (on original state?)
 				if (childState.makeMove(moveWithInvoker)) {
-					int childAlphaBeta = runAlphaBeta(childAlpha, beta, treeDepth - 1, childPath, childState);
+					int childAlphaBeta = runAlphaBeta(childState.queue.peek().id, childAlpha, beta, treeDepth - 1, childPath, childState);
 
 					// store best move
 					if (treeDepth == m_treeHeight && childAlphaBeta > evaluation) {
@@ -115,14 +113,14 @@ int AI::runAlphaBeta(int alpha, int beta, int treeDepth, std::string& path, Stat
 
 			for (int i = 0; i < state.node->movements.size(); ++i) {
 				std::pair<int, int> move = state.node->movements[i];
-				std::tuple<int, int, int> moveWithInvoker(currentCharacter.id, move.first, move.second);
+				std::tuple<int, int, int> moveWithInvoker(characterId, move.first, move.second);
 
 				State childState(state);
 				std::string childPath = extendPath(path, moveWithInvoker);
 
 				// TODO: probably should check if move is possible before making copy os state (on original state?)
 				if (childState.makeMove(moveWithInvoker)) {
-					int childAlphaBeta = runAlphaBeta(alpha, childBeta, treeDepth - 1, childPath, childState);
+					int childAlphaBeta = runAlphaBeta(childState.queue.peek().id, alpha, childBeta, treeDepth - 1, childPath, childState);
 					evaluation = std::min(evaluation, childAlphaBeta);
 					childBeta = std::min(childBeta, evaluation);
 				}
