@@ -12,7 +12,7 @@ bool State::extractNode(std::unordered_map<std::string, Node>& transpositionTabl
 		nodeSearched = true;
 	}
 	else {
-		transpositionTable.emplace(key);
+		transpositionTable.emplace(key, Node());
 		// TODO: sort movements
 	}
 

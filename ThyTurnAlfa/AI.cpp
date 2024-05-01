@@ -1,12 +1,35 @@
 #include "AI.hpp"
 #include "State.hpp"
+#include "Queue.hpp"
+#include "Const.hpp"
 
-AI::AI(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrIds):
-	Player(availibleCharacters, curChrIds) {}
+AI::AI(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrIds, int treeHeight, Queue* pQueue):
+	Player(availibleCharacters, curChrIds), m_treeHeight{ treeHeight }, m_pGlobalQueue{ pQueue } {}
 
 std::optional<Message> AI::move(Character& who, std::array<std::unique_ptr<Player>, 2>& players) {
-	// TODO
-	return Message{ "Megumin", "what", "Aqua" };
+	m_bestMove = std::tuple(-1, -1, -1);
+	std::unordered_map<int, Character> characters;
+	for (std::unique_ptr<Player>& p : players) {
+		for (Character& c : p->party) {
+			characters.insert({ c.id, c });
+		}
+	}
+	State state(*m_pGlobalQueue, characters);
+
+	int evaluation = 0; // TODO: evaluate root
+	evaluation = runAB_SSS(evaluation, m_treeHeight, state);
+	
+	int invokerId = std::get<0>(m_bestMove);
+	int movementId = std::get<1>(m_bestMove);
+	int targetId = std::get<2>(m_bestMove);
+	if (invokerId != -1) {
+		//who.movements[movementId]->invoke(who, )
+		int targetPlayerId = characters[targetId].getPlayerId();
+		int targetCharacterId = targetId % Const::Sizes::MAX_PARTY_SIZE;
+		who.movements[movementId]->invoke(who, players[targetPlayerId].get()->party[targetCharacterId]);
+		return Message(who.getName(), who.movements[movementId]->name, players[targetPlayerId].get()->party[targetCharacterId].getName());
+	}
+	return std::nullopt;
 }
 
 int AI::runAB_SSS(int firstEval, int treeHeight, State& state)
@@ -36,7 +59,9 @@ int AI::runAB_SSS(int firstEval, int treeHeight, State& state)
 
 int AI::runAlphaBeta(int alpha, int beta, int treeDepth, std::string& path, State& state)
 {
-	int evaluation = 0;
+	int evaluation = INT_MIN;
+
+	// node extraction
 	bool nodeSearched = state.extractNode(m_transpositionTable, path);
 	if (nodeSearched) {
 		if (state.node->lowerbound >= beta) {
@@ -54,6 +79,8 @@ int AI::runAlphaBeta(int alpha, int beta, int treeDepth, std::string& path, Stat
 	}
 	else {
 		Character currentCharacter = state.queue.peek();
+
+		// MAX_NODE
 		if (id == currentCharacter.getPlayerId()) {
 			evaluation = INT_MIN;
 			int childAlpha = alpha;
@@ -68,11 +95,18 @@ int AI::runAlphaBeta(int alpha, int beta, int treeDepth, std::string& path, Stat
 				// TODO: probably should check if move is possible before making copy os state (on original state?)
 				if (childState.makeMove(moveWithInvoker)) {
 					int childAlphaBeta = runAlphaBeta(childAlpha, beta, treeDepth - 1, childPath, childState);
+
+					// store best move
+					if (treeDepth == m_treeHeight && childAlphaBeta > evaluation) {
+						m_bestMove = moveWithInvoker;
+					}
+
 					evaluation = std::max(evaluation, childAlphaBeta);
 					childAlpha = std::max(childAlpha, evaluation);
 				}
 			}
 		}
+		// MIN_NODE
 		else {
 			evaluation = INT_MAX;
 			int childBeta = beta;
