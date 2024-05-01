@@ -11,7 +11,7 @@ Attack::Attack(std::string&& name, int w_move, int w_pierce):
 int Attack::computeDmg(const Character& who, const Character& on_whom) const {
     float formula_prefix = wMove * who.getAtk() * (1.0f + Utils::percent(who.wAtk));
     float formula_suffix = 1.0f - (on_whom.getDef() * (1.0f + Utils::percent(on_whom.wDef)) * 
-                                   (1.0f - wPierce)) / Const::Calculations::NDEF;
+                                   (1.0f - wPierce)) / Const::Algorithmic::NDEF;
     if (formula_suffix < 0 || formula_prefix < 0) { return 0; }
     return static_cast<int>(formula_prefix * formula_suffix);
 }

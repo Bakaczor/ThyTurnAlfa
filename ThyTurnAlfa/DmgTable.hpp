@@ -20,7 +20,7 @@ class DmgTable {
 	public:
 	DmgTable() = default;
 	DmgTable(const Character& who, std::array<std::unique_ptr<Player>, Const::Sizes::PLAYER_NUMBER>& players);
-	const int& getDmgEstimation(const suint& onWhom, const suint& what) const;
+	int getDmgEstimation(const suint& onWhom, const suint& what) const;
 	void reset();
 
 	private:

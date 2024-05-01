@@ -150,6 +150,7 @@
     <ClCompile Include="FireAttack.cpp" />
     <ClCompile Include="Frozen.cpp" />
     <ClCompile Include="Heal.cpp" />
+    <ClCompile Include="HeuristicList.cpp" />
     <ClCompile Include="Human.cpp" />
     <ClCompile Include="IceAttack.cpp" />
     <ClCompile Include="LightningAttack.cpp" />

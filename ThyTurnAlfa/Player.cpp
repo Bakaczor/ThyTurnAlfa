@@ -7,7 +7,7 @@ Player::Player(std::vector<Character>& availibleCharacters, std::array<int, 4>& 
 		int& k = curChrIds.at(i);
 		if (k == -1) { continue; }
 		Character newCharacter(availibleCharacters[k]);
-		newCharacter.id = id * curChrIds.size() + i; 
+		newCharacter.id = id * static_cast<unsigned int>(curChrIds.size()) + i; 
 		party.push_back(newCharacter);
 	}
 }

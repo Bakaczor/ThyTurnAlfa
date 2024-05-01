@@ -3,26 +3,30 @@
 #ifndef HEURISTIC_LIST_H
 #define HEURISTIC_LIST_H
 
-//#include <array>
-//#include <map>
-//#include <memory>
-//#include <utility>
-//
-//#include "Character.hpp"
-//#include "Const.hpp"
-//#include "Movement.hpp"
-//#include "Player.hpp"
-//
-//typedef short unsigned int suint;
-//
-//class DmgTable {
-//	public:
-//	DmgTable(const Character& who, std::array<std::unique_ptr<Player>, Const::Sizes::PLAYER_NUMBER>& players);
-//	const int& getDmgEstimation(const suint& onWhom, const suint& what) const;
-//
-//	private:
-//	std::map <std::pair<suint, suint>, int> m_table;
-//	int computeDmg(const Character& who, const suint& what, const Character& onWhom) const;
-//};
+#include <utility>
+#include <vector>
+
+#include "Character.hpp"
+#include "Const.hpp"
+
+typedef short unsigned int suint;
+
+class HeuristicList {
+	public:
+	std::vector <std::pair<suint, suint>> list;
+	HeuristicList(const Character& who, std::array<std::unique_ptr<Player>, Const::Sizes::PLAYER_NUMBER>& players);
+
+	private:
+	int killHeuristic(const Character& who, const suint& what, const Character& onWhom) const;
+	int getWeight(const Character& who, const Movement* what, const Character& onWhom) const;
+	int reviveHeuristic(const Character& who, const Movement* what, const Character& onWhom) const;
+	int cureHeuristic(const Character& who, const Movement* what, const Character& onWhom) const;
+	int healHeuristic(const Character& who, const Movement* what, const Character& onWhom) const;
+	int wetHeuristic(const Character& who, const Movement* what, const Character& onWhom) const;
+	int coldHeuristic(const Character& who, const Movement* what, const Character& onWhom) const;
+	int burningHeuristic(const Character& who, const Movement* what, const Character& onWhom) const;
+	int frozenHeuristic(const Character& who, const Movement* what, const Character& onWhom) const;
+	int attackHeuristic(const Character& who, const Movement* what, const Character& onWhom) const;
+};
 
 #endif
