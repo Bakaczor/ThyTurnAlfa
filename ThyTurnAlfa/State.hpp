@@ -3,7 +3,7 @@
 #ifndef STATE_HPP
 #define STATE_HPP
 
-#include <map>
+#include <unordered_map>
 #include <string>
 
 #include "Queue.hpp"
@@ -18,14 +18,13 @@ struct Node
 class State
 {
 public:
-	State(Queue& t_queue, std::vector<Character>& t_characters);
-	bool extractNode(std::map<std::string, Node>& transpositionTable, std::string& key);
+	State(Queue& t_queue, std::unordered_map<int, Character>& t_characters);
+	bool extractNode(std::unordered_map<std::string, Node>& transpositionTable, std::string& key);
+	bool makeMove(std::tuple<int, int, int>& move);
 
 	Queue queue;
-	std::vector<Character> characters;
+	std::unordered_map<int, Character> characters; // <characterId, character>
 	Node* node;
-private:
-	int m_currentMove;
 };
 
 #endif // STATE_HPP

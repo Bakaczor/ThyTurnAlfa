@@ -36,7 +36,7 @@ int AI::runAB_SSS(int firstEval, int treeHeight, State& state)
 
 int AI::runAlphaBeta(int alpha, int beta, int treeDepth, std::string& path, State& state)
 {
-	int evaluation;
+	int evaluation = 0;
 	bool nodeSearched = state.extractNode(m_transpositionTable, path);
 	if (nodeSearched) {
 		if (state.node->lowerbound >= beta) {
@@ -53,7 +53,45 @@ int AI::runAlphaBeta(int alpha, int beta, int treeDepth, std::string& path, Stat
 		evaluation = 0; // TODO: evaluate(state)
 	}
 	else {
-		// ...
+		Character currentCharacter = state.queue.peek();
+		if (id == currentCharacter.getPlayerId()) {
+			evaluation = INT_MIN;
+			int childAlpha = alpha;
+			
+			for (int i = 0; i < state.node->movements.size(); ++i) {
+				std::pair<int, int> move = state.node->movements[i];
+				std::tuple<int, int, int> moveWithInvoker(currentCharacter.id, move.first, move.second);
+
+				State childState(state);
+				std::string childPath = extendPath(path, moveWithInvoker);
+				
+				// TODO: probably should check if move is possible before making copy os state (on original state?)
+				if (childState.makeMove(moveWithInvoker)) {
+					int childAlphaBeta = runAlphaBeta(childAlpha, beta, treeDepth - 1, childPath, childState);
+					evaluation = std::max(evaluation, childAlphaBeta);
+					childAlpha = std::max(childAlpha, evaluation);
+				}
+			}
+		}
+		else {
+			evaluation = INT_MAX;
+			int childBeta = beta;
+
+			for (int i = 0; i < state.node->movements.size(); ++i) {
+				std::pair<int, int> move = state.node->movements[i];
+				std::tuple<int, int, int> moveWithInvoker(currentCharacter.id, move.first, move.second);
+
+				State childState(state);
+				std::string childPath = extendPath(path, moveWithInvoker);
+
+				// TODO: probably should check if move is possible before making copy os state (on original state?)
+				if (childState.makeMove(moveWithInvoker)) {
+					int childAlphaBeta = runAlphaBeta(alpha, childBeta, treeDepth - 1, childPath, childState);
+					evaluation = std::min(evaluation, childAlphaBeta);
+					childBeta = std::min(childBeta, evaluation);
+				}
+			}
+		}
 	}
 
 	if (evaluation <= alpha) {
@@ -68,4 +106,15 @@ int AI::runAlphaBeta(int alpha, int beta, int treeDepth, std::string& path, Stat
 	}
 
 	return evaluation;
+}
+
+std::string AI::extendPath(std::string& path, std::tuple<int, int, int>& move)
+{
+	int invokerId = std::get<0>(move);
+	int movementId = std::get<1>(move);
+	int targetId = std::get<2>(move);
+
+	// hashedMove (8 bits) = invokerId: 0-7 (3 bits) | movementId: 0-3 (2 bits) | targetId: 0-7 (3 bits)
+	char hashedMove = invokerId << 5 | movementId << 3 | targetId;
+	return path + hashedMove;
 }

@@ -5,6 +5,7 @@
 
 #include <queue>
 #include <memory>
+#include <unordered_map>
 
 class Player;
 class Character;
@@ -23,7 +24,7 @@ class Queue : private std::priority_queue<Tuple> {
 public:
 	Queue();
 	Queue(std::array<std::unique_ptr<Player>, 2>& players);
-	Queue(Queue& queue, std::vector<Character>& characters);
+	Queue(Queue& queue, std::unordered_map<int, Character>& characters);
 	Character& peek();
 	const std::vector<Tuple>& getQueue() const;
 };
