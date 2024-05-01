@@ -16,7 +16,9 @@ Character::Character(const Character& c):
 	m_imagePath { c.m_imagePath }, m_textureID { c.m_textureID }, 
 	m_hp { c.m_hp }, m_mp { c.m_mp }, m_atk { c.m_atk }, m_def{ c.m_def }, m_spd{ c.m_spd },
 	movements { c.movements } { 
-    
+    for (auto& e_ptr : c.activeEffects) {
+        this->activeEffects.push_back(e_ptr->clone());
+    }
 }
 
 bool Character::applyDamage(int dmg) {
