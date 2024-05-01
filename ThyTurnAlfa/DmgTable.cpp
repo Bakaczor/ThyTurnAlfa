@@ -14,6 +14,10 @@ DmgTable::DmgTable(const Character& who, std::array<std::unique_ptr<Player>, Con
     }
 }
 
+void DmgTable::reset() {
+    m_table.clear();
+}
+
 const int& DmgTable::getDmgEstimation(const suint& onWhom, const suint& what) const {
     return m_table.at(std::make_pair(onWhom, what));
 }

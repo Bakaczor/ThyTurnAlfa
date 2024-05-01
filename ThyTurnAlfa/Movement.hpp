@@ -6,6 +6,7 @@
 #include <cstring>
 #include <string>
 
+#include "Character.hpp"
 #include "MovementType.hpp"
 #include "TargetType.hpp"
 
@@ -30,6 +31,6 @@ class Movement {
 	virtual void addEffects(Character& on_whom);
 };
 
-#endif // !MOVEMENT_HPP
+#endif
 
 

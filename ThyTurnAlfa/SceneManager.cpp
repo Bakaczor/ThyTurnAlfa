@@ -159,6 +159,11 @@ int SceneManager::run() {
                     setupGame();
                     renderNewFrame();
                     m_queue = Queue(m_players);
+                    for (const auto& player : m_players) {
+                        for (auto& character : player->party) {
+                            character.loadDmgEstimationTable(m_players);
+                        }
+                    }
                 }
                 unsigned int winner = playerWon();
                 if (-1 != winner) {
