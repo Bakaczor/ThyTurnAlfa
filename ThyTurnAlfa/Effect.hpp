@@ -3,8 +3,8 @@
 #ifndef EFFECT_HPP
 #define EFFECT_HPP
 
-#include <cstring>
 #include <string>
+#include <memory>
 
 class Character;
 
@@ -16,6 +16,8 @@ class Effect {
 
 	Effect(const std::string& name, int duration) : name{ name }, duration{ duration } { }
 	Effect(const Effect& e) = default;
+
+	virtual std::unique_ptr<Effect> clone() = 0;
 
 	virtual bool nextRound(Character& affected) = 0;
 
