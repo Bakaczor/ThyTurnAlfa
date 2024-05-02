@@ -65,7 +65,7 @@ int AI::runAlphaBeta(int characterId, int alpha, int beta, int treeDepth, std::s
 	int evaluation = INT_MIN;
 
 	// node extraction
-	bool nodeSearched = state.extractNode(m_transpositionTable, path);
+	bool nodeSearched = state.extractNode(characterId, m_transpositionTable, path);
 	if (nodeSearched) {
 		if (state.node->lowerbound >= beta) {
 			return state.node->lowerbound;
@@ -86,8 +86,8 @@ int AI::runAlphaBeta(int characterId, int alpha, int beta, int treeDepth, std::s
 			evaluation = INT_MIN;
 			int childAlpha = alpha;
 			
-			for (int i = 0; i < state.node->movements.size(); ++i) {
-				std::pair<int, int> move = state.node->movements[i];
+			for (int i = 0; i < state.node->movements.list.size(); ++i) {
+				std::pair<int, int> move = state.node->movements.list[i];
 				std::tuple<int, int, int> moveWithInvoker(characterId, move.first, move.second);
 
 				State childState(state);
@@ -112,8 +112,8 @@ int AI::runAlphaBeta(int characterId, int alpha, int beta, int treeDepth, std::s
 			evaluation = INT_MAX;
 			int childBeta = beta;
 
-			for (int i = 0; i < state.node->movements.size(); ++i) {
-				std::pair<int, int> move = state.node->movements[i];
+			for (int i = 0; i < state.node->movements.list.size(); ++i) {
+				std::pair<int, int> move = state.node->movements.list[i];
 				std::tuple<int, int, int> moveWithInvoker(characterId, move.first, move.second);
 
 				State childState(state);

@@ -6,7 +6,8 @@
 #include "Heal.hpp"
 #include "Revive.hpp"
 #include "MagicAttack.hpp"
-#include "HeuristicList.hpp"
+
+Node::Node(HeuristicList& t_movements) : movements{ t_movements } {}
 
 State::State(Queue& t_queue, std::unordered_map<int, Character>& t_characters) :
 	characters{t_characters}, queue{t_queue, t_characters}, node{nullptr} {}
@@ -19,10 +20,11 @@ bool State::extractNode(int characterId, std::unordered_map<std::string, Node>& 
 		nodeSearched = true;
 	}
 	else {
-		transpositionTable.emplace(key, Node{ .movements = HeuristicList(characters[characterId], characters) });
+		HeuristicList movements(characters[characterId], characters);
+		transpositionTable.emplace(key, Node(movements));
 	}
 
-	node = &transpositionTable[key];
+	node = &transpositionTable.at(key);
 	return nodeSearched;
 }
 
@@ -125,26 +127,43 @@ double State::evaluateMagicAttackPotential(int playerId)
 	double secondPlayerMagicAttackPotential = 0.0;
 
 	for (auto& character : characters) {
-		int dmg = 0;
-		int cost = 0;
-		for (auto& movement : character.second.movements) {
+		double magicAttackPotential = 0.0;
+
+		for (int i = 0; i < character.second.movements.size(); ++i) {
+			auto& movement = character.second.movements[i];
+
 			if (movement->name == Const::FireAttack::FIRE_ATTACK_MOVEMENT_NAME ||
 				movement->name == Const::IceAttack::ICE_ATTACK_MOVEMENT_NAME ||
 				movement->name == Const::LightningAttack::LIGHTNING_ATTACK_MOVEMENT_NAME ||
-				movement->name == Const:: WaterAttack::WATER_ATTACK_MOVEMENT_NAME) {
+				movement->name == Const::WaterAttack::WATER_ATTACK_MOVEMENT_NAME) {
 				auto ptr = std::dynamic_pointer_cast<MagicAttack>(movement);
-				dmg += 0; // TODO: precomputed tables average
-				cost += ptr->getCost();
+
+				// calculate avg damage
+				int dmg = 0;
+				int count = 0;
+				for (auto& target : characters) {
+					if (target.second.getPlayerId() != playerId) {
+						dmg += character.second.dmgEstimationTable.getDmgEstimation(target.second.id, i);
+						++count;
+					}
+				}
+				double avgDmg = dmg * 1.0 / count;
+
+				// calculate movement potential
+				int cost = ptr->getCost();
+				magicAttackPotential += avgDmg / cost;
 			}
-		}
-		double magicAttackPotential = character.second.currentMp * dmg * 1.0 / cost;
+		} // movement loop
+
+		// calculate character potential
+		magicAttackPotential *= character.second.currentMp;
 		if (character.second.getPlayerId() == playerId) {
 			firstPlayerMagicAttackPotential += magicAttackPotential;
 		}
 		else {
 			secondPlayerMagicAttackPotential += magicAttackPotential;
 		}
-	}
+	} // character loop
 
 	return firstPlayerMagicAttackPotential - secondPlayerMagicAttackPotential;
 }

@@ -7,14 +7,15 @@
 #include <string>
 
 #include "Queue.hpp"
-
-class HeuristicList;
+#include "HeuristicList.hpp"
 
 struct Node
 {
+	Node(HeuristicList& t_movements);
+
 	int lowerbound = INT_MIN;
 	int upperbound = INT_MAX;
-	HeuristicList movements; // <movementID, characterID>
+	HeuristicList movements;
 };
 
 class State
