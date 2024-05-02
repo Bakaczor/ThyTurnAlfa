@@ -16,10 +16,11 @@ Character::Character(const Character& c):
 	wAtk{ c.wAtk }, wDef{ c.wDef }, isAlive{ c.isAlive }, m_name { c.m_name },
 	m_imagePath { c.m_imagePath }, m_textureID { c.m_textureID }, 
 	m_hp { c.m_hp }, m_mp { c.m_mp }, m_atk { c.m_atk }, m_def{ c.m_def }, m_spd{ c.m_spd },
-	movements { c.movements } { }
+	movements { c.movements } { 
+    // TODO : copy effects
+}
 
-bool Character::applyDamage(int dmg)
-{
+bool Character::applyDamage(int dmg) {
     for (auto& e : activeEffects) {
         Shield* ptr = dynamic_cast<Shield*>(e.get());
         if (ptr) {
@@ -69,7 +70,7 @@ void Character::reset() {
 	wAtk = 0;
 	wDef = 0;
 	isAlive = true;
-    detachEffects();
+    dmgEstimationTable.reset();
 }
 
 void Character::deserialize(Json::Value& root)
@@ -118,6 +119,10 @@ bool Character::loadImage() {
     } else { return false; }
     stbi_image_free(data);
     return true;
+}
+
+void Character::loadDmgEstimationTable(std::array<std::unique_ptr<Player>, Const::Sizes::PLAYER_NUMBER>& players) {
+    dmgEstimationTable = DmgTable(*this, players);
 }
 
 std::string Character::getName() const { return m_name; }

@@ -159,6 +159,18 @@ int SceneManager::run() {
                     setupGame();
                     renderNewFrame();
                     m_queue = Queue(m_players);
+                    for (const auto& player : m_players) {
+                        for (auto& character : player->party) {
+                            character.loadDmgEstimationTable(m_players);
+                        }
+                    }
+                }
+                unsigned int winner = playerWon();
+                if (-1 != winner) {
+                    m_currentState = ProgramState::Menu;
+                    resetSetup();
+                    renderWinner(winner);
+                    break;
                 }
                 Character& character = m_queue.peek();
                 unsigned int id = character.getPlayerId();
@@ -168,15 +180,30 @@ int SceneManager::run() {
                 std::optional<Message> message = ((*it)->move(character, m_players));
                 if (m_currentState != ProgramState::Game) { break; }
                 if (!message.has_value()) {
-                    // TODO : discuss this part
-                    message = Message{ "Megumin", "ERROR", "Aqua" };
-                }
-                renderPopUp(message.value(), id);
+                    message = Message{ character.getName(), "unavailible moves", "everyone 10 times :<" };
+                } 
+                renderMove(character, message.value(), id);
                 break;
             }
         }
     }
     return terminate();
+}
+
+int SceneManager::playerWon() const {
+    for (int i = 0; i < m_players.size(); i++) {
+        bool alive = false;
+        for (const Character& c : m_players.at(i)->party) {
+            if (c.isAlive) {
+                alive = true;
+                break;
+            }
+        }
+        if (!alive) {
+            return m_players.at((i + 1) % m_players.size())->id;
+        }
+    }
+    return -1;
 }
 
 int SceneManager::terminate() {

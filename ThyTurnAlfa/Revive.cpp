@@ -5,7 +5,7 @@
 Revive::Revive(): DefensiveMovement(Const::Revive::REVIVE_MOVENT_NAME, 
 									Const::Revive::REVIVE_DEFAULT_COST) {}
 
-bool Revive::isInvokable(Character& who, Character& on_whom) {
+bool Revive::isInvokable(const Character& who, const Character& on_whom) const {
 	return DefensiveMovement::isInvokable(who, on_whom) && on_whom.currentHp == 0;
 }
 

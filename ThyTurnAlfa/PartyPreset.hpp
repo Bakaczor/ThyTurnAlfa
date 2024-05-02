@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef PARTY_PRESET_H
-#define PARTY_PRESET_H
+#ifndef PARTY_PRESET_HPP
+#define PARTY_PRESET_HPP
 
 #include <string>
 #include <vector>
