@@ -190,9 +190,8 @@ int SceneManager::run() {
                 if (m_currentState != ProgramState::Game) { break; }
                 if (!message.has_value()) {
                     message = Message{ character.getName(), "unavailible moves", "everyone 10 times :<" };
-                } else {
-                    applyEffects();
                 }
+                applyEffects();
                 renderMove(character, message.value(), id);
                 break;
             }
