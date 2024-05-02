@@ -6,11 +6,12 @@
 #include "Heal.hpp"
 #include "Revive.hpp"
 #include "MagicAttack.hpp"
+#include "HeuristicList.hpp"
 
 State::State(Queue& t_queue, std::unordered_map<int, Character>& t_characters) :
 	characters{t_characters}, queue{t_queue, t_characters}, node{nullptr} {}
 
-bool State::extractNode(std::unordered_map<std::string, Node>& transpositionTable, std::string& key)
+bool State::extractNode(int characterId, std::unordered_map<std::string, Node>& transpositionTable, std::string& key)
 {
 	bool nodeSearched = false;
 
@@ -18,8 +19,7 @@ bool State::extractNode(std::unordered_map<std::string, Node>& transpositionTabl
 		nodeSearched = true;
 	}
 	else {
-		transpositionTable.emplace(key, Node());
-		// TODO: sort movements
+		transpositionTable.emplace(key, Node{ .movements = HeuristicList(characters[characterId], characters) });
 	}
 
 	node = &transpositionTable[key];

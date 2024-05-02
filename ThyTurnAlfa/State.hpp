@@ -8,18 +8,20 @@
 
 #include "Queue.hpp"
 
+class HeuristicList;
+
 struct Node
 {
 	int lowerbound = INT_MIN;
 	int upperbound = INT_MAX;
-	std::vector<std::pair<int, int>> movements; // <movementID, characterID>
+	HeuristicList movements; // <movementID, characterID>
 };
 
 class State
 {
 public:
 	State(Queue& t_queue, std::unordered_map<int, Character>& t_characters);
-	bool extractNode(std::unordered_map<std::string, Node>& transpositionTable, std::string& key);
+	bool extractNode(int characterId, std::unordered_map<std::string, Node>& transpositionTable, std::string& key);
 	bool makeMove(std::tuple<int, int, int>& move);
 	double evaluate(int playerId);
 
