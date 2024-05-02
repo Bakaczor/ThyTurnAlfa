@@ -78,7 +78,7 @@ void Character::reset() {
 	wAtk = 0;
 	wDef = 0;
 	isAlive = true;
-    detachEffects();
+    dmgEstimationTable.reset();
 }
 
 void Character::deserialize(Json::Value& root)
@@ -127,6 +127,10 @@ bool Character::loadImage() {
     } else { return false; }
     stbi_image_free(data);
     return true;
+}
+
+void Character::loadDmgEstimationTable(std::array<std::unique_ptr<Player>, Const::Sizes::PLAYER_NUMBER>& players) {
+    dmgEstimationTable = DmgTable(*this, players);
 }
 
 std::string Character::getName() const { return m_name; }

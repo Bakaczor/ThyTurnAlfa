@@ -168,6 +168,11 @@ int SceneManager::run() {
                     setupGame();
                     renderNewFrame();
                     m_queue = Queue(m_players);
+                    for (const auto& player : m_players) {
+                        for (auto& character : player->party) {
+                            character.loadDmgEstimationTable(m_players);
+                        }
+                    }
                 }
                 unsigned int winner = playerWon();
                 if (-1 != winner) {
@@ -184,7 +189,7 @@ int SceneManager::run() {
                 std::optional<Message> message = ((*it)->move(character, m_players));
                 if (m_currentState != ProgramState::Game) { break; }
                 if (!message.has_value()) {
-                    message = Message{ character.getName(), "cannot", "move :<" };
+                    message = Message{ character.getName(), "unavailible moves", "everyone 10 times :<" };
                 } else {
                     applyEffects();
                 }

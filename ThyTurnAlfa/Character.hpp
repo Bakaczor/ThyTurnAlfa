@@ -3,19 +3,24 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 
-#include <string>
 #include <json/json.h>
 #include <memory>
+#include <string>
 #include <string>
 #include <vector>
 
 #include "imgui.h"
 
+#include "Const.hpp"
+#include "DmgTable.hpp"
 #include "Effect.hpp"
 #include "Movement.hpp"
+#include "Player.hpp"
 
+class DmgTable;
 class Effect;
 class Movement;
+class Player;
 
 class Character {
 	public:
@@ -25,6 +30,7 @@ class Character {
 	int wAtk = 0;
 	int wDef = 0;
 	bool isAlive = true;
+	DmgTable dmgEstimationTable;
 
 	std::vector<std::unique_ptr<Effect>> activeEffects;
 	std::vector<std::shared_ptr<Movement>> movements;
@@ -40,6 +46,7 @@ class Character {
 
 	void deserialize(Json::Value& root);
 	bool loadImage();
+	void loadDmgEstimationTable(std::array<std::unique_ptr<Player>, Const::Sizes::PLAYER_NUMBER>& players);
 
 	std::string getName() const;
 	unsigned int getTextureID() const;
@@ -63,6 +70,6 @@ class Character {
 	int m_spd = 0;
 };
 
-#endif // !CHARACTER_HPP
+#endif
 
 

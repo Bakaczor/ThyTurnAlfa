@@ -5,7 +5,7 @@
 Heal::Heal(): DefensiveMovement(Const::Heal::HEAL_MOVEMENT_NAME,
 								Const::Heal::HEAL_DEFAULT_COST) {}
 
-bool Heal::isInvokable(Character& who, Character& on_whom) {
+bool Heal::isInvokable(const Character& who, const Character& on_whom) const {
 	return DefensiveMovement::isInvokable(who, on_whom) && on_whom.currentHp > 0;
 }
 
