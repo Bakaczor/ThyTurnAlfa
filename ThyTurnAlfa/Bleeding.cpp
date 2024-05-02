@@ -4,7 +4,12 @@
 
 Bleeding::Bleeding(): TemporaryDamagePerRound(Const::Bleeding::BLEEDING_EFFECT_NAME,
 											  Const::Bleeding::BLEEDING_DEFAULT_DURATION,
-											  Const::Bleeding::BLEEDING_DEFAULT_DAMAGE_PER_ROUND) {};
+											  Const::Bleeding::BLEEDING_DEFAULT_DAMAGE_PER_ROUND) {}
+
+std::unique_ptr<Effect> Bleeding::clone()
+{
+	return std::move(std::make_unique<Bleeding>());
+}
 
 bool Bleeding::addTo(Character& affected) {
 	std::erase_if(affected.activeEffects, [&affected](std::unique_ptr<Effect>& e) {

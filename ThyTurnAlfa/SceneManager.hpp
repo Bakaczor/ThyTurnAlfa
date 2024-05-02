@@ -58,6 +58,8 @@ class SceneManager {
 	std::vector<Character> m_availibleCharacters;
 	Queue m_queue;
 
+	void applyEffects();
+
 	// === OPTIONS ===
 	std::array<const char*, Const::Sizes::PLAYER_NUMBER> m_availibleFunctions = { "Basic", "NotBasic" };
 	int m_curFucIdx = 0;

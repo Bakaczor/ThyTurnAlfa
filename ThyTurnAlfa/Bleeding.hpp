@@ -11,6 +11,7 @@ class Bleeding : public TemporaryDamagePerRound {
 	public:
 	Bleeding();
 
+	virtual std::unique_ptr<Effect> clone() override;
 	// nextRound methods is inherited from ActionlessEffect
 	// cancelFrom methods is inherited from Effect
 	static bool addTo(Character& affected);

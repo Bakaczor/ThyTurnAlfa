@@ -11,6 +11,7 @@ class Boost : public TemporaryDamageModifier {
 	public:
 	Boost();
 
+	virtual std::unique_ptr<Effect> clone() override;
 	// nextRound and cancelFrom methods are inherited from TemporaryDamageModifier
 	static bool addTo(Character& affected);
 };

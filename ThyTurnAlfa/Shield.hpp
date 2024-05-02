@@ -14,6 +14,7 @@ class Shield : public Effect {
 
 	Shield();
 
+	virtual std::unique_ptr<Effect> clone() override;
 	virtual bool nextRound(Character& affected) override;
 	// cancelFrom is inherited from Effect
 	static bool addTo(Character& affected);

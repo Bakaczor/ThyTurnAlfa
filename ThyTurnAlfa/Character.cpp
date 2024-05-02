@@ -9,7 +9,6 @@
 #include "Shield.hpp"
 #include "Effect.hpp"
 #include "MovementFactory.hpp"
-#include "Movement.hpp"
 
 Character::Character(const Character& c):
 	id{ c.id }, currentHp{ c.currentHp }, currentMp{ c.currentMp },
@@ -17,7 +16,9 @@ Character::Character(const Character& c):
 	m_imagePath { c.m_imagePath }, m_textureID { c.m_textureID }, 
 	m_hp { c.m_hp }, m_mp { c.m_mp }, m_atk { c.m_atk }, m_def{ c.m_def }, m_spd{ c.m_spd },
 	movements { c.movements } { 
-    // TODO : copy effects
+    for (auto& e_ptr : c.activeEffects) {
+        this->activeEffects.push_back(e_ptr->clone());
+    }
 }
 
 bool Character::applyDamage(int dmg) {
@@ -36,7 +37,7 @@ bool Character::applyDamage(int dmg) {
     if (dmg > 0) {
         if (dmg >= currentHp) {
             currentHp = 0;
-            detachEffects(); // on_whom died so all effects must be detached
+            // removed detaching because it causes errors
             isAlive = false;
             return false;
         } else {
@@ -47,12 +48,19 @@ bool Character::applyDamage(int dmg) {
 }
 
 bool Character::applyEffects() {
-	for (auto it = activeEffects.begin(); it != activeEffects.end(); it++) {
-		if (!(*it)->nextRound(*this)) {
-			(*it)->cancelFrom(*this);
-			activeEffects.erase(it);
-		}
-	}
+    std::erase_if(activeEffects, [this](std::unique_ptr<Effect>& e) {
+        if (!e->nextRound(*this))
+        {
+            e->cancelFrom(*this);
+            return true;
+        }
+        return false; });
+
+    if (!this->isAlive) {
+        detachEffects();
+        return false;
+    }
+
 	return true;
 }
 

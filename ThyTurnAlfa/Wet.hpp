@@ -11,6 +11,7 @@ class Wet : public ActionlessEffect {
 	public:
 	Wet();
 
+	virtual std::unique_ptr<Effect> clone() override;
 	// nextRound and remove methods are inherited from ActionlessEffect
 	// cancelFrom method is inherited from Effect
 	static bool addTo(Character& affected);
