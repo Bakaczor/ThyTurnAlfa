@@ -11,16 +11,17 @@
 #include "Revive.hpp"
 #include "WaterAttack.hpp"
 
-HeuristicList::HeuristicList(const Character& who, std::array<std::unique_ptr<Player>, Const::Sizes::PLAYER_NUMBER>& players) {
-	std::vector<std::pair<std::pair<suint, suint>, int>> v(who.movements.size() * players.size());
+HeuristicList::HeuristicList(const Character& who, std::unordered_map<int, Character>& characters) {
+	std::vector<std::pair<std::pair<suint, suint>, int>> v(who.movements.size() * characters.size());
 	for (suint i = 0; i < who.movements.size(); i++) {
-		for (const auto& player : players) {
-			for (const auto& character : player->party) {
-				const auto& pair = std::make_pair(i, character.id);
-				int weight = getWeight(who, who.movements.at(i).get(), character);
-				weight += killHeuristic(who, i, character);
-				v.emplace_back(std::make_pair(pair, weight));
+		for (const auto& character : characters) {
+			if (!who.movements.at(i)->isInvokable(who, character.second)) {
+				continue;
 			}
+			const auto& pair = std::make_pair(i, character.second.id);
+			int weight = getWeight(who, who.movements.at(i).get(), character.second);
+			weight += killHeuristic(who, i, character.second);
+			v.emplace_back(std::make_pair(pair, weight));
 		}
 	}
 	std::sort(v.begin(), v.end(), [](const auto& a, const auto& b) { return a.second > b.second; });
