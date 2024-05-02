@@ -33,7 +33,7 @@ class Effect {
 	bool elapsed();
 };
 
-#endif // !EFFECT_HPP
+#endif
 
 
 

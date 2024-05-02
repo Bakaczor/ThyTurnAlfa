@@ -13,9 +13,9 @@ class ShieldMovement : public DefensiveMovement {
 	const int shieldHp = Const::ShieldMovement::SHIELD_MOVEMENT_DEFAULT_HP;
 
 	ShieldMovement();
+	virtual bool isInvokable(const Character& who, const Character& on_whom) const final;
 
 	private:
-	virtual bool isInvokable(Character& who, Character& on_whom) final;
 	virtual void addEffects(Character& on_whom) final;
 };
 

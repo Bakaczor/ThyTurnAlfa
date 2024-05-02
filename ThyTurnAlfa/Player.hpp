@@ -8,6 +8,8 @@
 #include "Character.hpp"
 #include "Message.hpp"
 
+class Character;
+
 class Player {
 	public:
 	static unsigned int count;

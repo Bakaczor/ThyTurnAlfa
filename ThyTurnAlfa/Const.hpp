@@ -11,6 +11,21 @@ namespace Const {
 		constexpr unsigned int MAX_NUM_OF_TRIES = 10;
 	}
 
+	namespace Algorithmic {
+		constexpr float NDEF = 200.0f;
+		constexpr float HEAL_THRESHOLD = 0.3f;
+		constexpr int W_REVIVE = 10;
+		constexpr int W_KILL = 9;
+		constexpr int W_HEAL = 6;
+		constexpr int W_WET = 5;
+		constexpr int W_BURNING = 3;
+		constexpr int W_FROZEN = 3;
+		constexpr int W_COLD = 3;
+		constexpr int W_CURE = 3;
+		constexpr int W_ATTACK = 1;
+		constexpr int W_BAD_MOVE = -100;
+	}
+
 	// ===== EFFECTS =====
 
 	namespace Bleeding {

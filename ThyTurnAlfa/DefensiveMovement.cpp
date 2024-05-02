@@ -8,6 +8,6 @@ int DefensiveMovement::getCost() {
 	return cost;
 }
 
-bool DefensiveMovement::isInvokable(Character& who, Character& on_whom) {
+bool DefensiveMovement::isInvokable(const Character& who, const Character& on_whom) const {
 	return Movement::isInvokable(who, on_whom) && who.currentMp >= cost;
 }
