@@ -19,7 +19,6 @@
 #include "PartyPreset.hpp"
 #include "PartyType.hpp"
 #include "Player.hpp"
-#include "Player.hpp"
 #include "ProgramState.hpp"
 #include "Queue.hpp"
 #include "WindowMode.hpp"
@@ -64,7 +63,7 @@ class SceneManager {
 	int m_treeDepth = 1;
 
 	// === SETUP ===
-	std::array<const char*, Const::Sizes::PLAYER_NUMBER> m_availiblePlayers = { "Human", "Random" };
+	std::array<const char*, Const::Sizes::NUM_OF_PLAYER_TYPES> m_availiblePlayers = { "Human", "Random", "AI"};
 	int m_curPlyIdx_1 = 0;
 	int m_curPlyIdx_2 = 0;
 	std::vector<PartyPreset> m_partyPresets;

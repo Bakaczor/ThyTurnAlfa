@@ -113,7 +113,7 @@ double State::evaluateHealingPotential(int playerId)
 			}
 		} // movement loop
 
-		double healingPotential = character.second.currentMp * healingValue * 1.0 / healingCost;
+		double healingPotential = healingCost == 0 ? 0.0 : character.second.currentMp * healingValue * 1.0 / healingCost;
 		if (character.second.getPlayerId() == playerId) {
 			firstPlayerHealingPotential += healingPotential;
 		}

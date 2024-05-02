@@ -8,6 +8,7 @@ namespace Const {
 	namespace Sizes {
 		constexpr unsigned int MAX_PARTY_SIZE = 4;
 		constexpr unsigned int PLAYER_NUMBER = 2;
+		constexpr unsigned int NUM_OF_PLAYER_TYPES = 3;
 		constexpr unsigned int MAX_NUM_OF_TRIES = 10;
 	}
 

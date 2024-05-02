@@ -6,9 +6,8 @@
 #include <unordered_map>
 
 #include "Player.hpp"
+#include "State.hpp"
 
-struct Node;
-class State;
 class Queue;
 
 class AI : public Player {
