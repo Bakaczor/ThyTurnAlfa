@@ -76,6 +76,7 @@ double State::evaluateAttackPotential(int playerId)
 		int def = character.second.getDef();
 		int spd = character.second.getSpd();
 		double eval = std::sqrt(atk * atk + def * def + spd * spd);
+
 		if (character.second.getPlayerId() == playerId) {
 			firstPlayerAttackPotential += eval;
 			++firstPlayerCharacterCount;
@@ -98,17 +99,20 @@ double State::evaluateHealingPotential(int playerId)
 		int healingValue = 0;
 		int healingCost = 0;
 		for (auto& movement : character.second.movements) {
+			// Heal
 			if (movement->name == Const::Heal::HEAL_MOVEMENT_NAME) {
 				auto ptr = std::dynamic_pointer_cast<Heal>(movement);
 				healingValue += ptr->hpBoost;
 				healingCost += ptr->getCost();
 			}
+			// Revive
 			else if (movement->name == Const::Revive::REVIVE_MOVENT_NAME) {
 				auto ptr = std::dynamic_pointer_cast<Revive>(movement);
 				healingValue += character.second.getHp(); // probably should be something else but I dont care
 				healingCost += ptr->getCost();
 			}
-		}
+		} // movement loop
+
 		double healingPotential = character.second.currentMp * healingValue * 1.0 / healingCost;
 		if (character.second.getPlayerId() == playerId) {
 			firstPlayerHealingPotential += healingPotential;
@@ -116,7 +120,7 @@ double State::evaluateHealingPotential(int playerId)
 		else {
 			secondPlayerHealingPotential += healingPotential;
 		}
-	}
+	} // character loop
 
 	return firstPlayerHealingPotential - secondPlayerHealingPotential;
 }
