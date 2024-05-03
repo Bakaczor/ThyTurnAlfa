@@ -10,7 +10,13 @@
 Node::Node(HeuristicList& t_movements) : movements{ t_movements } {}
 
 State::State(Queue& t_queue, std::unordered_map<int, Character>& t_characters) :
-	characters{t_characters}, queue{t_queue, t_characters}, node{nullptr} {}
+	characters{ t_characters }, queue{ t_queue, t_characters }, node{ nullptr } {}
+
+State::State(const State& state) :
+	characters{ state.characters }, node{ nullptr } 
+{
+	queue = Queue(state.queue, characters);
+}
 
 bool State::extractNode(int characterId, std::unordered_map<std::string, Node>& transpositionTable, std::string& key)
 {

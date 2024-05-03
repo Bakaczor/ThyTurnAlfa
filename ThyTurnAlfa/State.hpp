@@ -22,6 +22,7 @@ class State
 {
 public:
 	State(Queue& t_queue, std::unordered_map<int, Character>& t_characters);
+	State(const State& state);
 	bool extractNode(int characterId, std::unordered_map<std::string, Node>& transpositionTable, std::string& key);
 	bool makeMove(std::tuple<int, int, int>& move);
 	double evaluate(int playerId);

@@ -25,10 +25,10 @@ Queue::Queue(std::array<std::unique_ptr<Player>, 2>& players) {
 	}
 }
 
-Queue::Queue(Queue& queue, std::unordered_map<int, Character>& characters)
+Queue::Queue(const Queue& queue, std::unordered_map<int, Character>& characters)
 {
 	for (auto& tuple : queue.c) {
-		c.emplace_back(&characters[tuple.character->id], tuple.baseATV, tuple.currentATV);
+		c.emplace_back(&characters.at(tuple.character->id), tuple.baseATV, tuple.currentATV);
 	}
 }
 
