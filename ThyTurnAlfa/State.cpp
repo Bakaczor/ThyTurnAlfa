@@ -72,8 +72,6 @@ double State::evaluateHP(int playerId)
 
 double State::evaluateAttackPotential(int playerId)
 {
-	// why do we even have this if does not change at all?
-
 	double firstPlayerAttackPotential = 0.0;
 	int firstPlayerCharacterCount = 0;
 	double secondPlayerAttackPotential = 0.0;
@@ -83,7 +81,7 @@ double State::evaluateAttackPotential(int playerId)
 		int atk = character.second.getAtk();
 		int def = character.second.getDef();
 		int spd = character.second.getSpd();
-		double eval = std::sqrt(atk * atk + def * def + spd * spd);
+		double eval = character.second.isAlive ? std::sqrt(atk * atk + def * def + spd * spd) : 0.0;
 
 		if (character.second.getPlayerId() == playerId) {
 			firstPlayerAttackPotential += eval;
