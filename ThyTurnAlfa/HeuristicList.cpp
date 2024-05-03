@@ -12,7 +12,7 @@
 #include "WaterAttack.hpp"
 
 HeuristicList::HeuristicList(const Character& who, std::unordered_map<int, Character>& characters) {
-	std::vector<std::pair<std::pair<suint, suint>, int>> v(who.movements.size() * characters.size());
+	std::vector<std::pair<std::pair<suint, suint>, int>> v;
 	for (suint i = 0; i < who.movements.size(); i++) {
 		for (const auto& character : characters) {
 			if (!who.movements.at(i)->isInvokable(who, character.second)) {
