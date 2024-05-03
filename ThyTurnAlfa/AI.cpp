@@ -27,9 +27,9 @@ std::optional<Message> AI::move(Character& who, std::array<std::unique_ptr<Playe
 	int targetId = std::get<2>(m_bestMove);
 	if (invokerId != -1) {
 		int targetPlayerId = characters[targetId].getPlayerId();
-		int targetCharacterId = targetId % Const::Sizes::MAX_PARTY_SIZE;
-		who.movements[movementId]->invoke(who, players[targetPlayerId].get()->party[targetCharacterId]);
-		return Message(who.getName(), who.movements[movementId]->name, players[targetPlayerId].get()->party[targetCharacterId].getName());
+		int targetCharacterIdx = targetId % Const::Sizes::MAX_PARTY_SIZE;
+		who.movements[movementId]->invoke(who, players[targetPlayerId].get()->party[targetCharacterIdx]);
+		return Message(who.getName(), who.movements[movementId]->name, players[targetPlayerId].get()->party[targetCharacterIdx].getName());
 	}
 	return std::nullopt;
 }
@@ -92,7 +92,6 @@ int AI::runAlphaBeta(int characterId, int alpha, int beta, int treeDepth, std::s
 				State childState(state);
 				std::string childPath = extendPath(path, moveWithInvoker);
 				
-				// TODO: probably should check if move is possible before making copy os state (on original state?)
 				if (childState.makeMove(moveWithInvoker)) {
 					int childAlphaBeta = runAlphaBeta(childState.queue.peek().id, childAlpha, beta, treeDepth - 1, childPath, childState);
 
