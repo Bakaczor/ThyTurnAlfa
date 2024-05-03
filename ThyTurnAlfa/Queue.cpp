@@ -7,6 +7,9 @@
 Tuple::Tuple(Character* t_character, int t_baseATV):
 	character{ t_character }, baseATV{ t_baseATV }, currentATV{ t_baseATV } {}
 
+Tuple::Tuple(Character* t_character, int t_baseATV, int t_currentATV) :
+	character{ t_character }, baseATV{ t_baseATV }, currentATV{ t_currentATV } {}
+
 bool Tuple::operator < (const Tuple& rhs) const {
 	return currentATV > rhs.currentATV;
 }
@@ -19,6 +22,13 @@ Queue::Queue(std::array<std::unique_ptr<Player>, 2>& players) {
 			int atv = INT_MAX / character.getSpd();
 			emplace(&character, atv);
 		}
+	}
+}
+
+Queue::Queue(const Queue& queue, std::unordered_map<int, Character>& characters)
+{
+	for (auto& tuple : queue.c) {
+		c.emplace_back(&characters.at(tuple.character->id), tuple.baseATV, tuple.currentATV);
 	}
 }
 

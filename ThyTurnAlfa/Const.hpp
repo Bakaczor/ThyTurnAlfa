@@ -8,6 +8,7 @@ namespace Const {
 	namespace Sizes {
 		constexpr unsigned int MAX_PARTY_SIZE = 4;
 		constexpr unsigned int PLAYER_NUMBER = 2;
+		constexpr unsigned int NUM_OF_PLAYER_TYPES = 3;
 		constexpr unsigned int MAX_NUM_OF_TRIES = 10;
 	}
 
@@ -24,6 +25,14 @@ namespace Const {
 		constexpr int W_CURE = 3;
 		constexpr int W_ATTACK = 1;
 		constexpr int W_BAD_MOVE = -100;
+	}
+
+	// ===== EVALUATION =====
+	namespace Evaluation {
+		constexpr unsigned int HP_WEIGHT = 1000;
+		constexpr unsigned int ATK_DEF_SPD_WEIGHT = 100;
+		constexpr unsigned int HEAL_WEIGHT = 1;
+		constexpr unsigned int MAGIC_ATTACK_WEIGHT = 1;
 	}
 
 	// ===== EFFECTS =====

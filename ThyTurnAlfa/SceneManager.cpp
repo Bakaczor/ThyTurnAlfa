@@ -10,6 +10,7 @@
 #include "Reader.hpp"
 #include "Random.hpp"
 #include "Human.hpp"
+#include "AI.hpp"
 
 int SceneManager::init() {
     glfwInit();
@@ -101,7 +102,7 @@ void SceneManager::setupGame() {
         // player 2
         PartyPreset& preset2 = m_partyPresets.at(m_curPPrIdx_2);
         int i2 = 0;
-        for (const std::string& name : preset1.characterNames) {
+        for (const std::string& name : preset2.characterNames) {
             auto it = std::find(view.begin(), view.end(), name);
             if (it != view.end()) {
                 m_curChrIds_2[i2] = static_cast<int>(std::distance(view.begin(), it));
@@ -114,12 +115,16 @@ void SceneManager::setupGame() {
         m_players[0] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_1, this);
     } else if (m_availiblePlayers.at(m_curPlyIdx_1) == "Random") {
         m_players[0] = std::make_unique<Random>(m_availibleCharacters, m_curChrIds_1);
+    } else {
+        m_players[0] = std::make_unique<AI>(m_availibleCharacters, m_curChrIds_1, &m_treeDepth, &m_queue);
     }
     // player 2
     if (m_availiblePlayers.at(m_curPlyIdx_2) == "Human") {
         m_players[1] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_2, this);
     } else if (m_availiblePlayers.at(m_curPlyIdx_2) == "Random") {
         m_players[1] = std::make_unique<Random>(m_availibleCharacters, m_curChrIds_2);
+    } else {
+        m_players[1] = std::make_unique<AI>(m_availibleCharacters, m_curChrIds_2, &m_treeDepth, &m_queue);
     }
 }
 

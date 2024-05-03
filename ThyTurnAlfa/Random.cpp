@@ -8,7 +8,7 @@ std::optional<Message> Random::move(Character& who, std::array<std::unique_ptr<P
 	std::vector<std::pair<std::shared_ptr<Movement>*, Character*>> possibleMoves;
 	for (auto& player : players) {
 		for (Character& character : player->party) {
-			for (auto& movement : character.movements) {
+			for (auto& movement : who.movements) {
 				possibleMoves.push_back(std::make_pair(&movement, &character));
 			}
 		}
