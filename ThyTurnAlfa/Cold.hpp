@@ -10,6 +10,7 @@ class Character;
 class Cold : public ActionlessEffect {
 	public:
 	Cold();
+	Cold(const Cold& cold);
 
 	virtual std::unique_ptr<Effect> clone() override;
 	// nextRound and remove methods are inherited from ActionlessEffect

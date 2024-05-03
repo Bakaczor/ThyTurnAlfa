@@ -7,9 +7,15 @@ Boost::Boost(): TemporaryDamageModifier(Const::Boost::BOOST_EFFECT_NAME,
 										Const::Boost::BOOST_DEFAULT_ATK_BOOST,
 										Const::Boost::BOOST_DEFAULT_DEF_BOOST) {}
 
+Boost::Boost(const Boost& boost)
+	: TemporaryDamageModifier(boost.name, boost.duration, boost.atkModifier, boost.defModifier)
+{
+	elapsedRounds = boost.elapsedRounds;
+}
+
 std::unique_ptr<Effect> Boost::clone()
 {
-	return std::move(std::make_unique<Boost>());
+	return std::make_unique<Boost>(*this);
 }
 
 bool Boost::addTo(Character& affected) {

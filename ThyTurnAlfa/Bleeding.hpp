@@ -10,6 +10,7 @@ class Character;
 class Bleeding : public TemporaryDamagePerRound {
 	public:
 	Bleeding();
+	Bleeding(const Bleeding& bleeding);
 
 	virtual std::unique_ptr<Effect> clone() override;
 	// nextRound methods is inherited from ActionlessEffect

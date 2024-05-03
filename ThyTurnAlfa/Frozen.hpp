@@ -10,6 +10,7 @@ class Character;
 class Frozen : public TemporaryDamageModifier {
 	public:
 	Frozen();
+	Frozen(const Frozen& frozen);
 
 	virtual std::unique_ptr<Effect> clone() override;
 	// nextRound and cancelFrom methods are inherited from TemporaryDamageModifier

@@ -12,7 +12,7 @@ Frozen::Frozen():TemporaryDamageModifier(Const::Frozen::FROZEN_EFFECT_NAME,
 
 std::unique_ptr<Effect> Frozen::clone()
 {
-	return std::move(std::make_unique<Frozen>());
+	return std::make_unique<Frozen>(*this);
 }
 
 bool Frozen::addTo(Character& affected) {

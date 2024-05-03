@@ -7,9 +7,10 @@
 Burning::Burning(): TemporaryDamagePerRound(Const::Burning::BURNING_EFFECT_NAME, 
 											Const::Burning::BURNING_DEFAULT_DURATION,
 											Const::Burning::BURNING_DEFAULT_DAMAGE_PER_ROUND) {}
+
 std::unique_ptr<Effect> Burning::clone()
 {
-	return std::move(std::make_unique<Burning>());
+	return std::make_unique<Burning>(*this);
 }
 ;
 
