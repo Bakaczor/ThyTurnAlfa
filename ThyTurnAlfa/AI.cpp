@@ -117,7 +117,6 @@ int AI::runAlphaBeta(int characterId, int alpha, int beta, int treeDepth, std::s
 				State childState(state);
 				std::string childPath = extendPath(path, moveWithInvoker);
 
-				// TODO: probably should check if move is possible before making copy os state (on original state?)
 				if (childState.makeMove(moveWithInvoker)) {
 					int childAlphaBeta = runAlphaBeta(childState.queue.peek().id, alpha, childBeta, treeDepth - 1, childPath, childState);
 					evaluation = std::min(evaluation, childAlphaBeta);
