@@ -9,9 +9,8 @@ Wet::Wet(): ActionlessEffect(Const::Wet::WET_EFFECT_NAME, Const::Wet::WET_DEFAUL
 
 std::unique_ptr<Effect> Wet::clone()
 {
-	return std::move(std::unique_ptr<Wet>());
+	return std::make_unique<Wet>(*this);
 }
-;
 
 bool Wet::addTo(Character& affected) {
 	bool apply = true;

@@ -9,7 +9,7 @@ Cold::Cold(): ActionlessEffect(Const::Cold::COLD_EFFECT_NAME, Const::Cold::COLD_
 
 std::unique_ptr<Effect> Cold::clone()
 {
-	return std::move(std::make_unique<Cold>());
+	return std::make_unique<Cold>(*this);
 }
 
 bool Cold::addTo(Character& affected) {

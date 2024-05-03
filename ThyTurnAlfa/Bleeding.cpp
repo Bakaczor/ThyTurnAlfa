@@ -8,7 +8,7 @@ Bleeding::Bleeding(): TemporaryDamagePerRound(Const::Bleeding::BLEEDING_EFFECT_N
 
 std::unique_ptr<Effect> Bleeding::clone()
 {
-	return std::move(std::make_unique<Bleeding>());
+	return std::make_unique<Bleeding>(*this);
 }
 
 bool Bleeding::addTo(Character& affected) {
