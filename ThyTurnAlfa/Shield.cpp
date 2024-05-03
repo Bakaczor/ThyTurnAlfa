@@ -3,6 +3,11 @@
 
 Shield::Shield(): Effect(Const::Shield::SHIELD_EFFECT_NAME, Const::Shield::SHIELD_DEFAULT_DURATION) {}
 
+std::unique_ptr<Effect> Shield::clone()
+{
+	return std::make_unique<Shield>(*this);
+}
+
 bool Shield::nextRound(Character& affected) { return hp > 0; }
 
 bool Shield::addTo(Character& affected) {

@@ -58,6 +58,15 @@ int SceneManager::init() {
     return arrange();
 }
 
+void SceneManager::applyEffects()
+{
+    for (auto& player : m_players) {
+        for (auto& character : player->party) {
+            character.applyEffects();
+        }
+    }
+}
+
 int SceneManager::arrange() {
     // === CONFIG ===
     Reader reader;
@@ -186,7 +195,8 @@ int SceneManager::run() {
                 if (m_currentState != ProgramState::Game) { break; }
                 if (!message.has_value()) {
                     message = Message{ character.getName(), "unavailible moves", "everyone 10 times :<" };
-                } 
+                }
+                applyEffects();
                 renderMove(character, message.value(), id);
                 break;
             }

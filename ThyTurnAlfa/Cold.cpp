@@ -7,6 +7,11 @@
 
 Cold::Cold(): ActionlessEffect(Const::Cold::COLD_EFFECT_NAME, Const::Cold::COLD_DEFAULT_DURATION) {}
 
+std::unique_ptr<Effect> Cold::clone()
+{
+	return std::make_unique<Cold>(*this);
+}
+
 bool Cold::addTo(Character& affected) {
 	bool apply = true;
 	bool apply_frozen = false;

@@ -8,7 +8,6 @@ bool TemporaryDamageModifier::nextRound(Character& affected) {
 	if (elapsedRounds == 0) {
 		affected.wAtk += atkModifier;
 		affected.wDef += defModifier;
-
 	}
 	if (elapsedRounds == duration) {
 		cancelFrom(affected);

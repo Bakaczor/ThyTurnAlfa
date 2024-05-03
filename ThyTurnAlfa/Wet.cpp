@@ -5,7 +5,12 @@
 #include "Character.hpp"
 #include "Const.hpp"
 
-Wet::Wet(): ActionlessEffect(Const::Wet::WET_EFFECT_NAME, Const::Wet::WET_DEFAULT_DURATION) {};
+Wet::Wet(): ActionlessEffect(Const::Wet::WET_EFFECT_NAME, Const::Wet::WET_DEFAULT_DURATION) {}
+
+std::unique_ptr<Effect> Wet::clone()
+{
+	return std::make_unique<Wet>(*this);
+}
 
 bool Wet::addTo(Character& affected) {
 	bool apply = true;

@@ -11,6 +11,7 @@ class Frozen : public TemporaryDamageModifier {
 	public:
 	Frozen();
 
+	virtual std::unique_ptr<Effect> clone() override;
 	// nextRound and cancelFrom methods are inherited from TemporaryDamageModifier
 	static bool addTo(Character& affected);
 };

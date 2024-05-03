@@ -10,6 +10,11 @@ Frozen::Frozen():TemporaryDamageModifier(Const::Frozen::FROZEN_EFFECT_NAME,
 										 Const::Frozen::FROZEN_DEFAULT_DEF_DROP,
 										 Const::Frozen::FROZEN_DEFAULT_DURATION) {}
 
+std::unique_ptr<Effect> Frozen::clone()
+{
+	return std::make_unique<Frozen>(*this);
+}
+
 bool Frozen::addTo(Character& affected) {
 	bool apply = true;
 	std::erase_if(affected.activeEffects, [&affected, &apply](auto& e) {
