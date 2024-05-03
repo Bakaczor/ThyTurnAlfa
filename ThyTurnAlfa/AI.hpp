@@ -12,7 +12,7 @@ class Queue;
 
 class AI : public Player {
 public:
-	AI(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrIds, int treeHeight, Queue* pQueue);
+	AI(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrIds, int* treeHeight, Queue* pQueue);
 	virtual std::optional<Message> move(Character& who, std::array<std::unique_ptr<Player>, 2>& players) final;
 private:
 	int runAB_SSS(int characterId, int firstEval, int treeHeight, State& state);
@@ -21,7 +21,7 @@ private:
 
 	std::unordered_map<std::string, Node> m_transpositionTable;
 	std::tuple<int, int, int> m_bestMove; // <invokerId, movementId, targetId>
-	int m_treeHeight;
+	int* m_treeHeight;
 	Queue* m_pGlobalQueue;
 };
 

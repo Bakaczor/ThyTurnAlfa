@@ -31,8 +31,8 @@ namespace Const {
 	namespace Evaluation {
 		constexpr unsigned int HP_WEIGHT = 1000;
 		constexpr unsigned int ATK_DEF_SPD_WEIGHT = 100;
-		constexpr unsigned int HEAL_WEIGHT = 10;
-		constexpr unsigned int MAGIC_ATTACK_WEIGHT = 10;
+		constexpr unsigned int HEAL_WEIGHT = 1;
+		constexpr unsigned int MAGIC_ATTACK_WEIGHT = 1;
 	}
 
 	// ===== EFFECTS =====

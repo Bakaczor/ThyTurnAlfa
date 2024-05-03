@@ -2,7 +2,7 @@
 #include "Queue.hpp"
 #include "Const.hpp"
 
-AI::AI(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrIds, int treeHeight, Queue* pQueue):
+AI::AI(std::vector<Character>& availibleCharacters, std::array<int, 4>& curChrIds, int* treeHeight, Queue* pQueue):
 	Player(availibleCharacters, curChrIds), m_treeHeight{ treeHeight }, m_pGlobalQueue{ pQueue } {}
 
 std::optional<Message> AI::move(Character& who, std::array<std::unique_ptr<Player>, 2>& players) {
@@ -19,7 +19,7 @@ std::optional<Message> AI::move(Character& who, std::array<std::unique_ptr<Playe
 
 	// algorithm evaluation
 	int evaluation = state.evaluate(id);
-	evaluation = runAB_SSS(who.id, evaluation, m_treeHeight, state);
+	evaluation = runAB_SSS(who.id, evaluation, *m_treeHeight, state);
 	
 	// invoke movement
 	int invokerId = std::get<0>(m_bestMove);
@@ -97,7 +97,7 @@ int AI::runAlphaBeta(int characterId, int alpha, int beta, int treeDepth, std::s
 					int childAlphaBeta = runAlphaBeta(childState.queue.peek().id, childAlpha, beta, treeDepth - 1, childPath, childState);
 
 					// store best move
-					if (treeDepth == m_treeHeight && childAlphaBeta > evaluation) {
+					if (treeDepth == *m_treeHeight && childAlphaBeta > evaluation) {
 						m_bestMove = moveWithInvoker;
 					}
 

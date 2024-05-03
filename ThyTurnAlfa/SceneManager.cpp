@@ -107,7 +107,7 @@ void SceneManager::setupGame() {
     } else if (m_availiblePlayers.at(m_curPlyIdx_1) == "Random") {
         m_players[0] = std::make_unique<Random>(m_availibleCharacters, m_curChrIds_1);
     } else {
-        m_players[0] = std::make_unique<AI>(m_availibleCharacters, m_curChrIds_1, m_treeDepth, &m_queue);
+        m_players[0] = std::make_unique<AI>(m_availibleCharacters, m_curChrIds_1, &m_treeDepth, &m_queue);
     }
     // player 2
     if (m_availiblePlayers.at(m_curPlyIdx_2) == "Human") {
@@ -115,7 +115,7 @@ void SceneManager::setupGame() {
     } else if (m_availiblePlayers.at(m_curPlyIdx_2) == "Random") {
         m_players[1] = std::make_unique<Random>(m_availibleCharacters, m_curChrIds_2);
     } else {
-        m_players[1] = std::make_unique<AI>(m_availibleCharacters, m_curChrIds_2, m_treeDepth, &m_queue);
+        m_players[1] = std::make_unique<AI>(m_availibleCharacters, m_curChrIds_2, &m_treeDepth, &m_queue);
     }
 }
 

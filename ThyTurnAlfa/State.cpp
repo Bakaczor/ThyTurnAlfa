@@ -45,11 +45,11 @@ bool State::makeMove(std::tuple<int, int, int>& move)
 
 double State::evaluate(int playerId)
 {
-	return
-		Const::Evaluation::HP_WEIGHT * evaluateHP(playerId) +
-		Const::Evaluation::ATK_DEF_SPD_WEIGHT * evaluateAttackPotential(playerId) +
-		Const::Evaluation::HEAL_WEIGHT * evaluateHealingPotential(playerId) +
-		Const::Evaluation::MAGIC_ATTACK_WEIGHT * evaluateMagicAttackPotential(playerId);
+	double hp = Const::Evaluation::HP_WEIGHT * evaluateHP(playerId);
+	double attackPotential = Const::Evaluation::ATK_DEF_SPD_WEIGHT * evaluateAttackPotential(playerId);
+	double healingPotential = Const::Evaluation::HEAL_WEIGHT * evaluateHealingPotential(playerId);
+	double magicAttackPotential = Const::Evaluation::MAGIC_ATTACK_WEIGHT * evaluateMagicAttackPotential(playerId);
+	return hp + attackPotential + healingPotential + magicAttackPotential;
 }
 
 double State::evaluateHP(int playerId)
@@ -72,6 +72,8 @@ double State::evaluateHP(int playerId)
 
 double State::evaluateAttackPotential(int playerId)
 {
+	// why do we even have this if does not change at all?
+
 	double firstPlayerAttackPotential = 0.0;
 	int firstPlayerCharacterCount = 0;
 	double secondPlayerAttackPotential = 0.0;
