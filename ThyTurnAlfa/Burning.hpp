@@ -10,7 +10,6 @@ class Character;
 class Burning : public TemporaryDamagePerRound {
 	public:
 	Burning();
-	Burning(const Burning& burning);
 
 	virtual std::unique_ptr<Effect> clone() override;
 	// nextRound method is inherited from TemporaryDamagePerRound

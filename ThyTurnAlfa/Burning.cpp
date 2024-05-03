@@ -12,7 +12,6 @@ std::unique_ptr<Effect> Burning::clone()
 {
 	return std::make_unique<Burning>(*this);
 }
-;
 
 bool Burning::addTo(Character& affected) {
 	bool apply = true;

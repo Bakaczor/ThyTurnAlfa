@@ -13,7 +13,6 @@ class Shield : public Effect {
 	int hp = Const::Shield::SHIELD_DEFAULT_HP;
 
 	Shield();
-	Shield(const Shield& shield);
 
 	virtual std::unique_ptr<Effect> clone() override;
 	virtual bool nextRound(Character& affected) override;
