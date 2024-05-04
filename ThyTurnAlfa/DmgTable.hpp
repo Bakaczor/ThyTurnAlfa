@@ -10,6 +10,7 @@
 
 #include "Const.hpp"
 
+
 class Character;
 class Movement;
 class Player;
@@ -24,7 +25,7 @@ class DmgTable {
 	void reset();
 
 	private:
-	std::map <std::pair<suint, suint>, int> m_table;
+	std::map<std::pair<suint, suint>, int> m_table;
 	int computeDmg(const Character& who, const suint& what, const Character& onWhom) const;
 };
 

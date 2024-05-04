@@ -65,13 +65,14 @@ class SceneManager {
 	int m_treeDepth = 1;
 
 	// === SETUP ===
-	std::array<const char*, Const::Sizes::NUM_OF_PLAYER_TYPES> m_availiblePlayers = { "Human", "Random", "AI"};
+	std::array<const char*, Const::Sizes::NUM_OF_PLAYER_TYPES> m_availiblePlayers = { "Human", "Random", "AI" };
 	int m_curPlyIdx_1 = 0;
 	int m_curPlyIdx_2 = 0;
 	std::vector<PartyPreset> m_partyPresets;
 	int m_curPPrIdx_1 = 0;
 	int m_curPPrIdx_2 = 0;
-	PartyType m_partyType = PartyType::Custom;
+	PartyType m_curPtTp_1 = PartyType::Custom;
+	PartyType m_curPtTp_2 = PartyType::Custom;
 	std::array<int, Const::Sizes::MAX_PARTY_SIZE> m_curChrIds_1 = { -1, -1, -1, -1 };
 	std::array<int, Const::Sizes::MAX_PARTY_SIZE> m_curChrIds_2 = { -1, -1, -1, -1 };
 
@@ -95,6 +96,7 @@ class SceneManager {
 	void renderPlayerSetup(float x,
 						   int* curPlyIdx,
 						   int* curPPrIdx,
+						   PartyType& curPtTp,
 						   const std::string& num,
 						   std::array<int, Const::Sizes::MAX_PARTY_SIZE>& curChrIds);
 };

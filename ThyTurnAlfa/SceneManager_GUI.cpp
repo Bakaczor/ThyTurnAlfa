@@ -119,10 +119,11 @@ void SceneManager::renderOptions() {
 void SceneManager::renderPlayerSetup(float x,
                                      int* curPlyIdx,
                                      int* curPPrIdx,
+                                     PartyType& curPtTp,
                                      const std::string& num,
                                      std::array<int, Const::Sizes::MAX_PARTY_SIZE>& curChrIds) {
     ImGui::BeginGroup();
-    ImGui::SetCursorPosX(x * m_width-ImGui::CalcTextSize("Player 2").x * 0.5f);
+    ImGui::SetCursorPosX(x * m_width - ImGui::CalcTextSize("Player 2").x * 0.5f);
     ImGui::SetCursorPosY(0.4f * m_height);
     ImGui::Text(("Player " + num).c_str());
     if (num == "2") {
@@ -156,7 +157,7 @@ void SceneManager::renderPlayerSetup(float x,
 
     ImGui::SetCursorPosY(0.6f * m_height);
     if (partyNames.at(*curPPrIdx) == "Custom") {
-        m_partyType = PartyType::Custom;
+        curPtTp = PartyType::Custom;
         for (int i = 0; i < Const::Sizes::MAX_PARTY_SIZE; i++) {
             ImGui::PushID(i);
             ImGui::SetNextItemWidth(m_width / 2.5f);
@@ -169,7 +170,7 @@ void SceneManager::renderPlayerSetup(float x,
             ImGui::PopID();
         }
     } else {
-        m_partyType = PartyType::Preset;
+        curPtTp = PartyType::Preset;
         auto getter = [](void* data, int index, const char** output) {
             std::string* items = (std::string*)data;
             std::string& current = items[index];
@@ -208,9 +209,9 @@ void SceneManager::renderSetup() {
     ImGui::PushFont(m_blackChancery);
     ImGui::SetWindowFontScale(currScale);
 
-    renderPlayerSetup(0.2f, &m_curPlyIdx_1, &m_curPPrIdx_1, "1", m_curChrIds_1);
+    renderPlayerSetup(0.2f, &m_curPlyIdx_1, &m_curPPrIdx_1, m_curPtTp_1, "1", m_curChrIds_1);
     ImGui::SameLine();
-    renderPlayerSetup(0.8f, &m_curPlyIdx_2, &m_curPPrIdx_2, "2", m_curChrIds_2);
+    renderPlayerSetup(0.8f, &m_curPlyIdx_2, &m_curPPrIdx_2, m_curPtTp_2, "2", m_curChrIds_2);
     
     // =====
 
@@ -381,7 +382,7 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
     ImGui::Columns(2, "MyColumns2", false);
 
     // Column 1
-    ImGui::SetCursorPosY(0.7f * m_height);
+    ImGui::SetCursorPosY(0.77f * m_height);
     ImGui::Text("Characters of player 1");
     ImGui::Spacing();
     i = 0;
@@ -404,7 +405,7 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
     ImGui::NextColumn();
 
     // Column 2
-    ImGui::SetCursorPosY(0.7f * m_height);
+    ImGui::SetCursorPosY(0.77f * m_height);
     ImGui::Text("Characters of player 2");
     ImGui::Spacing();
     i = 0;
