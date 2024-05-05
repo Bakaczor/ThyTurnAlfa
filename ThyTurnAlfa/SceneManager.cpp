@@ -98,7 +98,7 @@ void SceneManager::setupGame() {
             i1++;
         }
     }
-        // player 2
+    // player 2
     if (m_curPtTp_2 == PartyType::Preset) {
         PartyPreset& preset2 = m_partyPresets.at(m_curPPrIdx_2);
         int i2 = 0;
@@ -108,6 +108,18 @@ void SceneManager::setupGame() {
                 m_curChrIds_2[i2] = static_cast<int>(std::distance(view.begin(), it));
             }
             i2++;
+        }
+    }
+
+    // handle empty character slots
+    for (int& idx : m_curChrIds_1) {
+        if (idx >= m_availibleCharacters.size()) {
+            idx = -1;
+        }
+    }
+    for (int& idx : m_curChrIds_2) {
+        if (idx >= m_availibleCharacters.size()) {
+            idx = -1;
         }
     }
     
