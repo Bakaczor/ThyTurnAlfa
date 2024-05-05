@@ -96,7 +96,7 @@ int AI::runAlphaBeta(int characterId, int alpha, int beta, int treeDepth, std::s
 					int childAlphaBeta = runAlphaBeta(childState.queue.peek().id, childAlpha, beta, treeDepth - 1, childPath, childState);
 
 					// store best move
-					if (treeDepth == *m_treeHeight && childAlphaBeta > evaluation) {
+					if (treeDepth == *m_treeHeight && childAlphaBeta >= evaluation) {
 						m_bestMove = moveWithInvoker;
 					}
 

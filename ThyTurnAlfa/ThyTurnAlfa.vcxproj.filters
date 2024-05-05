@@ -34,12 +34,6 @@
     <Filter Include="Source Files\Effects">
       <UniqueIdentifier>{b6e3461a-03f4-4ad6-98cf-bbc32139667e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Tests">
-      <UniqueIdentifier>{b7e970a4-675b-4596-bb06-ecca6e3db4f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Tests">
-      <UniqueIdentifier>{f079ca3f-ef73-4b50-a6e3-a6efb1290746}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -126,9 +120,6 @@
     </ClCompile>
     <ClCompile Include="Wet.cpp">
       <Filter>Source Files\Effects</Filter>
-    </ClCompile>
-    <ClCompile Include="EffectsTest.cpp">
-      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="OrdinaryAttack.cpp">
       <Filter>Source Files\Movements\ConventionalAttacks</Filter>
@@ -282,9 +273,6 @@
     <ClInclude Include="Wet.hpp">
       <Filter>Header Files\Effects</Filter>
     </ClInclude>
-    <ClInclude Include="EffectsTest.hpp">
-      <Filter>Header Files\Tests</Filter>
-    </ClInclude>
     <ClInclude Include="OrdinaryAttack.hpp">
       <Filter>Header Files\Movements\ConventionalAttacks</Filter>
     </ClInclude>
@@ -404,6 +392,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\png\megumin.png">
+      <Filter>Resource Files\images</Filter>
+    </Image>
+    <Image Include="images\placeholder.png">
       <Filter>Resource Files\images</Filter>
     </Image>
   </ItemGroup>
