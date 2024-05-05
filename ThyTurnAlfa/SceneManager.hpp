@@ -62,7 +62,7 @@ class SceneManager {
 	// === OPTIONS ===
 	std::array<const char*, Const::Sizes::PLAYER_NUMBER> m_availibleFunctions = { "Basic", "NotBasic" };
 	int m_curFucIdx = 0;
-	int m_treeDepth = 1;
+	int m_treeDepth = 5;
 
 	// === SETUP ===
 	std::array<const char*, Const::Sizes::NUM_OF_PLAYER_TYPES> m_availiblePlayers = { "Human", "Random", "AI" };

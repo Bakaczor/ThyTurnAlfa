@@ -8,6 +8,8 @@
 
 #include "stb_image.h"
 
+#include "Shield.hpp"
+
 float SceneManager::renderBegin() const {
     ImGui::SetNextWindowPos(ImVec2(0, 0));
     ImGui::SetNextWindowSize(ImVec2(m_width, m_height));
@@ -321,6 +323,10 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
         ImGui::BeginGroup();
         for (const auto& effect : character.activeEffects) {
             ImGui::Text(effect->name.c_str());
+            if (Shield* shield = dynamic_cast<Shield*>(effect.get())) {
+                ImGui::SameLine();
+                ImGui::Text(std::to_string(shield->hp).c_str());
+            }
             if (!character.isAlive) {
                 ImGui::Text("Dead");
             }
@@ -343,6 +349,10 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
         ImGui::BeginGroup();
         for (const auto& effect : character.activeEffects) {
             ImGui::Text(effect->name.c_str());
+            if (Shield* shield = dynamic_cast<Shield*>(effect.get())) {
+                ImGui::SameLine();
+                ImGui::Text(std::to_string(shield->hp).c_str());
+            }
             if (!character.isAlive) {
                 ImGui::Text("Dead");
             }
