@@ -8,11 +8,12 @@ Cure::Cure(): DefensiveMovement(Const::Cure::CURE_MOVEMENT_NAME,
 
 bool Cure::individualAction(Character& who, Character& on_whom) {
     DefensiveMovement::individualAction(who, on_whom);
-    for (auto it = on_whom.activeEffects.begin(); it != on_whom.activeEffects.end(); it++) {
-        if (dynamic_cast<Bleeding*>(it->get())) {
-            it->get()->cancelFrom(on_whom);
-            on_whom.activeEffects.erase(it);
+
+    std::erase_if(on_whom.activeEffects, [&on_whom](std::unique_ptr<Effect>& e) {
+        if (dynamic_cast<Bleeding*>(e.get())) {
+            e->cancelFrom(on_whom);
+            return true;
         }
-    }
+        return false; });
     return true;
 }
