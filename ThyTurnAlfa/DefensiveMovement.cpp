@@ -12,8 +12,7 @@ bool DefensiveMovement::isInvokable(const Character& who, const Character& on_wh
 	return Movement::isInvokable(who, on_whom) && who.currentMp >= cost;
 }
 
-bool DefensiveMovement::individualAction(Character& who, Character& on_whom)
-{
+bool DefensiveMovement::individualAction(Character& who, Character& on_whom) {
 	who.currentMp -= cost;
 	return true;
 }
