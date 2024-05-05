@@ -148,6 +148,12 @@ namespace Const {
 		constexpr int WATER_ATTACK_DEFAULT_WEIGHT = 100;
 		constexpr int WATER_ATTACK_DEFAULT_COST = 15;
 	}
+
+	// ===== AUDIO =====
+	
+	namespace Audio {
+		constexpr int MUSIC_DEAFULT_VOLUME = 3;
+	}
 }
 
 #endif // CONST_HPP
