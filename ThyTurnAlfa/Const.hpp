@@ -152,7 +152,7 @@ namespace Const {
 	// ===== AUDIO =====
 	
 	namespace Audio {
-		constexpr int MUSIC_DEAFULT_VOLUME = 3;
+		constexpr int MUSIC_DEAFULT_VOLUME = 10;
 	}
 }
 
