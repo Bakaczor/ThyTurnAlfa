@@ -12,7 +12,7 @@
 #include "MusicState.hpp"
 
 class Audio {
-public:
+	public:
 	int volume = 50;
 
 	Audio(const Audio&) = delete;
