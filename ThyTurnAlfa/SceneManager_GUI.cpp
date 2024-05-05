@@ -8,6 +8,8 @@
 
 #include "stb_image.h"
 
+#include "DefensiveMovement.hpp"
+#include "MagicAttack.hpp"
 #include "Shield.hpp"
 
 float SceneManager::renderBegin() const {
@@ -242,8 +244,8 @@ void SceneManager::renderSetup() {
     ImGui::End();
 }
 
-void SceneManager::renderQueue() const {
-    ImVec2 imageSize(90, 90);
+void SceneManager::renderQueue(float& scale) const {
+    ImVec2 imageSize(scale * 90, scale * 90);
     ImGui::Text("NEXT   ");
     int i = 0;
     const auto& queue = m_queue.getQueue();
@@ -258,6 +260,39 @@ void SceneManager::renderQueue() const {
             ImGui::Image((ImTextureID*)tuple.character->getTextureID(), imageSize);
         }
         ImGui::PopID();
+    }
+}
+
+void SceneManager::renderCharacterStatistics(const float& startX, const std::vector<Character>& party, const float& scale) const {
+    ImGui::SetWindowFontScale(scale);
+    ImVec2 pos = ImGui::GetCursorScreenPos();
+    const float stepX = 160.0f;
+    for (const auto& character : party) {
+        float posX = startX + 10.0f;
+        ImGui::SetCursorPosX(posX);
+        posX += 2 * stepX;
+        ImGui::Text((character.getName()).c_str());
+        ImGui::SameLine();
+        ImGui::SetCursorPosX(posX);
+        posX += stepX;
+        ImGui::Text(("HP : " + std::to_string(character.currentHp) + " ").c_str());
+        ImGui::SameLine();
+        ImGui::SetCursorPosX(posX);
+        posX += stepX;
+        ImGui::Text(("MP : " + std::to_string(character.currentMp) + " ").c_str());
+        ImGui::SameLine();
+        ImGui::SetCursorPosX(posX);
+        posX += stepX;
+        ImGui::Text(("ATK : " + std::to_string(character.getAtk()) + " ").c_str());
+        ImGui::SameLine();
+        ImGui::SetCursorPosX(posX);
+        posX += stepX;
+        ImGui::Text(("DEF : " + std::to_string(character.getDef()) + " ").c_str());
+        ImGui::SameLine();
+        ImGui::SetCursorPosX(posX);
+        posX += stepX;
+        ImGui::Text(("SPD : " + std::to_string(character.getSpd()) + " ").c_str());
+        ImGui::Spacing();
     }
 }
 
@@ -276,13 +311,13 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
     float currScale = 0.2f * scale;
     ImGui::PushFont(m_blackChancery);
     ImGui::SetWindowFontScale(currScale);
-    renderQueue();
+    renderQueue(scale);
 
     // Second row: 4 columns
     ImGui::Columns(4, "MyColumns", false);
 
     // Column 1
-    ImVec2 imageSize = ImVec2(360, 360);
+    ImVec2 imageSize = ImVec2(scale * 360, scale * 360);
     ImGui::Text("Player 1");
     // there probably should be a better check for this
     if (id == 0) {
@@ -301,6 +336,13 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
                 what = move->name;
                 setWhat = true;
             }
+            if (MagicAttack* m = dynamic_cast<MagicAttack*>(move.get())) {
+                ImGui::SameLine();
+                ImGui::Text(("MP: " + std::to_string(m->getCost())).c_str());
+            } else if (DefensiveMovement* m = dynamic_cast<DefensiveMovement*>(move.get())) {
+                ImGui::SameLine();
+                ImGui::Text(("MP: " + std::to_string(m->getCost())).c_str());
+            }
             ImGui::Spacing();
             ImGui::PopID();
         }
@@ -308,7 +350,8 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
     
     ImGui::NextColumn();
 
-    imageSize = ImVec2(180, 180);
+    imageSize = ImVec2(scale * 180, scale * 180);
+    ImGui::SetWindowFontScale(0.8f * currScale);
 
     // Column 2
     i = 0;
@@ -363,8 +406,10 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
     }
     ImGui::NextColumn();
 
+    ImGui::SetWindowFontScale(currScale);
+
     // Column 4
-    imageSize = ImVec2(360, 360);
+    imageSize = ImVec2(scale * 360, scale * 360);
     ImGui::Text("Player 2");
     if (id == 1) {
         auto& party = m_players.at(1)->party;
@@ -381,6 +426,13 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
                 what = move->name;
                 setWhat = true;
             }
+            if (MagicAttack* m = dynamic_cast<MagicAttack*>(move.get())) {
+                ImGui::SameLine();
+                ImGui::Text(("MP: " + std::to_string(m->getCost())).c_str());
+            } else if (DefensiveMovement* m = dynamic_cast<DefensiveMovement*>(move.get())) {
+                ImGui::SameLine();
+                ImGui::Text(("MP: " + std::to_string(m->getCost())).c_str());
+            }
             ImGui::Spacing();
             ImGui::PopID();
         }
@@ -395,46 +447,16 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
     ImGui::SetCursorPosY(0.77f * m_height);
     ImGui::Text("Characters of player 1");
     ImGui::Spacing();
-    i = 0;
-    for (const auto& character : m_players.at(0)->party) {
-        ImGui::PushID(i++);
-        ImGui::Text(("<" + character.getName() + ">").c_str());
-        ImGui::SameLine();
-        ImGui::Text(("HP: " + std::to_string(character.currentHp) + " ").c_str());
-        ImGui::SameLine();
-        ImGui::Text(("MP: " + std::to_string(character.currentMp) + " ").c_str());
-        ImGui::SameLine();
-        ImGui::Text(("ATK: " + std::to_string(character.getAtk()) + " ").c_str());
-        ImGui::SameLine();
-        ImGui::Text(("DEF: " + std::to_string(character.getDef()) + " ").c_str());
-        ImGui::SameLine();
-        ImGui::Text(("SPD: " + std::to_string(character.getSpd()) + " ").c_str());
-        ImGui::Spacing();
-        ImGui::PopID();
-    }
+    renderCharacterStatistics(0.0f, m_players.at(0)->party, 0.8f * currScale);
     ImGui::NextColumn();
+
+    ImGui::SetWindowFontScale(currScale);
 
     // Column 2
     ImGui::SetCursorPosY(0.77f * m_height);
     ImGui::Text("Characters of player 2");
     ImGui::Spacing();
-    i = 0;
-    for (const auto& character : m_players.at(1)->party) {
-        ImGui::PushID(i++);
-        ImGui::Text(("<" + character.getName() + ">").c_str());
-        ImGui::SameLine();
-        ImGui::Text(("HP: " + std::to_string(character.currentHp) + " ").c_str());
-        ImGui::SameLine();
-        ImGui::Text(("MP: " + std::to_string(character.currentMp) + " ").c_str());
-        ImGui::SameLine();
-        ImGui::Text(("ATK: " + std::to_string(character.getAtk()) + " ").c_str());
-        ImGui::SameLine();
-        ImGui::Text(("DEF: " + std::to_string(character.getDef()) + " ").c_str());
-        ImGui::SameLine();
-        ImGui::Text(("SPD: " + std::to_string(character.getSpd()) + " ").c_str());
-        ImGui::Spacing();
-        ImGui::PopID();
-    }
+    renderCharacterStatistics(ImGui::GetColumnWidth(), m_players.at(1)->party, 0.8f * currScale);
 
     ImGui::Columns(1);
     ImGui::PopFont();
