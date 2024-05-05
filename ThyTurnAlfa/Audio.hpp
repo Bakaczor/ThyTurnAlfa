@@ -5,6 +5,7 @@
 
 #include <map>
 #include <tuple>
+#include <memory>
 
 #include <SFML/Audio.hpp>
 
@@ -24,7 +25,7 @@ private:
 
 	static Audio m_audio;
 
-	std::map<MusicState, std::tuple<sf::Music, bool>> m_audioPlayers;
+	std::map<MusicState, std::tuple<std::unique_ptr<sf::Music>, bool>> m_audioPlayers;
 	MusicState m_recentlyPlayedMusic = MusicState::None;
 };
 

@@ -15,20 +15,20 @@ bool Audio::playMusic(MusicState state)
 		// TODO: remove the line below when whole soundtrack is done
 		state = MusicState::Menu;
 
-		std::tuple<sf::Music, bool>& audio_tuple = m_audioPlayers[state];
+		std::tuple<std::unique_ptr<sf::Music>, bool>& audio_tuple = m_audioPlayers[state];
 		// checking whether the music was correctly opened
 		if (!std::get<1>(audio_tuple)) return false;
 
-		sf::Music& new_audio_player = std::get<0>(audio_tuple);
+		std::unique_ptr<sf::Music>& new_audio_player = std::get<0>(audio_tuple);
 
 		if (m_recentlyPlayedMusic != MusicState::None) {
-			sf::Music& recent_player = std::get<0>(m_audioPlayers[m_recentlyPlayedMusic]);
-			if (recent_player.getStatus() == sf::Music::Playing) {
-				recent_player.pause();
+			std::unique_ptr<sf::Music>& recent_player = std::get<0>(m_audioPlayers[m_recentlyPlayedMusic]);
+			if (recent_player->getStatus() == sf::Music::Playing) {
+				recent_player->pause();
 			}
 		}
 
-		new_audio_player.play();
+		new_audio_player->play();
 		m_recentlyPlayedMusic = state;
 
 		return true;
@@ -39,17 +39,19 @@ bool Audio::playMusic(MusicState state)
 }
 
 Audio::Audio() {
-	std::tuple<sf::Music, bool> menu_tuple;
-	std::get<1>(menu_tuple) = std::get<0>(menu_tuple).openFromFile("audio/menu.wav");
-
-	m_audioPlayers.insert({ MusicState::Menu, std::move(menu_tuple)});
+	try {
+		m_audioPlayers.emplace(MusicState::Menu, std::make_tuple(std::make_unique<sf::Music>(), true));
+		std::unique_ptr<sf::Music>& menu_audio_ptr = std::get<0>(m_audioPlayers[MusicState::Menu]);
+		std::get<1>(m_audioPlayers[MusicState::Menu]) = menu_audio_ptr->openFromFile("audio/menu.wav");
+		menu_audio_ptr->setLoop(true);
+	} catch (...) {	}
 }
 
 Audio::~Audio() {
 	for (auto& map_node : m_audioPlayers) {
-		sf::Music& audio_player = std::get<0>(std::get<1>(map_node));
-		if (audio_player.getStatus() == sf::Music::Playing) {
-			audio_player.stop();
+		std::unique_ptr<sf::Music>& audio_player = std::get<0>(std::get<1>(map_node));
+		if (audio_player->getStatus() == sf::Music::Playing) {
+			audio_player->stop();
 		}
 	}
 }
