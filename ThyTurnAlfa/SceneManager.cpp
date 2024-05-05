@@ -75,21 +75,19 @@ int SceneManager::arrange() {
     }
     m_availibleCharacters = reader.extractCharacters();
     m_partyPresets = reader.extractParties();
-
     return 0;
 }
 
 void SceneManager::setupGame() {
-    // TODO : setup algorithm options
-    // PS : this function could use loops if I didn't have separate members for indices
-
+    // TODO : this function could use loops if I didn't have separate members for indices
 
     // for custom it is already set in GUI
-    if (m_partyType == PartyType::Preset) {
-        auto view = m_availibleCharacters | std::views::transform([](const Character& c) {
-            return c.getName();
-        });
-        // player 1
+    auto view = m_availibleCharacters | std::views::transform([](const Character& c) {
+        return c.getName();
+    });
+    
+    // player 1
+    if (m_curPtTp_1 == PartyType::Preset) { 
         PartyPreset& preset1 = m_partyPresets.at(m_curPPrIdx_1);
         int i1 = 0;
         for (const std::string& name : preset1.characterNames) {
@@ -99,7 +97,9 @@ void SceneManager::setupGame() {
             }
             i1++;
         }
-        // player 2
+    }
+    // player 2
+    if (m_curPtTp_2 == PartyType::Preset) {
         PartyPreset& preset2 = m_partyPresets.at(m_curPPrIdx_2);
         int i2 = 0;
         for (const std::string& name : preset2.characterNames) {
@@ -110,6 +110,19 @@ void SceneManager::setupGame() {
             i2++;
         }
     }
+
+    // handle empty character slots
+    for (int& idx : m_curChrIds_1) {
+        if (idx >= m_availibleCharacters.size()) {
+            idx = -1;
+        }
+    }
+    for (int& idx : m_curChrIds_2) {
+        if (idx >= m_availibleCharacters.size()) {
+            idx = -1;
+        }
+    }
+    
     // player 1
     if (m_availiblePlayers.at(m_curPlyIdx_1) == "Human") {
         m_players[0] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_1, this);
@@ -136,7 +149,8 @@ void SceneManager::resetSetup() {
     m_curPPrIdx_2 = 0;
     m_curChrIds_1 = { -1, -1, -1, -1 };
     m_curChrIds_2 = { -1, -1, -1, -1 };
-    m_partyType = PartyType::Custom;
+    m_curPtTp_1 = PartyType::Custom;
+    m_curPtTp_2 = PartyType::Custom;
 
     // reset characters
     for (auto& character : m_availibleCharacters) {
