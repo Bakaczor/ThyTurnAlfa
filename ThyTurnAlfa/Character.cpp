@@ -56,7 +56,7 @@ bool Character::applyEffects() {
         }
         return false; });
 
-    if (!this->isAlive) {
+    if (!(this->isAlive)) {
         detachEffects();
         return false;
     }
