@@ -110,12 +110,12 @@ namespace Const {
 	namespace Heal {
 		constexpr const char* HEAL_MOVEMENT_NAME = "Heal";
 		constexpr int HEAL_DEFAULT_HP_BOOST = 300;
-		constexpr int HEAL_DEFAULT_COST = 20;
+		constexpr int HEAL_DEFAULT_COST = 25;
 	}
 
 	namespace Revive {
 		constexpr const char* REVIVE_MOVENT_NAME = "Revive";
-		constexpr int REVIVE_DEFAULT_COST = 60;
+		constexpr int REVIVE_DEFAULT_COST = 65;
 	}
 
 	namespace ShieldMovement {
@@ -127,7 +127,7 @@ namespace Const {
 	namespace FireAttack {
 		constexpr const char* FIRE_ATTACK_MOVEMENT_NAME = "FireAttack";
 		constexpr int FIRE_ATTACK_DEFAULT_WEIGHT = 120;
-		constexpr int FIRE_ATTACK_DEFAULT_COST = 25;
+		constexpr int FIRE_ATTACK_DEFAULT_COST = 30;
 	}
 
 	namespace IceAttack {
@@ -140,7 +140,7 @@ namespace Const {
 	namespace LightningAttack {
 		constexpr const char* LIGHTNING_ATTACK_MOVEMENT_NAME = "LightningAttack";
 		constexpr int LIGHTNING_ATTACK_DEFAULT_WEIGHT = 150;
-		constexpr int LIGHTNING_ATTACK_DEFAULT_COST = 35;
+		constexpr int LIGHTNING_ATTACK_DEFAULT_COST = 40;
 	}
 
 	namespace WaterAttack{
