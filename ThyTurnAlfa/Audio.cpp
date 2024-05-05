@@ -1,7 +1,8 @@
 #include "Audio.hpp"
+#include "Utils.hpp"
+
 #include <exception>
 #include <iostream>
-#include "Error.hpp"
 
 Audio Audio::m_audio = Audio();
 
@@ -9,8 +10,7 @@ Audio& Audio::get() {
 	return m_audio;
 }
 
-bool Audio::playMusic(MusicState state)
-{
+bool Audio::playMusic(MusicState state) {
 	if (state == m_recentlyPlayedMusic || state == MusicState::None)
 		return true;
 	try {
@@ -35,7 +35,7 @@ bool Audio::playMusic(MusicState state)
 
 		return true;
 	} catch(const std::exception& e) {
-		printError(e);
+		Utils::printError(e);
 		return false;
 	}
 
@@ -61,7 +61,7 @@ Audio::Audio() {
 		menu_audio_ptr->setLoop(true);
 		menu_audio_ptr->setVolume(volume);
 	} catch (const std::exception & e) {
-		printError(e);
+		Utils::printError(e);
 	}
 }
 

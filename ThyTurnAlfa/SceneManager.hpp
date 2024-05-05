@@ -85,6 +85,7 @@ class SceneManager {
 	void renderSetup();
 	void renderOptions();
 	void renderMove(const Character& who, const Message& message, const unsigned int& id);
+	void renderCharacterStatistics(const float& startX, const std::vector<Character>& party, const float& scale) const;
 	std::optional<Choice> renderBackground(const std::string& who, const unsigned int& id, bool lock);
 	int playerWon() const;
 	void renderWinner(unsigned int& who);
@@ -94,7 +95,7 @@ class SceneManager {
 	void newFrame();
 	void renderNewFrame();
 	float renderBegin() const;
-	void renderQueue() const;
+	void renderQueue(float& scale) const;
 	void renderPlayerSetup(float x,
 						   int* curPlyIdx,
 						   int* curPPrIdx,
