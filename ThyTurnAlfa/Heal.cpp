@@ -10,7 +10,7 @@ bool Heal::isInvokable(const Character& who, const Character& on_whom) const {
 }
 
 bool Heal::individualAction(Character& who, Character& on_whom) {
-	who.currentMp -= this->cost;
+	DefensiveMovement::individualAction(who, on_whom);
 	on_whom.currentHp += hpBoost;
 	if (on_whom.currentHp > on_whom.getHp()) {
 		on_whom.currentHp = on_whom.getHp();

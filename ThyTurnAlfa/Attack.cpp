@@ -21,7 +21,5 @@ bool Attack::isInvokable(const Character& who, const Character& on_whom) const {
 }
 
 bool Attack::individualAction(Character& who, Character& on_whom) {
-    int dmg = computeDmg(who, on_whom);
-    on_whom.applyDamage(dmg);
-    return true;
+    return on_whom.applyDamage(computeDmg(who, on_whom));
 }

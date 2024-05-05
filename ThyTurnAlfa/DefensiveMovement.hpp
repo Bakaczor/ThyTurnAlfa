@@ -16,6 +16,7 @@ class DefensiveMovement : public Movement {
 
 	virtual int getCost() override;
 	virtual bool isInvokable(const Character& who, const Character& on_whom) const override;
+	virtual bool individualAction(Character& who, Character& on_whom) override;
 };
 
 #endif // !DEFENSIVE_MOVEMENT_HPP

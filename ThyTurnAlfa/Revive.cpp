@@ -10,6 +10,7 @@ bool Revive::isInvokable(const Character& who, const Character& on_whom) const {
 }
 
 bool Revive::individualAction(Character& who, Character& on_whom) {
+	DefensiveMovement::individualAction(who, on_whom);
 	on_whom.currentHp = on_whom.getHp();
 	on_whom.isAlive = true;
 	return true;
