@@ -14,8 +14,7 @@ bool MagicAttack::isInvokable(const Character& who, const Character& on_whom) co
 
 bool MagicAttack::individualAction(Character& who, Character& on_whom)
 {
-    Attack::individualAction(who, on_whom);
     who.currentMp -= cost;
-    return true;
+    return Attack::individualAction(who, on_whom);
 }
 
