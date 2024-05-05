@@ -146,7 +146,6 @@
     <ClCompile Include="DefensiveMovement.cpp" />
     <ClCompile Include="DmgTable.cpp" />
     <ClCompile Include="Effect.cpp" />
-    <ClCompile Include="EffectsTest.cpp" />
     <ClCompile Include="FireAttack.cpp" />
     <ClCompile Include="Frozen.cpp" />
     <ClCompile Include="Heal.cpp" />
@@ -202,7 +201,6 @@
     <ClInclude Include="MovementType.hpp" />
     <ClInclude Include="OrdinaryAttack.hpp" />
     <ClInclude Include="Effect.hpp" />
-    <ClInclude Include="EffectsTest.hpp" />
     <ClInclude Include="Frozen.hpp" />
     <ClInclude Include="Movement.hpp" />
     <ClInclude Include="PartyPreset.hpp" />
@@ -236,6 +234,7 @@
     <Font Include="fonts\TheCenturion.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="images\placeholder.png" />
     <Image Include="images\png\megumin.png" />
   </ItemGroup>
   <ItemGroup>
