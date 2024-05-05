@@ -13,11 +13,14 @@
 
 class Audio {
 public:
+	int volume = 50;
+
 	Audio(const Audio&) = delete;
 	
 	static Audio& get();
 
-	bool playMusic(MusicState state);
+	bool playMusic(MusicState state);	
+	void updateVolume();
 
 private:
 	Audio();

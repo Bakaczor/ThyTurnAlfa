@@ -98,6 +98,10 @@ void SceneManager::renderOptions() {
 
     ImGui::SetNextItemWidth(1.5f * buttonWidth);
     ImGui::Combo(" Evaluation Function", &m_curFucIdx, m_availibleFunctions.data(), m_availibleFunctions.size());
+
+    ImGui::SetNextItemWidth(1.5f * buttonWidth);
+    ImGui::SliderInt("Music volume", &(m_audio.volume), 0, 100);
+
     ImGui::EndGroup();
 
     // =====
