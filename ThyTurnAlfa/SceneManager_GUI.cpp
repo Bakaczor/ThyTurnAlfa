@@ -327,9 +327,9 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
                 ImGui::SameLine();
                 ImGui::Text(std::to_string(shield->hp).c_str());
             }
-            if (!character.isAlive) {
-                ImGui::Text("Dead");
-            }
+        }
+        if (!character.isAlive) {
+            ImGui::Text("Dead");
         }
         ImGui::EndGroup();
         ImGui::Text(character.getName().c_str());
@@ -353,9 +353,9 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
                 ImGui::SameLine();
                 ImGui::Text(std::to_string(shield->hp).c_str());
             }
-            if (!character.isAlive) {
-                ImGui::Text("Dead");
-            }
+        }
+        if (!character.isAlive) {
+            ImGui::Text("Dead");
         }
         ImGui::EndGroup();
         ImGui::Text(character.getName().c_str());
