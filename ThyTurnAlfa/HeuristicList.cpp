@@ -12,9 +12,10 @@
 #include "WaterAttack.hpp"
 
 HeuristicList::HeuristicList(const Character& who, std::unordered_map<int, Character>& characters) {
-	// WARNING: following handling of game ending works only if we assume that each Character
-	//			has at least one basic attack or any other movement that does not cost MP
-	//			and therefore is available for the whole game
+	// WARNING:
+	// following handling of game ending works only if we assume that each Character
+	// has at least one basic attack or any other movement that does not cost MP
+	// and therefore is available for the whole game
 
 	if (playerWon(who.getPlayerId(), characters)) {
 		return;
