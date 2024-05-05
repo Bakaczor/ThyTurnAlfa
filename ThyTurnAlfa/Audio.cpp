@@ -1,5 +1,7 @@
 #include "Audio.hpp"
 #include <exception>
+#include <iostream>
+#include "Error.hpp"
 
 Audio Audio::m_audio = Audio();
 
@@ -32,7 +34,8 @@ bool Audio::playMusic(MusicState state)
 		m_recentlyPlayedMusic = state;
 
 		return true;
-	} catch(...) {
+	} catch(const std::exception& e) {
+		printError(e);
 		return false;
 	}
 
@@ -44,7 +47,9 @@ Audio::Audio() {
 		std::unique_ptr<sf::Music>& menu_audio_ptr = std::get<0>(m_audioPlayers[MusicState::Menu]);
 		std::get<1>(m_audioPlayers[MusicState::Menu]) = menu_audio_ptr->openFromFile("audio/menu.wav");
 		menu_audio_ptr->setLoop(true);
-	} catch (...) {	}
+	} catch (const std::exception & e) {
+		printError(e);
+	}
 }
 
 Audio::~Audio() {

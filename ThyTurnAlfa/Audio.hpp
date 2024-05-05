@@ -3,7 +3,7 @@
 #ifndef AUDIO_HPP
 #define AUDIO_HPP
 
-#include <map>
+#include <unordered_map>
 #include <tuple>
 #include <memory>
 
@@ -25,7 +25,7 @@ private:
 
 	static Audio m_audio;
 
-	std::map<MusicState, std::tuple<std::unique_ptr<sf::Music>, bool>> m_audioPlayers;
+	std::unordered_map<MusicState, std::tuple<std::unique_ptr<sf::Music>, bool>> m_audioPlayers;
 	MusicState m_recentlyPlayedMusic = MusicState::None;
 };
 
