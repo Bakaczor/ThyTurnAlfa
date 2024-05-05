@@ -170,6 +170,7 @@
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="ShieldMovement.cpp" />
+    <ClCompile Include="State.cpp" />
     <ClCompile Include="TemporaryDamageModifier.cpp" />
     <ClCompile Include="TemporaryDamagePerRound.cpp" />
     <ClCompile Include="WaterAttack.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="Revive.hpp" />
     <ClInclude Include="Shield.hpp" />
     <ClInclude Include="ShieldMovement.hpp" />
+    <ClInclude Include="State.hpp" />
     <ClInclude Include="TargetType.hpp" />
     <ClInclude Include="TemporaryDamageModifier.hpp" />
     <ClInclude Include="TemporaryDamagePerRound.hpp" />

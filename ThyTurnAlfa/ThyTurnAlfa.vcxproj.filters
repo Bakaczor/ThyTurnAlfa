@@ -235,6 +235,9 @@
     <ClCompile Include="HeuristicList.cpp">
       <Filter>Source Files\Algorithm</Filter>
     </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.hpp">
@@ -382,6 +385,9 @@
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
     <ClInclude Include="HeuristicList.hpp">
+      <Filter>Header Files\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="State.hpp">
       <Filter>Header Files\Algorithm</Filter>
     </ClInclude>
   </ItemGroup>
