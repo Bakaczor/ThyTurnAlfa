@@ -28,6 +28,7 @@ class HeuristicList {
 	int burningHeuristic(const Character& who, const Movement* what, const Character& onWhom) const;
 	int frozenHeuristic(const Character& who, const Movement* what, const Character& onWhom) const;
 	int attackHeuristic(const Character& who, const Movement* what, const Character& onWhom) const;
+	bool playerWon(int playerId, std::unordered_map<int, Character>& characters) const;
 };
 
 #endif

@@ -12,6 +12,15 @@
 #include "WaterAttack.hpp"
 
 HeuristicList::HeuristicList(const Character& who, std::unordered_map<int, Character>& characters) {
+	// WARNING:
+	// following handling of game ending works only if we assume that each Character
+	// has at least one basic attack or any other movement that does not cost MP
+	// and therefore is available for the whole game
+
+	if (playerWon(who.getPlayerId(), characters)) {
+		return;
+	}
+
 	std::vector<std::pair<std::pair<suint, suint>, int>> v;
 	for (suint i = 0; i < who.movements.size(); i++) {
 		for (const auto& character : characters) {
@@ -141,4 +150,15 @@ int HeuristicList::attackHeuristic(const Character& who, const Movement* what, c
 		return Const::Algorithmic::W_ATTACK;
 	}
 	return 0;
+}
+
+bool HeuristicList::playerWon(int playerId, std::unordered_map<int, Character>& characters) const
+{
+	for (auto& c : characters) {
+		if (c.second.getPlayerId() != playerId && c.second.isAlive) {
+			return false; // other player is still alive
+		}
+	}
+
+	return true; // other player has died
 }

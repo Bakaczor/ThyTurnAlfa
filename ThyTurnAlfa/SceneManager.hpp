@@ -60,6 +60,7 @@ class SceneManager {
 	void applyEffects();
 
 	// === OPTIONS ===
+	// TODO: pass it to AI/State
 	std::array<const char*, Const::Sizes::PLAYER_NUMBER> m_availibleFunctions = { "Basic", "NotBasic" };
 	int m_curFucIdx = 0;
 	int m_treeDepth = 5;

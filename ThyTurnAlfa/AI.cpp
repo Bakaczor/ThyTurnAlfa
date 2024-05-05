@@ -104,6 +104,11 @@ int AI::runAlphaBeta(int characterId, int alpha, int beta, int treeDepth, std::s
 					childAlpha = std::max(childAlpha, evaluation);
 				}
 			}
+
+			// I won
+			if (state.node->movements.list.empty()) {
+				evaluation = INT_MAX;
+			}
 		}
 		// MIN_NODE
 		else {
@@ -122,6 +127,11 @@ int AI::runAlphaBeta(int characterId, int alpha, int beta, int treeDepth, std::s
 					evaluation = std::min(evaluation, childAlphaBeta);
 					childBeta = std::min(childBeta, evaluation);
 				}
+			}
+
+			// I lost
+			if (state.node->movements.list.empty()) {
+				evaluation = INT_MIN;
 			}
 		}
 	}
