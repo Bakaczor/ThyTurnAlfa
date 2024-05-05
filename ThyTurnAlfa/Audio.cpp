@@ -9,7 +9,7 @@ Audio& Audio::get() {
 
 bool Audio::playMusic(MusicState state)
 {
-	if (state == MusicState::None)
+	if (state == m_recentlyPlayedMusic || state == MusicState::None)
 		return true;
 	try {
 		// TODO: remove the line below when whole soundtrack is done
@@ -32,7 +32,7 @@ bool Audio::playMusic(MusicState state)
 		m_recentlyPlayedMusic = state;
 
 		return true;
-	} catch(std::exception& e) {
+	} catch(...) {
 		return false;
 	}
 
