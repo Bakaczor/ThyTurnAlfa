@@ -30,6 +30,9 @@ bool Audio::playMusic(MusicState state) {
 			}
 		}
 
+		if (new_audio_player->getVolume() != volume) {
+			new_audio_player->setVolume(volume);
+		}
 		new_audio_player->play();
 		m_recentlyPlayedMusic = state;
 
