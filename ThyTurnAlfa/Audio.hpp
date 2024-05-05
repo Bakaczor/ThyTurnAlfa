@@ -9,11 +9,12 @@
 
 #include <SFML/Audio.hpp>
 
+#include "Const.hpp"
 #include "MusicState.hpp"
 
 class Audio {
 	public:
-	int volume = 50;
+	int volume = Const::Audio::MUSIC_DEAFULT_VOLUME;
 
 	Audio(const Audio&) = delete;
 	

@@ -192,7 +192,6 @@
     <ClInclude Include="Cure.hpp" />
     <ClInclude Include="DefensiveMovement.hpp" />
     <ClInclude Include="DmgTable.hpp" />
-    <ClInclude Include="Error.hpp" />
     <ClInclude Include="FireAttack.hpp" />
     <ClInclude Include="Heal.hpp" />
     <ClInclude Include="IceAttack.hpp" />
