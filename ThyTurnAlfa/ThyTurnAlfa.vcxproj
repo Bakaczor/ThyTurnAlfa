@@ -135,6 +135,7 @@
     <ClCompile Include="ActionlessEffect.cpp" />
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="Attack.cpp" />
+    <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Bleeding.cpp" />
     <ClCompile Include="BleedingAttack.cpp" />
     <ClCompile Include="Boost.cpp" />
@@ -178,6 +179,7 @@
   <ItemGroup>
     <ClInclude Include="ActionlessEffect.hpp" />
     <ClInclude Include="Attack.hpp" />
+    <ClInclude Include="Audio.hpp" />
     <ClInclude Include="Bleeding.hpp" />
     <ClInclude Include="BleedingAttack.hpp" />
     <ClInclude Include="Boost.hpp" />
@@ -199,6 +201,7 @@
     <ClInclude Include="HeuristicList.hpp" />
     <ClInclude Include="MovementFactory.hpp" />
     <ClInclude Include="MovementType.hpp" />
+    <ClInclude Include="MusicState.hpp" />
     <ClInclude Include="OrdinaryAttack.hpp" />
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="Frozen.hpp" />
@@ -239,6 +242,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="appsettings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="audio\menu.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

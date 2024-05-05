@@ -159,6 +159,7 @@ void SceneManager::resetSetup() {
 }
 
 int SceneManager::run() {
+    m_audio.playMusic(MusicState::Menu);
     while (!glfwWindowShouldClose(m_window)) {
         switch (m_currentState) {
             case ProgramState::Menu: {

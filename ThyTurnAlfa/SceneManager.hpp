@@ -22,6 +22,7 @@
 #include "ProgramState.hpp"
 #include "Queue.hpp"
 #include "WindowMode.hpp"
+#include "Audio.hpp"
  
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -101,5 +102,8 @@ class SceneManager {
 						   PartyType& curPtTp,
 						   const std::string& num,
 						   std::array<int, Const::Sizes::MAX_PARTY_SIZE>& curChrIds);
+
+	// === AUDIO ===
+	Audio& m_audio = Audio::get();
 };
 #endif
