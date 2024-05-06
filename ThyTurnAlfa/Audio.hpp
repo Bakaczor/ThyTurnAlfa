@@ -9,15 +9,19 @@
 
 #include <SFML/Audio.hpp>
 
+#include "Const.hpp"
 #include "MusicState.hpp"
 
 class Audio {
 	public:
+	int volume = Const::Audio::MUSIC_DEAFULT_VOLUME;
+
 	Audio(const Audio&) = delete;
 	
 	static Audio& get();
 
-	bool playMusic(MusicState state);
+	bool playMusic(MusicState state);	
+	void updateVolume();
 
 	private:
 	static Audio m_audio;

@@ -173,6 +173,7 @@ int SceneManager::run() {
                 newFrame();
                 renderOptions();
                 renderNewFrame();
+                m_audio.updateVolume();
                 break;
             }
             case ProgramState::Setup: {

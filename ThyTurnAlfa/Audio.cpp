@@ -30,6 +30,9 @@ bool Audio::playMusic(MusicState state) {
 			}
 		}
 
+		if (new_audio_player->getVolume() != volume) {
+			new_audio_player->setVolume(volume);
+		}
 		new_audio_player->play();
 		m_recentlyPlayedMusic = state;
 
@@ -41,12 +44,25 @@ bool Audio::playMusic(MusicState state) {
 
 }
 
+void Audio::updateVolume()
+{
+	if (volume < 0) volume = 0;
+	else if (volume > 100) volume = 100;
+	if (m_recentlyPlayedMusic != MusicState::None) {
+		std::unique_ptr<sf::Music>& menu_audio_ptr = std::get<0>(m_audioPlayers[m_recentlyPlayedMusic]);
+		if (menu_audio_ptr->getVolume() != volume) {
+			menu_audio_ptr->setVolume(volume);
+		}
+	}
+}
+
 Audio::Audio() {
 	try {
 		m_audioPlayers.emplace(MusicState::Menu, std::make_tuple(std::make_unique<sf::Music>(), true));
 		std::unique_ptr<sf::Music>& menu_audio_ptr = std::get<0>(m_audioPlayers[MusicState::Menu]);
 		std::get<1>(m_audioPlayers[MusicState::Menu]) = menu_audio_ptr->openFromFile("audio/menu.wav");
 		menu_audio_ptr->setLoop(true);
+		menu_audio_ptr->setVolume(volume);
 	} catch (const std::exception & e) {
 		Utils::printError(e);
 	}
