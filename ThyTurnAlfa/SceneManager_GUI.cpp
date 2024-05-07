@@ -104,7 +104,7 @@ void SceneManager::renderOptions() {
     ImGui::Spacing();
 
     ImGui::SetNextItemWidth(1.5f * buttonWidth);
-    ImGui::SliderInt("Music volume", &(m_audio.volume), 0, 100);
+    ImGui::SliderInt(" Music volume", &(m_audio.volume), 0, 100);
 
     ImGui::EndGroup();
 
