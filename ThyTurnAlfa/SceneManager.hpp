@@ -5,6 +5,7 @@
 
 #include <array>
 #include <memory>
+#include <semaphore>
 #include <string>
 #include <vector>
 
@@ -35,6 +36,9 @@ class SceneManager {
 	int init();
 	int run();
 	std::tuple<std::string, unsigned int, bool> chooseMove(Character& who);
+
+	void pauseAudio();
+	void resumeAudio();
 
 	private:
 	// === WINDOW ===
@@ -105,5 +109,8 @@ class SceneManager {
 
 	// === AUDIO ===
 	Audio& m_audio = Audio::get();
+
+	// === GAME PAUSING ===
+	bool m_gameIsPaused = false;
 };
 #endif
