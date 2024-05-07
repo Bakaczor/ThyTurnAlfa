@@ -84,10 +84,10 @@ void SceneManager::setupGame() {
     // for custom it is already set in GUI
     auto view = m_availibleCharacters | std::views::transform([](const Character& c) {
         return c.getName();
-    });
-    
+        });
+
     // player 1
-    if (m_curPtTp_1 == PartyType::Preset) { 
+    if (m_curPtTp_1 == PartyType::Preset) {
         PartyPreset& preset1 = m_partyPresets.at(m_curPPrIdx_1);
         int i1 = 0;
         for (const std::string& name : preset1.characterNames) {
@@ -122,21 +122,25 @@ void SceneManager::setupGame() {
             idx = -1;
         }
     }
-    
+
     // player 1
     if (m_availiblePlayers.at(m_curPlyIdx_1) == "Human") {
         m_players[0] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_1, this);
-    } else if (m_availiblePlayers.at(m_curPlyIdx_1) == "Random") {
+    }
+    else if (m_availiblePlayers.at(m_curPlyIdx_1) == "Random") {
         m_players[0] = std::make_unique<Random>(m_availibleCharacters, m_curChrIds_1);
-    } else {
+    }
+    else {
         m_players[0] = std::make_unique<AI>(m_availibleCharacters, m_curChrIds_1, &m_treeDepth, &m_queue);
     }
     // player 2
     if (m_availiblePlayers.at(m_curPlyIdx_2) == "Human") {
         m_players[1] = std::make_unique<Human>(m_availibleCharacters, m_curChrIds_2, this);
-    } else if (m_availiblePlayers.at(m_curPlyIdx_2) == "Random") {
+    }
+    else if (m_availiblePlayers.at(m_curPlyIdx_2) == "Random") {
         m_players[1] = std::make_unique<Random>(m_availibleCharacters, m_curChrIds_2);
-    } else {
+    }
+    else {
         m_players[1] = std::make_unique<AI>(m_availibleCharacters, m_curChrIds_2, &m_treeDepth, &m_queue);
     }
 }
@@ -161,73 +165,67 @@ void SceneManager::resetSetup() {
 int SceneManager::run() {
     m_audio.playMusic(MusicState::Menu);
     while (!glfwWindowShouldClose(m_window)) {
-        const bool game_is_paused = m_gameIsPaused;
-        switch (m_currentState) {
+        if (!m_gameIsPaused) {
+            switch (m_currentState) {
             case ProgramState::Menu: {
-                if (!game_is_paused) {
-                    m_gameStart = true;
-                    newFrame();
-                    renderMenu();
-                }
-                renderNewFrame();
-                break; 
-            }
-            case ProgramState::Options: {
-                if (!game_is_paused) {
-                    newFrame();
-                    renderOptions();
-                    m_audio.updateVolume();
-                }
+                m_gameStart = true;
+                newFrame();
+                renderMenu();
                 renderNewFrame();
                 break;
             }
+            case ProgramState::Options: {
+                newFrame();
+                renderOptions();
+                renderNewFrame();
+                m_audio.updateVolume();
+                break;
+            }
             case ProgramState::Setup: {
-                if (!game_is_paused) {
-                    newFrame();
-                    renderSetup();
-                }
+                newFrame();
+                renderSetup();
                 renderNewFrame();
                 break;
             }
             case ProgramState::Game: {
-                const bool game_is_paused = m_gameIsPaused;
                 if (m_gameStart) {
-                    if (!game_is_paused) {
-                        m_gameStart = false;
-                        newFrame();
-                        setupGame();
-                        m_queue = Queue(m_players);
-                        for (const auto& player : m_players) {
-                            for (auto& character : player->party) {
-                                character.loadDmgEstimationTable(m_players);
-                            }
+                    m_gameStart = false;
+                    newFrame();
+                    setupGame();
+                    renderNewFrame();
+                    m_queue = Queue(m_players);
+                    for (const auto& player : m_players) {
+                        for (auto& character : player->party) {
+                            character.loadDmgEstimationTable(m_players);
                         }
                     }
-                    renderNewFrame();
                 }
-                if (!game_is_paused) {
-                    unsigned int winner = playerWon();
-                    if (-1 != winner) {
-                        m_currentState = ProgramState::Menu;
-                        resetSetup();
-                        renderWinner(winner);
-                        break;
-                    }
-                    Character& character = m_queue.peek();
-                    unsigned int id = character.getPlayerId();
-                    auto it = std::find_if(m_players.begin(), m_players.end(), [&id](const auto& p) {
-                        return p->id == id;
-                        });
-                    std::optional<Message> message = ((*it)->move(character, m_players));
-                    if (m_currentState != ProgramState::Game) { break; }
-                    if (!message.has_value()) {
-                        message = Message{ character.getName(), "unavailible moves", "everyone 10 times :<" };
-                    }
-                    applyEffects();
-                    renderMove(character, message.value(), id);
+                unsigned int winner = playerWon();
+                if (-1 != winner) {
+                    m_currentState = ProgramState::Menu;
+                    resetSetup();
+                    renderWinner(winner);
                     break;
                 }
+                Character& character = m_queue.peek();
+                unsigned int id = character.getPlayerId();
+                auto it = std::find_if(m_players.begin(), m_players.end(), [&id](const auto& p) {
+                    return p->id == id;
+                    });
+                std::optional<Message> message = ((*it)->move(character, m_players));
+                if (m_currentState != ProgramState::Game) { break; }
+                if (!message.has_value()) {
+                    message = Message{ character.getName(), "unavailible moves", "everyone 10 times :<" };
+                }
+                applyEffects();
+                renderMove(character, message.value(), id);
+                break;
             }
+        }
+
+        }
+        else {
+            renderNewFrame();
         }
     }
     return terminate();

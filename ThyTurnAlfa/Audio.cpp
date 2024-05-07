@@ -84,11 +84,6 @@ void Audio::updateVolume() {
 	}
 }
 
-bool Audio::isPlaying()
-{
-	return m_isPlaying;
-}
-
 Audio::Audio() {
 	try {
 		m_audioPlayers.emplace(MusicState::Menu, std::make_tuple(std::make_unique<sf::Music>(), true));
