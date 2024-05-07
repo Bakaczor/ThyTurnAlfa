@@ -12,7 +12,6 @@
 #include "Human.hpp"
 #include "AI.hpp"
 
-
 int SceneManager::init() {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);

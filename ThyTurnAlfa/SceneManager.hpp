@@ -5,7 +5,6 @@
 
 #include <array>
 #include <memory>
-#include <semaphore>
 #include <string>
 #include <vector>
 

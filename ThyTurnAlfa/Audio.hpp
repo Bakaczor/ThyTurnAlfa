@@ -24,7 +24,6 @@ class Audio {
 	void pauseMusic();
 	void resumeMusic();
 	void updateVolume();
-	bool isPlaying();
 
 	private:
 	static Audio m_audio;
