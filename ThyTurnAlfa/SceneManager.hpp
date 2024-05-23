@@ -36,6 +36,9 @@ class SceneManager {
 	int run();
 	std::tuple<std::string, unsigned int, bool> chooseMove(Character& who);
 
+	void pauseAudio();
+	void resumeAudio();
+
 	private:
 	// === WINDOW ===
 	GLFWwindow* m_window = nullptr;
@@ -105,5 +108,8 @@ class SceneManager {
 
 	// === AUDIO ===
 	Audio& m_audio = Audio::get();
+
+	// === GAME PAUSING ===
+	bool m_gameIsPaused = false;
 };
 #endif

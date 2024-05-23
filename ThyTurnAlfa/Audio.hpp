@@ -21,10 +21,14 @@ class Audio {
 	static Audio& get();
 
 	bool playMusic(MusicState state);	
+	void pauseMusic();
+	void resumeMusic();
 	void updateVolume();
 
 	private:
 	static Audio m_audio;
+	
+	bool m_isPlaying = false;
 
 	std::unordered_map<MusicState, std::tuple<std::unique_ptr<sf::Music>, bool>> m_audioPlayers;
 	MusicState m_recentlyPlayedMusic = MusicState::None;
