@@ -143,6 +143,7 @@
     <ClCompile Include="Burning.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Cold.cpp" />
+    <ClCompile Include="CSVWriter.cpp" />
     <ClCompile Include="Cure.cpp" />
     <ClCompile Include="DefensiveMovement.cpp" />
     <ClCompile Include="DmgTable.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="ShieldMovement.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="Stoper.cpp" />
     <ClCompile Include="TemporaryDamageModifier.cpp" />
     <ClCompile Include="TemporaryDamagePerRound.cpp" />
     <ClCompile Include="WaterAttack.cpp" />
@@ -189,6 +191,7 @@
     <ClInclude Include="Choice.hpp" />
     <ClInclude Include="Cold.hpp" />
     <ClInclude Include="Const.hpp" />
+    <ClInclude Include="CSVWriter.hpp" />
     <ClInclude Include="Cure.hpp" />
     <ClInclude Include="DefensiveMovement.hpp" />
     <ClInclude Include="DmgTable.hpp" />
@@ -213,9 +216,11 @@
     <ClInclude Include="Shield.hpp" />
     <ClInclude Include="ShieldMovement.hpp" />
     <ClInclude Include="State.hpp" />
+    <ClInclude Include="Stoper.hpp" />
     <ClInclude Include="TargetType.hpp" />
     <ClInclude Include="TemporaryDamageModifier.hpp" />
     <ClInclude Include="TemporaryDamagePerRound.hpp" />
+    <ClInclude Include="TimeType.hpp" />
     <ClInclude Include="Utils.hpp" />
     <ClInclude Include="WaterAttack.hpp" />
     <ClInclude Include="Wet.hpp" />
