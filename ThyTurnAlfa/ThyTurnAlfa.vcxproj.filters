@@ -229,6 +229,9 @@
     <ClCompile Include="State.cpp">
       <Filter>Source Files\Algorithm</Filter>
     </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.hpp">
@@ -378,6 +381,12 @@
     <ClInclude Include="State.hpp">
       <Filter>Header Files\Algorithm</Filter>
     </ClInclude>
+    <ClInclude Include="MusicState.hpp">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.hpp">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\BlackChancery.ttf">
@@ -402,5 +411,10 @@
     <None Include="appsettings.json">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="audio\menu.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>
