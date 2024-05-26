@@ -6,6 +6,19 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     SceneManager* context = static_cast<SceneManager*>(glfwGetWindowUserPointer(window));
     context->m_width = width;
     context->m_height = height;
+
+    if (width || height) {
+        if (context->m_gameIsPaused) {
+            context->resumeAudio();
+            context->m_gameIsPaused = false;
+        }
+    } else {
+        if (!context->m_gameIsPaused) {
+            context->pauseAudio();
+            context->m_gameIsPaused = true;
+        }
+
+    }
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {

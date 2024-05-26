@@ -35,6 +35,7 @@ bool Audio::playMusic(MusicState state) {
 		}
 		new_audio_player->play();
 		m_recentlyPlayedMusic = state;
+		m_isPlaying = true;
 
 		return true;
 	} catch(const std::exception& e) {
@@ -44,8 +45,35 @@ bool Audio::playMusic(MusicState state) {
 
 }
 
-void Audio::updateVolume()
-{
+void Audio::pauseMusic() {
+	try {
+		if (m_recentlyPlayedMusic != MusicState::None && m_isPlaying) {
+			std::unique_ptr<sf::Music>& audio_player_ptr = std::get<0>(m_audioPlayers[m_recentlyPlayedMusic]);
+			if (audio_player_ptr->getStatus() == sf::Music::Playing) {
+				audio_player_ptr->pause();
+				m_isPlaying = false;
+			}
+		}
+	} catch(const std::exception& e) {
+		Utils::printError(e);
+	}
+}
+
+void Audio::resumeMusic() {
+	try {
+		if (m_recentlyPlayedMusic != MusicState::None && !m_isPlaying) {
+			std::unique_ptr<sf::Music>& audio_player_ptr = std::get<0>(m_audioPlayers[m_recentlyPlayedMusic]);
+			if (audio_player_ptr->getStatus() != sf::Music::Playing) {
+				audio_player_ptr->play();
+				m_isPlaying = true;
+			}
+		}
+	} catch (const std::exception& e) {
+		Utils::printError(e);
+	}
+}
+
+void Audio::updateVolume() {
 	if (volume < 0) volume = 0;
 	else if (volume > 100) volume = 100;
 	if (m_recentlyPlayedMusic != MusicState::None) {
