@@ -55,6 +55,7 @@ class Character {
 	int getAtk() const;
 	int getDef() const;
 	int getSpd() const;
+	double getStrength() const;
 
 	unsigned int getPlayerId() const;
 
@@ -68,6 +69,7 @@ class Character {
 	int m_atk = 0;
 	int m_def = 0;
 	int m_spd = 0;
+	double m_strength = 0.0;
 };
 
 #endif

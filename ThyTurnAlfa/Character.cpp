@@ -93,6 +93,8 @@ void Character::deserialize(Json::Value& root)
 	m_name = root["name"].asString();
 	m_imagePath = root["imagePath"].asString();
 
+    m_strength = std::sqrt(m_atk * m_atk + m_def * m_def + m_spd * m_spd);
+
 	auto movementArray = root["movements"];
 	for (auto move : movementArray) {
 		auto pMovement = MovementFactory::create(move["name"].asString());
@@ -146,5 +148,7 @@ int Character::getAtk() const { return m_atk; }
 int Character::getDef() const { return m_def; }
 
 int Character::getSpd() const { return m_spd; }
+
+double Character::getStrength() const { return m_strength; }
 
 unsigned int Character::getPlayerId() const { return id / Const::Sizes::MAX_PARTY_SIZE; }
