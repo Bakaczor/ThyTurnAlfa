@@ -94,7 +94,12 @@ void SceneManager::renderOptions() {
     ImGui::SetCursorPosY(m_height / 2.5f);
     ImGui::BeginGroup();
     ImGui::SetNextItemWidth(1.5f * buttonWidth);
-    ImGui::SliderInt(" Tree Depth", &m_treeDepth, 1, 10);
+    ImGui::SliderInt(" AI 1 Tree Depth", &m_treeDepths[0], 1, 10);
+
+    ImGui::Spacing();
+
+    ImGui::SetNextItemWidth(1.5f * buttonWidth);
+    ImGui::SliderInt(" AI 2 Tree Depth", &m_treeDepths[1], 1, 10);
 
     ImGui::Spacing();
 
