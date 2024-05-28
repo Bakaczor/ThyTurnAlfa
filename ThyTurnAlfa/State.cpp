@@ -12,14 +12,11 @@ Node::Node(HeuristicList& t_movements) : movements{ t_movements } {}
 State::State(Queue& t_queue, std::unordered_map<int, Character>& t_characters) :
 	characters{ t_characters }, queue{ t_queue, t_characters }, node{ nullptr } {}
 
-State::State(const State& state) :
-	characters{ state.characters }, node{ nullptr } 
-{
+State::State(const State& state) : characters{ state.characters }, node{ nullptr } {
 	queue = Queue(state.queue, characters);
 }
 
-bool State::extractNode(int characterId, std::unordered_map<std::string, Node>& transpositionTable, std::string& key)
-{
+bool State::extractNode(int characterId, std::unordered_map<std::string, Node>& transpositionTable, std::string& key) {
 	bool nodeSearched = false;
 
 	if (transpositionTable.contains(key)) {
@@ -34,8 +31,7 @@ bool State::extractNode(int characterId, std::unordered_map<std::string, Node>& 
 	return nodeSearched;
 }
 
-bool State::makeMove(std::tuple<int, int, int>& move)
-{
+bool State::makeMove(std::tuple<int, int, int>& move) {
 	int invokerId = std::get<0>(move);
 	int movementId = std::get<1>(move);
 	int targetId = std::get<2>(move);
@@ -43,8 +39,7 @@ bool State::makeMove(std::tuple<int, int, int>& move)
 	return characters[invokerId].movements[movementId]->invoke(characters[invokerId], characters[targetId]);
 }
 
-double State::evaluate(int playerId)
-{
+double State::evaluate(int playerId) {
 	double hp = Const::Evaluation::HP_WEIGHT * evaluateHP(playerId);
 	double attackPotential = Const::Evaluation::ATK_DEF_SPD_WEIGHT * evaluateAttackPotential(playerId);
 	double healingPotential = Const::Evaluation::HEAL_WEIGHT * evaluateHealingPotential(playerId);
@@ -52,8 +47,7 @@ double State::evaluate(int playerId)
 	return hp + attackPotential + healingPotential + magicAttackPotential;
 }
 
-double State::evaluateHP(int playerId)
-{
+double State::evaluateHP(int playerId) {
 	int firstPlayerHP = 0;
 	int secondPlayerHP = 0;
 
@@ -70,18 +64,15 @@ double State::evaluateHP(int playerId)
 	return (firstPlayerHP - secondPlayerHP) * 1.0 / (firstPlayerHP + secondPlayerHP);
 }
 
-double State::evaluateAttackPotential(int playerId)
-{
+double State::evaluateAttackPotential(int playerId) {
 	double firstPlayerAttackPotential = 0.0;
 	int firstPlayerCharacterCount = 0;
 	double secondPlayerAttackPotential = 0.0;
 	int secondPlayerCharacterCount = 0;
 
 	for (auto& character : characters) {
-		int atk = character.second.getAtk();
-		int def = character.second.getDef();
-		int spd = character.second.getSpd();
-		double eval = character.second.isAlive ? std::sqrt(atk * atk + def * def + spd * spd) : 0.0;
+		double strength = character.second.getStrength();
+		double eval = character.second.isAlive ? strength : 0.0;
 
 		if (character.second.getPlayerId() == playerId) {
 			firstPlayerAttackPotential += eval;
@@ -96,8 +87,7 @@ double State::evaluateAttackPotential(int playerId)
 	return firstPlayerAttackPotential / firstPlayerCharacterCount - secondPlayerAttackPotential / secondPlayerCharacterCount;
 }
 
-double State::evaluateHealingPotential(int playerId)
-{
+double State::evaluateHealingPotential(int playerId) {
 	double firstPlayerHealingPotential = 0.0;
 	double secondPlayerHealingPotential = 0.0;
 
@@ -131,8 +121,7 @@ double State::evaluateHealingPotential(int playerId)
 	return firstPlayerHealingPotential - secondPlayerHealingPotential;
 }
 
-double State::evaluateMagicAttackPotential(int playerId)
-{
+double State::evaluateMagicAttackPotential(int playerId) {
 	double firstPlayerMagicAttackPotential = 0.0;
 	double secondPlayerMagicAttackPotential = 0.0;
 
