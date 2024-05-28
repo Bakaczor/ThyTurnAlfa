@@ -104,7 +104,7 @@ void SceneManager::renderOptions() {
     ImGui::Spacing();
 
     ImGui::SetNextItemWidth(1.5f * buttonWidth);
-    ImGui::SliderInt("Music volume", &(m_audio.volume), 0, 100);
+    ImGui::SliderInt(" Music volume", &(m_audio.volume), 0, 100);
 
     ImGui::EndGroup();
 
@@ -335,7 +335,7 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
                      ImVec2(1.0f, 0.0f), ImVec2(0.0f, 1.0f));
         ImGui::Text(it->getName().c_str());
         i = 0;
-        ImGui::SetCursorPosY(0.45f * m_height);
+        ImGui::Spacing();
         for (const auto& move : it->movements) {
             ImGui::PushID(i++);
             if (ImGui::Button(move->name.c_str())) {
@@ -425,7 +425,7 @@ std::optional<Choice> SceneManager::renderBackground(const std::string& who, con
         ImGui::Image((ImTextureID*)it->getTextureID(), imageSize);
         ImGui::Text(it->getName().c_str());
         i = 0;
-        ImGui::SetCursorPosY(0.45f * m_height);
+        ImGui::Spacing();
         for (const auto& move : it->movements) {
             ImGui::PushID(Const::Sizes::MAX_PARTY_SIZE + i++);
             if (ImGui::Button(move->name.c_str())) {
