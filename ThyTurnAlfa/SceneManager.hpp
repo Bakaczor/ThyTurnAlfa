@@ -67,7 +67,7 @@ class SceneManager {
 	// TODO: pass it to AI/State
 	std::array<const char*, Const::Sizes::PLAYER_NUMBER> m_availibleFunctions = { "Basic", "NotBasic" };
 	int m_curFucIdx = 0;
-	int m_treeDepth = 5;
+	std::array<int, Const::Sizes::PLAYER_NUMBER> m_treeDepths;
 
 	// === SETUP ===
 	std::array<const char*, Const::Sizes::NUM_OF_PLAYER_TYPES> m_availiblePlayers = { "Human", "Random", "AI" };
