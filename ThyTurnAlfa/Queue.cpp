@@ -34,19 +34,23 @@ Queue::Queue(const Queue& queue, std::unordered_map<int, Character>& characters)
 
 Character& Queue::peek() {
 	for (int i = 0; i < c.size(); ++i) {
-		Tuple currentCharacter = top();
+		if (c[i].character->isAlive) {
+			while(true) {
+				Tuple currentCharacter = top();
 
-		if (currentCharacter.currentATV != 0) {
-			for (int j = 1; j < c.size(); ++j) {
-				c[j].currentATV -= currentCharacter.currentATV;
+				if (currentCharacter.currentATV != 0) {
+					for (int j = 1; j < c.size(); ++j) {
+						c[j].currentATV -= currentCharacter.currentATV;
+					}
+				}
+
+				pop();
+				emplace(currentCharacter.character, currentCharacter.baseATV);
+
+				if (currentCharacter.character->isAlive) {
+					return *currentCharacter.character;
+				}
 			}
-		}
-
-		pop();
-		emplace(currentCharacter.character, currentCharacter.baseATV);
-
-		if (currentCharacter.character->isAlive) {
-			return *currentCharacter.character;
 		}
 	}
 
